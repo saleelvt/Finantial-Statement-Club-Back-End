@@ -1,7 +1,7 @@
 import { IAdminDependencies } from "@/application/admin/interfaces/IAdminDependencies";
 
 import { Request, Response, NextFunction } from "express";
-import { Documet } from "@/infrastructure/database/models/documentSchema";
+import { Document } from "@/infrastructure/database/models/documentSchema";
 
 export const adminAddDocumentController = ( dependencies: IAdminDependencies) => {
   return async (req: Request, res: Response, next: NextFunction): Promise<void |null | any> => {
@@ -13,7 +13,7 @@ export const adminAddDocumentController = ( dependencies: IAdminDependencies) =>
           .json({ success: false, message: "The Document data missing" });
       console.log(bodyData);
 
-      const existingDocument = await Documet.findOne({
+      const existingDocument = await Document.findOne({
         yearOfReport: bodyData.yearOfReport,
       });
       if (existingDocument) {
@@ -24,7 +24,8 @@ export const adminAddDocumentController = ( dependencies: IAdminDependencies) =>
             message: "A document with this yearOfReport already exists",
           });
       }
-      const newDocument = await Documet.create(bodyData);
+      
+      const newDocument = await Document.create(bodyData);
       return res.status(200).json({ success: true, message: "Document created successfully", data: newDocument });
       
     } catch (error) {

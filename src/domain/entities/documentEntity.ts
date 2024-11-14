@@ -5,6 +5,7 @@ export interface DocumentEntity {
     companyNameAr?:string;
     companyNameEn:string;
     yearOfReport:string;
-    file?:string;
+    fileEn?:string;
+    fileAr?:string
 }
 

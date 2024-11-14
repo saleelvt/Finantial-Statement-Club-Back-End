@@ -11,15 +11,18 @@ const DocumentSchema = new Schema<DocumentEntity>({
       companyNameEn: {
         type: String,
         required: true,
-      
       },
       yearOfReport: {
         type: String,
         required: true,
       },
-      file:{
+      fileEn:{
         type: String,
         required: true,
+      },
+      fileAr:{
+        type:String,
+        required:true
       }
     //   salonList:{ type: Schema.Types.ObjectId, ref: "Theater" }]
     },
@@ -27,4 +30,4 @@ const DocumentSchema = new Schema<DocumentEntity>({
         timestamps: true,
       }
 )
-export const Documet=model<DocumentEntity>("Document",DocumentSchema)
+export const Document=model<DocumentEntity>("Document",DocumentSchema)
