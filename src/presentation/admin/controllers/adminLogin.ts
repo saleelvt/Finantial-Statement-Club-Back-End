@@ -6,7 +6,7 @@ export const loginAdminController = (dependencies: IAdminDependencies) => {
     const { useCases: { loginAdminUseCase } } = dependencies;
     
     return async (req: Request, res: Response, next: NextFunction): Promise<void |null | any> => {
-        console.log("saleel sis ");
+        console.log("saleel sis ",req.body);
         try {
             const { email, password } = req.body;
             console.log("Admin login attempt:", email, password);
@@ -18,8 +18,6 @@ export const loginAdminController = (dependencies: IAdminDependencies) => {
             // Call the login use case and await the result
             const data = await loginAdminUseCase(dependencies).execute(email, password);
             console.log("prrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",data);
-            
-
             if (!data) {
                 return res.status(401).json({ success: false, message: "Invalid credentials" });
             }

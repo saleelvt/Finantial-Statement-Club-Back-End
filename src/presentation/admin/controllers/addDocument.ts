@@ -14,7 +14,6 @@ export const adminAddDocumentController = (dependencies: IAdminDependencies) => 
   return async (req: CustomRequest, res: Response, next: NextFunction): Promise<void | null | any> => {
     try {
       const { companyNameAr, companyNameEn, yearOfReport } = req.body;
-
       const existingDocument = await Document.findOne({ yearOfReport });
       if (existingDocument) {
         return res.status(409).json({
