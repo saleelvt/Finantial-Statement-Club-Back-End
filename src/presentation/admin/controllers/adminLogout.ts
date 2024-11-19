@@ -9,6 +9,7 @@ export const adminLogutController = (dependencies: IAdminDependencies) => {
     try {
         console.log('admin logout vann ');
         
+        res.clearCookie("access_token");
       res.cookie("access_token", "", {
         maxAge: 1,
         httpOnly: true,

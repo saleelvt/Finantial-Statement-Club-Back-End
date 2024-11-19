@@ -10,18 +10,18 @@ interface CustomRequest extends Request {
   };
 }
 
+
 export const adminAddDocumentController = (dependencies: IAdminDependencies) => {
   return async (req: CustomRequest, res: Response, next: NextFunction): Promise<void | null | any> => {
     try {
       const { companyNameAr, companyNameEn, yearOfReport } = req.body;
-      const existingDocument = await Document.findOne({ yearOfReport });
+      const existingDocument = await Document.findOne({ yearOfReport, companyNameEn: { $regex: new RegExp(`^${companyNameEn}$`, 'i') },});
       if (existingDocument) {
         return res.status(409).json({
           success: false,
           message: "A document with this yearOfReport already exists",
         });
       }
-
       console.log("this is my req.files ", req.files);
       
 

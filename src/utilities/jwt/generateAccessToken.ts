@@ -7,7 +7,6 @@ export const generateAccessToken = (payload: {
     _id: string;
     email: string;
     role: string;
-  
   }) => {
     const secret = process.env.JWT_SECRET;
     if (!secret) {
