@@ -37,9 +37,7 @@ export const adminAddDocumentController = (dependencies: IAdminDependencies) => 
           ? { data: req.files.fileEn[0].buffer, contentType: req.files.fileEn[0].mimetype }
           : undefined,
       });
-
       await newDocument.save();
-
       res.status(200).json({
         success: true,
         message: "Document created successfully",
