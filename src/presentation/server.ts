@@ -24,8 +24,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors(corsOptions));
 
-app.use("/admin",adminRoutes(adminDependencies))
 
+app.use("/admin",adminRoutes(adminDependencies))
 // Default route
 app.use("*", (req: Request, res: Response) => {
   res.status(404).json({ success: false, status: 404, message: "API Not Found" });

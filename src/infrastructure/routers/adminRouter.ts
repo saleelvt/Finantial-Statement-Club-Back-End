@@ -14,3 +14,4 @@ export const adminRoutes = (dependencies: IAdminDependencies) => {
     router.route("/getDocuments").get(getAllDocuments);
     return router;
 };
+
