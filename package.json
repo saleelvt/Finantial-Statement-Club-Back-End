@@ -8,6 +8,9 @@
     "start": "ts-node -r tsconfig-paths/register src/index.ts",
     "dev": "nodemon -r tsconfig-paths/register src/index.ts"
   },
+
+
+  
   "keywords": [],
   "author": "",
   "license": "ISC",

@@ -1,1 +1,1 @@
-export * from "./adminEntity"
+export * from "./adminEntity" 

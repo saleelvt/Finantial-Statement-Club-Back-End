@@ -8,3 +8,4 @@ export const adminDependencies:IAdminDependencies={
     repositories,
     useCases,
 }
+
