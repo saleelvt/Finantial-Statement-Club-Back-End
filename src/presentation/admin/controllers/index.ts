@@ -4,12 +4,14 @@ import { adminLogutController } from "./adminLogout";
 import { adminAddDocumentController } from "./addDocument";
 import { adminDeleteDocumentController } from "./deleteDocument";
 import { adminGetAllDocumentController } from "./getAllDocuments"; 
+import { adminAddDocumentArabicController } from "./addDocumentArabic";
 export const adminController = (dependencies: IAdminDependencies) => {
     return {
         loginAdmin: loginAdminController(dependencies), // No change needed here.
         logoutAdmin:adminLogutController(dependencies),
         addDocument:adminAddDocumentController(dependencies),
         deleteDocument:adminDeleteDocumentController(dependencies),
-        getAllDocuments:adminGetAllDocumentController(dependencies)
+        getAllDocuments:adminGetAllDocumentController(dependencies),
+        addDocumentArabic:adminAddDocumentArabicController(dependencies)
     };
 };
