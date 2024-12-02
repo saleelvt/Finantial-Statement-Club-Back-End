@@ -1,29 +1,53 @@
-import { DocumentEntity } from "@/domain/entities/documentEntity";
 import { model, Schema } from "mongoose";
 
-const DocumentSchema = new Schema<DocumentEntity>({
-  companyNameAr: {
+
+const FileSchema = new Schema({
+  file: {
+    type: String, 
+    required: false,
+  },
+
+  date: {
+    type: Date,
+    required: true,
+  },
+  year: {
     type: String,
     required: true,
   },
-  companyNameEn: {
-    type: String,
-    required: true,
-  },
-  yearOfReport: {
-    type: String,
-    required: true,
-  },
-  fileEn: {
-    data: Buffer,
-    contentType: String,
-  },
-  fileAr: {
-    data: Buffer,
-    contentType: String,
-  }
-}, {
-  timestamps: true,
 });
 
-export const Document = model<DocumentEntity>("Document", DocumentSchema);
+const DocumentSchema = new Schema(
+  {
+    fullNameEn: {
+      type: String,
+      required: true,
+    },
+    nickNameEn: {
+      type: String,
+      required: true,
+    },
+    tadawalCode: {
+      type: String,
+      required: true,
+    },
+    sector: {
+      type: String,
+      required: true,
+    },
+    formData: {
+      Board: { type: FileSchema, required: true },
+      Q1: { type: FileSchema, required: true },
+      Q2: { type: FileSchema, required: true },
+      Q3: { type: FileSchema, required: true },
+      Q4: { type: FileSchema, required: true },
+      S1: { type: FileSchema, required: true },
+      Year: { type: FileSchema, required: true },
+    },
+  },
+  {
+    timestamps: true, 
+  }
+);
+
+export const Document = model("Document", DocumentSchema);
