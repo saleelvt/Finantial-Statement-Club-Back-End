@@ -21,7 +21,7 @@ export const uploadFileToS3 = async (fileBuffer: Buffer, fileName: string): Prom
         Key: `pdfs/${fileName}`, // Save under "pdfs" folder
         Body: fileBuffer, // File content as buffer
         ContentType: "application/pdf", // Explicitly set to PDF type
-        ACL: "private", // Keep files private by default
+        // ACL: "public-read", // Keep files private by default
       };
       const options = { partSize: 10 * 1024 * 1024, queueSize: 1 }; // 10 MB parts
       const s3Response = await s3.upload(params,options).promise();

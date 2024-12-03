@@ -5,7 +5,7 @@ import { verifyAccessToken } from '@/utilities/Auth/authMiddleware';
 import upload from '@/utilities/multer/multer';
 
 export const adminRoutes = (dependencies: IAdminDependencies) => {
-    const { loginAdmin, logoutAdmin, addDocument, deleteDocument, getAllDocuments,addDocumentArabic } = adminController(dependencies);
+    const { loginAdmin, logoutAdmin, addDocument, deleteDocument, getAllDocuments,addDocumentArabic,getAllArabicDocuments,getDocumetnByNickName } = adminController(dependencies);
     const router = Router();
     router.route("/login").post(loginAdmin);
     router.route("/logout").delete(logoutAdmin);
@@ -13,5 +13,7 @@ export const adminRoutes = (dependencies: IAdminDependencies) => {
     router.route("/addDocumentArabic").post(upload.fields([{ name: "Board" }, { name: "Q1" }, { name: "Q2" }, { name: "Q3" }, { name: "Q4" }, { name: "S1" }, { name: "Year" }]),addDocumentArabic);
     router.route("/deleteDocument/:docToDelete").delete(deleteDocument);
     router.route("/getDocuments").get(getAllDocuments);
+    router.route("/getArabicDocuments").get(getAllArabicDocuments);
+    router.route("/getDocumetnByNickName").get(getDocumetnByNickName);
     return router;
 };
