@@ -9,7 +9,6 @@ interface CustomRequest extends Request {
 
 export const adminAddDocumentController = (dependencies: IAdminDependencies) => {
   return async (req: CustomRequest, res: Response, next: NextFunction): Promise<void | null | any> => {
-    console.log('___________', req.body);
     
     try {
   

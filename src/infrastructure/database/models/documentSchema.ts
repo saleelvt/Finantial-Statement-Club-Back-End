@@ -17,6 +17,7 @@ const FileSchema = new Schema({
   },
 });
 
+
 const DocumentSchema = new Schema(
   {
     fullNameEn: {
@@ -36,13 +37,13 @@ const DocumentSchema = new Schema(
       required: true,
     },
     formData: {
-      Board: { type: FileSchema, required: true },
-      Q1: { type: FileSchema, required: true },
-      Q2: { type: FileSchema, required: true },
+      Board: { type: FileSchema, required: false},
+      Q1: { type: FileSchema, required: false},
+      Q2: { type: FileSchema, required: false},
       Q3: { type: FileSchema, required: true },
       Q4: { type: FileSchema, required: true },
-      S1: { type: FileSchema, required: true },
-      Year: { type: FileSchema, required: true },
+      S1: { type: FileSchema, required: false},
+      Year: { type: FileSchema, required: false},
     },
   },
   {

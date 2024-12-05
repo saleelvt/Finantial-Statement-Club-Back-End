@@ -33,6 +33,8 @@ export const adminAddDocumentArabicController = (dependencies: IAdminDependencie
           year,
         };
       }
+
+
       const newDocument = new ArabicDocument({
         fullNameAr,
         nickNameAr,
