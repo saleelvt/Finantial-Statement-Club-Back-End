@@ -19,7 +19,7 @@ const corsOptions = {
   origin: allowedOrigin,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
-  allowedHeaders: 'Content-Type, Authorization, X-Requested-With',
+  allowedHeaders: 'Content-Type, Authorization, X-Requested-With, headers'
 };
 
 // Middleware setup
@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors(corsOptions));
-
+app.options("*", cors(corsOptions)); 
 
 app.use("/admin",adminRoutes(adminDependencies))
 // Default route
