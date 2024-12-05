@@ -17,7 +17,7 @@ console.log()
 
 // CORS options
 const corsOptions = {
-  origin: allowedOrigin,
+  origin: 'https://api.finstatements.club',
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
 };
