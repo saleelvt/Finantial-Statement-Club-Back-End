@@ -20,13 +20,15 @@ const corsOptions = {
   origin: 'https://api.finstatements.club',
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
 // Middleware setup
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors({ origin: '*'}));
 app.options('*', cors());
 
 
