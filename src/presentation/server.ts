@@ -18,7 +18,7 @@ const allowedOrigin = process.env.CLIENT_URL;
 const corsOptions = {
   origin: allowedOrigin,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  //credentials: true,
+  credentials: true,
   allowedHeaders: 'Content-Type, Authorization',
 };
 
