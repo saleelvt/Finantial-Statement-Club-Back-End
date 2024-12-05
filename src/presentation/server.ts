@@ -13,23 +13,19 @@ dotenv.config(); // Load environment variables
 
 const app: Application = express();
 const allowedOrigin = process.env.CLIENT_URL;
-console.log()
 
 // CORS options
 const corsOptions = {
-  origin: 'https://api.finstatements.club',
+  origin: allowedOrigin,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
 // Middleware setup
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-// app.use(cors(corsOptions));
-app.use(cors({ origin: '*'}));
-app.options('*', cors());
+app.use(cors(corsOptions));
 
 
 app.use("/admin",adminRoutes(adminDependencies))
