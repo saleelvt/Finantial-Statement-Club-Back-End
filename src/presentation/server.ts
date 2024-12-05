@@ -13,6 +13,7 @@ dotenv.config(); // Load environment variables
 
 const app: Application = express();
 const allowedOrigin = process.env.CLIENT_URL;
+console.log()
 
 // CORS options
 const corsOptions = {
@@ -26,6 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors(corsOptions));
+app.options('*', cors());
 
 
 app.use("/admin",adminRoutes(adminDependencies))
