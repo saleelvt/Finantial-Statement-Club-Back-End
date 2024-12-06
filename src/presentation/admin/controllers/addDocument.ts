@@ -16,11 +16,12 @@ export const adminAddDocumentController = (dependencies: IAdminDependencies) => 
      const { fullNameEn, nickNameEn, tadawalCode, sector } = req.body; 
      console.log("this is my req.files ", req.files, fullNameEn,nickNameEn);
 
-     if (!req.files || Object.keys(req.files).length === 0) {
-      return res.status(400).json({ success: false, message: "No files uploaded" });
-    }
+    //  if (!req.files || Object.keys(req.files).length === 0) {
+    //   return res.status(400).json({ success: false, message: "No files uploaded" });
+    // }
     const requiredFields = ["Board", "Q1", "Q2", "Q3", "Q4", "S1", "Year"];
     const fileUrls: Record<string, { file: string; date: Date; year: string }> = {};
+
 
      for (const fieldKey of requiredFields) {
         const fileArray = req.files[fieldKey];
