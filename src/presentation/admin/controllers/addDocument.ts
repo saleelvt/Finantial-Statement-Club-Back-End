@@ -60,7 +60,7 @@ export const adminAddDocumentController = (dependencies: IAdminDependencies) => 
       });
     } catch (error) {
       console.error("Error creating document:", error);
-      res.status(500).json({ success: false, message: "An error occurred while creating the document" });
+      res.status(500).json({ success: false, message: error });
     }
   };
 };
