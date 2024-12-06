@@ -16,13 +16,13 @@ const allowedOrigin = process.env.CLIENT_URL;
 
 // CORS options
 const corsOptions = {
-  origin: "https://finstatements.club",
+  origin: true,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
-  allowedHeaders: [ "Content-Type",  "Authorization", "X-Requested-With", "Accept",
-  ],
-  exposedHeaders: ["Content-Disposition"],
+  // allowedHeaders: [ "Content-Type",  "Authorization", "X-Requested-With", "Accept",
+  // ],
 };
+
 
 // Middleware setup
 app.use(express.json());
