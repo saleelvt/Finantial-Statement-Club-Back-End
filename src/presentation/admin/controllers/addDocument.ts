@@ -24,9 +24,9 @@ export const adminAddDocumentController = (dependencies: IAdminDependencies) => 
 
      for (const fieldKey of requiredFields) {
         const fileArray = req.files[fieldKey];
-        if (!fileArray || fileArray.length === 0) {
-          return res.status(400).json({ success: false, message: `${fieldKey} file is missing` });
-        }
+        // if (!fileArray || fileArray.length === 0) {
+        //   return res.status(400).json({ success: false, message: `${fieldKey} file is missing` });
+        // }
 
         const file = fileArray[0];
         const s3Url = await uploadFileToS3(file.buffer, file.originalname);
