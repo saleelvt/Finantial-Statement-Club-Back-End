@@ -9,11 +9,11 @@ const FileSchema = new Schema({
 
   date: {
     type: Date,
-    required: true,
+    required: false,
   },
   year: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 

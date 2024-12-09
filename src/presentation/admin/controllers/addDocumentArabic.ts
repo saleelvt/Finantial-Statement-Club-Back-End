@@ -12,17 +12,14 @@ export const adminAddDocumentArabicController = (dependencies: IAdminDependencie
     try {
      const { fullNameAr, nickNameAr, tadawalCode, sector } = req.body; 
      console.log("this is my req.files ", req.files, fullNameAr,nickNameAr);
-
-     if (!req.files || Object.keys(req.files).length === 0) {
-      return res.status(400).json({ success: false, message: "No files uploaded" });
-    }
     const requiredFields = ["Board", "Q1", "Q2", "Q3", "Q4", "S1", "Year"];
     const fileUrls: Record<string, { file: string; date: Date; year: string }> = {};
+
      for (const fieldKey of requiredFields) {
         const fileArray = req.files[fieldKey];
-        if (!fileArray || fileArray.length === 0) {
-          return res.status(400).json({ success: false, message: `${fieldKey} file is missing` });
-        }
+     
+        if (fileArray && fileArray.length > 0) { 
+
         const file = fileArray[0];
         const s3Url = await uploadFileToS3(file.buffer, file.originalname);
         const date = new Date(req.body[`${fieldKey}Date`]);
@@ -31,8 +28,19 @@ export const adminAddDocumentArabicController = (dependencies: IAdminDependencie
           file: s3Url,
           date,
           year,
+        
+        };
+      } else {
+        // If file is missing, set it as null
+        fileUrls[fieldKey] = {
+          file: null,
+          date: null,
+          year: "",
         };
       }
+
+      }
+      
 
 
       const newDocument = new ArabicDocument({

@@ -13,20 +13,16 @@ dotenv.config(); // Load environment variables
 
 const app: Application = express();
 const allowedOrigin = process.env.CLIENT_URL;
-
 // CORS options
 const corsOptions = {
-  origin: true,
+  origin: allowedOrigin,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
-  // allowedHeaders: [ "Content-Type",  "Authorization", "X-Requested-With", "Accept",
-  // ],
+  // allowedHeaders:'*'
 };
-
-
 // Middleware setup
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '200mb' }));
+app.use(express.urlencoded({ limit: '200mb', extended: true }));
 app.use(cookieParser());
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); 

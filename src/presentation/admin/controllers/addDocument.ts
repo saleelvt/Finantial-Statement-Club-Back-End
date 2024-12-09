@@ -9,51 +9,57 @@ interface CustomRequest extends Request {
 
 export const adminAddDocumentController = (dependencies: IAdminDependencies) => {
   return async (req: CustomRequest, res: Response, next: NextFunction): Promise<void | null | any> => {
-    
     try {
-  
+      const { fullNameEn, nickNameEn, tadawalCode, sector } = req.body;
+      console.log("Request files: ", req.files, "Fields: ", fullNameEn, nickNameEn);
 
-     const { fullNameEn, nickNameEn, tadawalCode, sector } = req.body; 
-     console.log("this is my req.files ", req.files, fullNameEn,nickNameEn);
+      // Default to empty values or null if fields are not provided
+      const requiredFields = ["Board", "Q1", "Q2", "Q3", "Q4", "S1", "Year"];
+      const fileUrls: Record<string, { file: string | null; date: Date | null; year: string }> = {};
 
-    //  if (!req.files || Object.keys(req.files).length === 0) {
-    //   return res.status(400).json({ success: false, message: "No files uploaded" });
-    // }
-    const requiredFields = ["Board", "Q1", "Q2", "Q3", "Q4", "S1", "Year"];
-    const fileUrls: Record<string, { file: string; date: Date; year: string }> = {};
-
-
-     for (const fieldKey of requiredFields) {
+      // Process each required field
+      for (const fieldKey of requiredFields) {
         const fileArray = req.files[fieldKey];
-        // if (!fileArray || fileArray.length === 0) {
-        //   return res.status(400).json({ success: false, message: `${fieldKey} file is missing` });
-        // }
 
-        const file = fileArray[0];
-        const s3Url = await uploadFileToS3(file.buffer, file.originalname);
+        if (fileArray && fileArray.length > 0) {  
+          // If file is present, upload it to S3
+          const file = fileArray[0];
+          const s3Url = await uploadFileToS3(file.buffer, file.originalname);
 
-        const date = new Date(req.body[`${fieldKey}Date`]);
-        const year = req.body[`${fieldKey}Year`];
+          // Optional fields: If missing, default to null or empty
+          const date = req.body[`${fieldKey}Date`] ? new Date(req.body[`${fieldKey}Date`]) : null;
+          const year = req.body[`${fieldKey}Year`] || "";
 
-        fileUrls[fieldKey] = {
-          file: s3Url,
-          date,
-          year,
-        };
+          fileUrls[fieldKey] = {
+            file: s3Url,
+            date,
+            year,
+          };
+        } else {
+          // If file is missing, set it as null
+          fileUrls[fieldKey] = {
+            file: null,
+            date: null,
+            year: "",
+          };
+        }
       }
 
+      // Create document object with fields that may have empty, null, or undefined values
       const newDocument = new Document({
-        fullNameEn,
-        nickNameEn,
-        tadawalCode,
-        sector,
-        formData: fileUrls,
+        fullNameEn: fullNameEn || "", // Default to empty string if undefined or null
+        nickNameEn: nickNameEn || "",
+        tadawalCode: tadawalCode || "",
+        sector: sector || "",
+        formData: fileUrls, // Can contain empty or null fields
       });
 
+      // Save the document to the database
       await newDocument.save();
-     console.log("document success fully save macha ", newDocument);
-    await newDocument.save();
-     
+
+      console.log("Document successfully saved: ", newDocument);
+
+      // Send success response
       res.status(200).json({
         success: true,
         message: "Document created successfully",

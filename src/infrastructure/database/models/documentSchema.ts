@@ -9,11 +9,11 @@ const FileSchema = new Schema({
 
   date: {
     type: Date,
-    required: true,
+    required: false,
   },
   year: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 
@@ -40,8 +40,8 @@ const DocumentSchema = new Schema(
       Board: { type: FileSchema, required: false},
       Q1: { type: FileSchema, required: false},
       Q2: { type: FileSchema, required: false},
-      Q3: { type: FileSchema, required: true },
-      Q4: { type: FileSchema, required: true },
+      Q3: { type: FileSchema, required: false },
+      Q4: { type: FileSchema, required: false },
       S1: { type: FileSchema, required: false},
       Year: { type: FileSchema, required: false},
     },

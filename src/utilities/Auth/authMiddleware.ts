@@ -2,8 +2,8 @@ import Jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 
-dotenv.config();
 
+dotenv.config();
 export const verifyAccessToken = ( req: Request,res: Response,next: NextFunction) :any  => {
   const token = req.cookies.access_token;
 

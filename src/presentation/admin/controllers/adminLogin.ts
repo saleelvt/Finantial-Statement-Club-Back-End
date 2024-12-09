@@ -1,7 +1,7 @@
 import { IAdminDependencies } from "@/application/admin/interfaces/IAdminDependencies";
 import { NextFunction, Request, Response } from "express";
 import { generateAccessToken } from "@/utilities/jwt/generateAccessToken";
-import bcrypt from "bcrypt";
+
 
 export const loginAdminController = (dependencies: IAdminDependencies) => {
     const { useCases: { loginAdminUseCase } } = dependencies;
@@ -13,10 +13,9 @@ export const loginAdminController = (dependencies: IAdminDependencies) => {
             if (!email || !password) {
               return res.status(400).json({ success: false, message: "Email and password are required" });
           }
-            const saltRounds = 10;
-  const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-            const data = await loginAdminUseCase(dependencies).execute(email, hashedPassword);
+
+            const data = await loginAdminUseCase(dependencies).execute(email, password);
 
             if (!data) {
                 return res.status(401).json({ success: false, message: "Invalid credentials" });
