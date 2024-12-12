@@ -7,6 +7,11 @@ import { adminGetAllDocumentController } from "./getAllDocuments";
 import { adminAddDocumentArabicController } from "./addDocumentArabic";
 import { adminGetAllArabicDocumentController } from "./getAllArabicDocuments";
 import { adminGetDocumetnByNickNameController } from "./getDocumetnByNickName";
+import { adminGetNicknamesSuggestionsController } from "./nickNameSuggestion";
+import { adminGetDataWithSuggestionsController } from "./getDataWithSuggestions";
+import { adminGetDocumentByIdController } from "./getDocumentById";
+import { updateDocumentEnglishController } from "./updateDocumentEnglish";
+import { updateDocumentArabicController } from "./updateDocumentArabic";
 export const adminController = (dependencies: IAdminDependencies) => {
     return {
         loginAdmin: loginAdminController(dependencies),
@@ -16,6 +21,11 @@ export const adminController = (dependencies: IAdminDependencies) => {
         getAllDocuments:adminGetAllDocumentController(dependencies),
         addDocumentArabic:adminAddDocumentArabicController(dependencies),
         getAllArabicDocuments:adminGetAllArabicDocumentController(dependencies),
-        getDocumetnByNickName:adminGetDocumetnByNickNameController(dependencies)
+        getDocumetnByNickName:adminGetDocumetnByNickNameController(dependencies),
+        getNicknamesSuggestions:adminGetNicknamesSuggestionsController(dependencies),
+        getDataWithSuggestions:adminGetDataWithSuggestionsController(dependencies),
+        getDocumentById:adminGetDocumentByIdController(dependencies),
+        updateDocumentEnglish:updateDocumentEnglishController(dependencies),
+        updateDocumentArabic:updateDocumentArabicController(dependencies)
     };
 };
