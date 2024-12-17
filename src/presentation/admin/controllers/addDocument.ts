@@ -4,29 +4,43 @@ import { Document } from "@/infrastructure/database/models/documentSchema";
 import { uploadFileToS3 } from "@/utilities/aws/s3";
 
 interface CustomRequest extends Request {
-  files: { [fieldname: string]: Express.Multer.File[] }; // Extend Request object to handle file uploads
+  files: { [fieldname: string]: Express.Multer.File[] };
 }
 
 export const adminAddDocumentController = (dependencies: IAdminDependencies) => {
-  return async (req: CustomRequest, res: Response, next: NextFunction): Promise<void | null | any> => {
+  return async (req: CustomRequest, res: Response, next: NextFunction): Promise<void|null|any> => {
     try {
       const { fullNameEn, nickNameEn, tadawalCode, sector } = req.body;
       console.log("Request files: ", req.files, "Fields: ", fullNameEn, nickNameEn);
 
-      // Default to empty values or null if fields are not provided
       const requiredFields = ["Board", "Q1", "Q2", "Q3", "Q4", "S1", "Year"];
       const fileUrls: Record<string, { file: string | null; date: Date | null; year: string }> = {};
+
+      // Check if documents with the same Tadawal code already exist
+      const existDocuments = await Document.find({ tadawalCode: tadawalCode });
+      if (existDocuments.length > 0) {
+        console.log("Existing documents with Tadawal code: ", existDocuments);
+
+        // Check each document's formData.Q1.year against the current Q1Year
+        const q1YearFromRequest = req.body["Q1Year"] || "";
+        for (const doc of existDocuments) {
+          if (doc.formData?.Q1?.year === q1YearFromRequest) {
+            return res.status(400).json({
+              success: false,
+              message: `File with Q1 year ${q1YearFromRequest} already exists in one of the documents.`,
+            });
+          }
+        }
+      }
 
       // Process each required field
       for (const fieldKey of requiredFields) {
         const fileArray = req.files[fieldKey];
 
-        if (fileArray && fileArray.length > 0) {  
-          // If file is present, upload it to S3
+        if (fileArray && fileArray.length > 0) {
           const file = fileArray[0];
           const s3Url = await uploadFileToS3(file.buffer, file.originalname);
 
-          // Optional fields: If missing, default to null or empty
           const date = req.body[`${fieldKey}Date`] ? new Date(req.body[`${fieldKey}Date`]) : null;
           const year = req.body[`${fieldKey}Year`] || "";
 
@@ -36,7 +50,6 @@ export const adminAddDocumentController = (dependencies: IAdminDependencies) => 
             year,
           };
         } else {
-          // If file is missing, set it as null
           fileUrls[fieldKey] = {
             file: null,
             date: null,
@@ -45,21 +58,20 @@ export const adminAddDocumentController = (dependencies: IAdminDependencies) => 
         }
       }
 
-      // Create document object with fields that may have empty, null, or undefined values
+      // Create the new document object
       const newDocument = new Document({
-        fullNameEn: fullNameEn || "", // Default to empty string if undefined or null
+        fullNameEn: fullNameEn || "",
         nickNameEn: nickNameEn || "",
         tadawalCode: tadawalCode || "",
         sector: sector || "",
-        formData: fileUrls, // Can contain empty or null fields
+        formData: fileUrls,
       });
 
-      // Save the document to the database
+      // Save the new document
       await newDocument.save();
 
       console.log("Document successfully saved: ", newDocument);
 
-      // Send success response
       res.status(200).json({
         success: true,
         message: "Document created successfully",
