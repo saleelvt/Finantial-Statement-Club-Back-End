@@ -21,24 +21,24 @@ export const adminGetNicknamesSuggestionsController = (dependencies: IAdminDepen
       // Handle Arabic language logic
       if (language === "Arabic") {
         const searchQuery = {
-          nickNameAr: { $regex: name, $options: "i" },
+          tadawalCode: { $regex: name, $options: "i" },
         };
 
         // Fetch suggestions from the ArabicDocument collection
         suggestions = await ArabicDocument.find(searchQuery)
           .limit(10)
-          .distinct("nickNameAr");
+          .distinct("tadawalCode");
 
       // Handle English language logic
       } else if (language === "English") {
         const searchQuery = {
-          nickNameEn: { $regex: name, $options: "i" },
+          tadawalCode: { $regex: name, $options: "i" },
         };
 
         // Fetch suggestions from the Document collection
         suggestions = await Document.find(searchQuery)
           .limit(10)
-          .distinct("nickNameEn");
+          .distinct("tadawalCode");
       } else {
         // If language is neither Arabic nor English
         return res.status(400).json({ message: "Invalid admin language provided." });

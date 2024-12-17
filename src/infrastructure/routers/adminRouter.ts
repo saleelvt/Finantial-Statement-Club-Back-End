@@ -15,7 +15,7 @@ export const adminRoutes = (dependencies: IAdminDependencies) => {
     router.route("/getDocuments").get(getAllDocuments);
     router.route("/getArabicDocuments").get(getAllArabicDocuments);
     router.route("/getDocumetnByNickName").get(getDocumetnByNickName);
-    router.route('/nicknamesSuggestions').get(getNicknamesSuggestions)
+    router.route('/tadawalCodeSuggestions').get(getNicknamesSuggestions)
     router.route('/getDataWithSuggestions').get(getDataWithSuggestions)
     router.route('/getDocumentById/:id').get(getDocumentById)
     router.route('/updateDocumentEnglish').put(upload.fields([{ name: "Board" }, { name: "Q1" }, { name: "Q2" }, { name: "Q3" }, { name: "Q4" }, { name: "S1" }, { name: "Year" }]),updateDocumentEnglish)

@@ -15,9 +15,9 @@ export const adminGetDataWithSuggestionsController = (dependencies: IAdminDepend
       // Suggestions variable
       let suggestions: string[] = [];
       if (language === "Arabic") {
-        suggestions = await ArabicDocument.findOne({nickNameAr:name})
+        suggestions = await ArabicDocument.findOne({tadawalCode:name})
       } else if (language === "English") {
-        suggestions = await Document.findOne({nickNameEn:name})
+        suggestions = await Document.findOne({tadawalCode:name})
       } else {
         return res.status(400).json({ message: "Invalid admin language provided." });
       }
