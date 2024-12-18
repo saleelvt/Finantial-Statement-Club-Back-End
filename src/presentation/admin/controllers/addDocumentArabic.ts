@@ -7,6 +7,8 @@ interface CustomRequest extends Request {
   files: { [fieldname: string]: Express.Multer.File[] }; // Extend Request object to handle file uploads
 }
 export const adminAddDocumentArabicController = (dependencies: IAdminDependencies) => {
+  console.log('dasdfdf saleel is a good boy ');
+  
   return async (req: CustomRequest, res: Response, next: NextFunction): Promise<void | null | any> => {
     console.log('___________', req.body);
     try {
@@ -15,6 +17,25 @@ export const adminAddDocumentArabicController = (dependencies: IAdminDependencie
     const requiredFields = ["Board", "Q1", "Q2", "Q3", "Q4", "S1", "Year"];
     const fileUrls: Record<string, { file: string; date: Date; year: string }> = {};
 
+
+        // Check if documents with the same Tadawal code already exist
+          const existDocuments = await ArabicDocument.find({ tadawalCode: tadawalCode });
+          if (existDocuments.length > 0) {
+            console.log("Existing documents with Tadawal code: ", existDocuments);
+    
+            // Check each document's formData.Q1.year against the current Q1Year
+            const q1YearFromRequest = req.body["Q1Year"] || "";
+            for (const doc of existDocuments) {
+              if (doc.formData?.Q1?.year === q1YearFromRequest) {
+                return res.status(400).json({
+                  success: false,
+                  message: `File with Q1 year ${q1YearFromRequest} already exists in one of the documents.`,
+                });
+              }
+            }
+          }
+
+
      for (const fieldKey of requiredFields) {
         const fileArray = req.files[fieldKey];
      
@@ -22,8 +43,8 @@ export const adminAddDocumentArabicController = (dependencies: IAdminDependencie
 
         const file = fileArray[0];
         const s3Url = await uploadFileToS3(file.buffer, file.originalname);
-        const date = new Date(req.body[`${fieldKey}Date`]);
-        const year = req.body[`${fieldKey}Year`];
+        const date = req.body[`${fieldKey}Date`] ? new Date(req.body[`${fieldKey}Date`]) : null;
+        const year = req.body[`${fieldKey}Year`] || "";
         fileUrls[fieldKey] = {
           file: s3Url,
           date,
@@ -44,14 +65,16 @@ export const adminAddDocumentArabicController = (dependencies: IAdminDependencie
 
 
       const newDocument = new ArabicDocument({
-        fullNameAr,
-        nickNameAr,
-        tadawalCode,
-        sector,
+        fullNameAr: fullNameAr || "",
+        nickNameAr: nickNameAr || "",
+        tadawalCode: tadawalCode || "", 
+        sector: sector || "",
         formData: fileUrls,
       });
+
+      
       await newDocument.save();
-     console.log("document arabic saved macha ", newDocument);
+     console.log("document arabic saved macha araaaaaaaaaaaaaaabbbbbbbbbbeeee ", newDocument);
     await newDocument.save();
       res.status(200).json({
         success: true,

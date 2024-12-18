@@ -62,11 +62,12 @@ export const adminAddDocumentController = (dependencies: IAdminDependencies) => 
       const newDocument = new Document({
         fullNameEn: fullNameEn || "",
         nickNameEn: nickNameEn || "",
-        tadawalCode: tadawalCode || "",
+        tadawalCode: tadawalCode || "", 
         sector: sector || "",
         formData: fileUrls,
       });
 
+      
       // Save the new document
       await newDocument.save();
 
