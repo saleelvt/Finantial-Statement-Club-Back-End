@@ -9,20 +9,20 @@ export const adminGetDocumetnByNickNameController = (
 ) => {
   return async ( req: Request, res: Response,next: NextFunction): Promise<void | null | any> => {
     try {
-        const { brandNickName, language } = req.query;
+        const { tadawalCode, language } = req.query;
 
-        console.log("backend - ", brandNickName, language);
-        if (!brandNickName || !language) {
+        console.log("backend - ", tadawalCode, language);
+        if (!tadawalCode || !language) {
           return res.status(400).json({
             success: false,
             message:
               "Missing required query parameters: brandNickName or userLanguage",
           });
         }
-        console.log("my params nick name ", brandNickName, language);
+        console.log("my params nick name ", tadawalCode, language);
         let response;
         if (language === "Arabic") {
-          response = await ArabicDocument.find({ nickNameAr: brandNickName });
+          response = await ArabicDocument.find({ tadawalCode: tadawalCode });
           if (!response) {
             return res.status(404).json({
               success: false,
@@ -30,7 +30,7 @@ export const adminGetDocumetnByNickNameController = (
             });
           }
         } else if (language === "English") {
-          response = await Document.find({ nickNameEn: brandNickName });
+          response = await Document.find({ tadawalCode: tadawalCode });
           if (!response) {
             return res.status(404).json({
               success: false,

@@ -14,7 +14,7 @@ export const adminRoutes = (dependencies: IAdminDependencies) => {
     router.route("/deleteDocument/:docToDelete").delete(deleteDocument);
     router.route("/getDocuments").get(getAllDocuments);
     router.route("/getArabicDocuments").get(getAllArabicDocuments);
-    router.route("/getDocumetnByNickName").get(getDocumetnByNickName);
+    router.route("/getDocumetnBytadawalCode").get(getDocumetnByNickName);
     router.route('/tadawalCodeSuggestions').get(getNicknamesSuggestions)
     router.route('/getDataWithSuggestions').get(getDataWithSuggestions)
     router.route('/getDocumentById/:id').get(getDocumentById)
