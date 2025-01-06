@@ -8,9 +8,10 @@ export const adminFindByEmail = async (
   try {
     console.log("🚀 ~ AdminEmail to find:", email);
     const existingAdmin = await Admin.findOne({ email: email });
-    console.log("____________________________", existingAdmin);
+    console.log("_________________sasasa___________", existingAdmin);
     return existingAdmin;
   } catch (error: any) {
     throw new Error(error?.message);
   }
 };
+

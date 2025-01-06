@@ -21,16 +21,16 @@ const corsOptions = {
   // allowedHeaders:'*'
 };
 // Middleware setup
-app.use(express.json({ limit: '200mb' }));
-app.use(express.urlencoded({ limit: '200mb', extended: true }));
+app.use(express.json({ limit: "200mb" }));
+app.use(express.urlencoded({ limit: "200mb", extended: true }));
 app.use(cookieParser());
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); 
-
-app.use("/admin",adminRoutes(adminDependencies))
+app.options("*", cors(corsOptions));
+app.use("/api/v1/admin", adminRoutes(adminDependencies));
 // Default route
 app.use("*", (req: Request, res: Response) => {
   res.status(404).json({ success: false, status: 404, message: "API Not Found" });
 });
 
 export default app; // Export the Express instance (not yet listening)
+

@@ -1,22 +1,20 @@
 
-import Jwt  from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config();
-export const generateAccessToken = (payload: {
-    _id: string;
-    email: string;
-    role: string;
-  }) => {
-    const secret = process.env.JWT_SECRET;
-    if (!secret) {
-      throw new Error("Access Token secret is not defined!");
-    }
-    const { _id, email, role } = payload;
-    try {
-      return Jwt.sign({ _id, email, role }, secret, { expiresIn: "24h" });
-    } catch (error: any) {
-      throw new Error("Failed to generate access token.");
-    }
-  };
-  
+ export const generateTokens = (adminId: string) => {
+  const accessToken = jwt.sign(
+    { adminId },
+    process.env.ACCESS_TOKEN_SECRET || "yourAccessSecret", // Access token secret
+    { expiresIn: "1h" } // Set expiration for the access token
+  );
+
+  const refreshToken = jwt.sign(
+    { adminId },
+    process.env.REFRESH_TOKEN_SECRET || "yourRefreshSecret", // Refresh token secret
+    { expiresIn: "7d" } // Set expiration for the refresh token
+  );
+
+  return { accessToken, refreshToken };
+};

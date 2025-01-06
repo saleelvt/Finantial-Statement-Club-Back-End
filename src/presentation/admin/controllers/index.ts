@@ -12,9 +12,11 @@ import { adminGetDataWithSuggestionsController } from "./getDataWithSuggestions"
 import { adminGetDocumentByIdController } from "./getDocumentById";
 import { updateDocumentEnglishController } from "./updateDocumentEnglish";
 import { updateDocumentArabicController } from "./updateDocumentArabic";
+import { verifyOtpController } from "./verifyOtp";
 export const adminController = (dependencies: IAdminDependencies) => {
     return {
         loginAdmin: loginAdminController(dependencies),
+        verifyOtp:verifyOtpController(dependencies),
         logoutAdmin:adminLogutController(dependencies),
         addDocument:adminAddDocumentController(dependencies),
         deleteDocument:adminDeleteDocumentController(dependencies),
@@ -27,5 +29,6 @@ export const adminController = (dependencies: IAdminDependencies) => {
         getDocumentById:adminGetDocumentByIdController(dependencies),
         updateDocumentEnglish:updateDocumentEnglishController(dependencies),
         updateDocumentArabic:updateDocumentArabicController(dependencies)
+        
     };
 };

@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 
 
 dotenv.config();
+
 export const verifyAccessToken = ( req: Request,res: Response,next: NextFunction) :any  => {
   const token = req.cookies.access_token;
 

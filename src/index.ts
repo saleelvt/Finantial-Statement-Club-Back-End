@@ -12,7 +12,7 @@ dotenv.config(); // Load environment variables
 export const insertAdmin = async () => {
   const sampleAdmin = {
     userName: "FinancialClub",
-    email: "admin13@gmail.com",
+    email: "techno12.ab@outlook.com",
     password: "admin@13",
   };
   
