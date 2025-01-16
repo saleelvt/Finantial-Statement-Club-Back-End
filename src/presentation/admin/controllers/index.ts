@@ -21,8 +21,10 @@ export const adminController = (dependencies: IAdminDependencies) => {
         addDocument:adminAddDocumentController(dependencies),
         deleteDocument:adminDeleteDocumentController(dependencies),
         getAllDocuments:adminGetAllDocumentController(dependencies),
-        addDocumentArabic:adminAddDocumentArabicController(dependencies),
         getAllArabicDocuments:adminGetAllArabicDocumentController(dependencies),
+
+        addDocumentArabic:adminAddDocumentArabicController(dependencies),
+        
         getDocumetnByNickName:adminGetDocumetnByNickNameController(dependencies),
         getNicknamesSuggestions:adminGetNicknamesSuggestionsController(dependencies),
         getDataWithSuggestions:adminGetDataWithSuggestionsController(dependencies),

@@ -9,6 +9,7 @@ import { Request, Response, NextFunction } from "express";
 export const adminGetAllDocumentController = (dependencies: IAdminDependencies)  => {
   return async (req: Request, res: Response, next: NextFunction) : Promise<void | null | any> => {
     try {
+      
         const response= await Document.find()
         if(!response) res.status(404).json({success:false,message:"NOT FOUNT" })
             console.log("the all details for the usage ", response);
