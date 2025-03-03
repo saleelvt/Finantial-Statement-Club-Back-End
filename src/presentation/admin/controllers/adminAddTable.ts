@@ -2,7 +2,6 @@ import { IAdminDependencies } from "@/application/admin/interfaces/IAdminDepende
 import { Request, Response, NextFunction } from "express";
 import { Document } from "@/infrastructure/database/models/documentSchema";
 import { uploadTableFileToS3 } from "@/utilities/aws/TableS3";
-
 interface CustomRequest extends Request {
   files: { [fieldname: string]: Express.Multer.File[] };
 }
@@ -71,8 +70,7 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
           CashFlow: null,
         };
       }
-      await matchedDocument.save();
-      
+      await matchedDocument.save();  
 
       // Upload file to S3 and update the document
       if (req.files.screenshotFile && req.files.screenshotFile.length > 0) {

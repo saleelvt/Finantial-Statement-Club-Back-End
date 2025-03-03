@@ -9,10 +9,7 @@ import { adminDependencies } from "@/boot/adminDependencies";
 const EventEmitter = require("events");
 
 EventEmitter.defaultMaxListeners = 100;
-let a ="saleel is a god boy "
-
 dotenv.config(); // Load environment variables
-
 const app: Application = express();
 const allowedOrigin = process.env.CLIENT_URL;
 // CORS options

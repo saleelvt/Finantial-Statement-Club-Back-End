@@ -17,18 +17,17 @@ export const verifyOtpController = (dependencies: IAdminDependencies) => {
       if (dbOtp && otp === dbOtp.otp) {
         console.log("otp valide aanu ketto ");
         
-        // const { accessToken, refreshToken } = generateTokens(dbOtp._id.toString());
+        const { accessToken } = generateTokens(dbOtp._id.toString());
+        console.log("the accessToken iws : ", accessToken);
+        
         return res.status(200).json({
           message: "OTP verified successfully",
           success: true,
-        
+          accessToken:accessToken
         });
       }
        console.log("otp invalid");
        return res.status(400).json({ message: "Invalid OTP",success:false });
-      
-
-
     } catch (error) {
       next(error);
     }
