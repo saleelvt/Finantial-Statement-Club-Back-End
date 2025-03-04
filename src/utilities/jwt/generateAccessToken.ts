@@ -7,7 +7,7 @@ dotenv.config();
   const accessToken = jwt.sign(
     { adminId },
     process.env.ACCESS_TOKEN_SECRET || "yourAccessSecret", // Access token secret
-    { expiresIn: "1h" } // Set expiration for the access token
+    { expiresIn: "24h" } // Set expiration for the access token (24 hours)
   );
 
   const refreshToken = jwt.sign(

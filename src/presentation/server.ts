@@ -17,7 +17,7 @@ const corsOptions = {
   origin: allowedOrigin,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
-  // allowedHeaders:'*'
+  // allowedHeaders: ["*"],
 };
 // Middleware setup
 app.use(express.json({ limit: "200mb" }));

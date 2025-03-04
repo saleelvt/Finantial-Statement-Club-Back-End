@@ -12,7 +12,7 @@ export const adminGetAllDocumentController = (dependencies: IAdminDependencies) 
       
         const response= await Document.find()
         if(!response) res.status(404).json({success:false,message:"NOT FOUNT" })
-            console.log("the all details for the usage ", response);
+
             
         return res.status(200).json({success:true,data:response})
     } catch (error) {
