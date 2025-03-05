@@ -20,6 +20,10 @@ const FileSchema = new Schema({
     ProfitLoss: { type: String, required: false },   // S3 URL for Profit & Loss
     CashFlow: { type: String, required: false },     // S3 URL for Cash Flow
   },
+  createdAt: {
+    type: Date,
+    default: Date.now, // Auto timestamp for tracking updates
+  }
 });
 
 
