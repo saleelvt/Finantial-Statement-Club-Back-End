@@ -51,7 +51,7 @@ export const adminAddDocumentController = (dependencies: IAdminDependencies) => 
           }
         }
       }
-
+      
       // **Process file uploads**
       for (const fieldKey of requiredFields) {
         const fileArray = req.files[fieldKey];
