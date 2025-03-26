@@ -7,7 +7,7 @@ export const loginAdminUseCase = (dependencies: IAdminDependencies) => {
   return {
     execute: async (email: string, password: string) => {
       try {
-        console.log("dfkdsjfk66666666666666 use case ");
+       
         
         const admin = await adminFindByEmail(email);
         if (!admin) {
@@ -15,9 +15,9 @@ export const loginAdminUseCase = (dependencies: IAdminDependencies) => {
         }
         const isPasswordValid = password === admin.password;
         // const isPasswordValid= await comparePassword(password,admin.password)
-        console.log("isPasswordffffffffffffffffffffffffffffffffffffffffffffffffffValid",isPasswordValid)
+     
         if (!isPasswordValid) {
-          throw new Error("Invalid  slaeel credentials");
+          throw new Error("Invalid  credentials");
         }
         return admin;
       } catch (error: any) {
