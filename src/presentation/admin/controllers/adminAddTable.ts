@@ -146,10 +146,8 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
           const file = req.files.screenshotFile[0];
           const s3Url = await uploadTableFileToS3(file.buffer, file.originalname);
           console.log("Uploaded to S3:", s3Url);
-
           // Dynamic path for update
           const updatePath = `formData.${section}.table.${category}`;
-
           const result = await Document.findOneAndUpdate(
             {
               tadawalCode,

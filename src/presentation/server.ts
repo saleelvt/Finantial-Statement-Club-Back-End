@@ -30,6 +30,5 @@ app.use("/api/v1/admin", adminRoutes(adminDependencies));
 app.use("*", (req: Request, res: Response) => {
   res.status(404).json({ success: false, status: 404, message: "API Not Found" });
 });
-
 export default app; // Export the Express instance (not yet listening)
 
