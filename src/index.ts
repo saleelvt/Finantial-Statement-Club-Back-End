@@ -15,9 +15,9 @@ export const insertAdmin = async () => {
     email: "techno12.ab@outlook.com",
     password: "admin@13",
   };
-  
+
   // Insert logic for saving admin to the database if required here
-  try {
+  try { 
     const existingAdmin = await Admin.findOne({ email: sampleAdmin.email });
     if (!existingAdmin) {
       const newAdmin = new Admin(sampleAdmin);

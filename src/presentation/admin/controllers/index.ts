@@ -15,6 +15,7 @@ import { updateDocumentArabicController } from "./updateDocumentArabic";
 import { adminAddTableController } from "./adminAddTable";
 import { adminGetDataWithSuggestionsForTable } from "./GetDataWithSuggestionsForTable";
 import { verifyOtpController } from "./verifyOtp";
+import { adminGetDataWithYearQuartertadawalCodeForTableViewController } from "./getDataWithYearQuartertadawalCodeForTableView";
 export const adminController = (dependencies: IAdminDependencies) => {
     return {
         loginAdmin: loginAdminController(dependencies),
@@ -32,7 +33,9 @@ export const adminController = (dependencies: IAdminDependencies) => {
         getDocumentById:adminGetDocumentByIdController(dependencies),
         updateDocumentEnglish:updateDocumentEnglishController(dependencies),
         updateDocumentArabic:updateDocumentArabicController(dependencies),
-        getDataWithSuggestionsForTable:adminGetDataWithSuggestionsForTable(dependencies)
+        getDataWithSuggestionsForTable:adminGetDataWithSuggestionsForTable(dependencies),
+        getDataWithYearQuartertadawalCodeForTableView:adminGetDataWithYearQuartertadawalCodeForTableViewController(dependencies)
+        
         
     };
 };
