@@ -10,7 +10,19 @@ export const adminRoutes = (dependencies: IAdminDependencies) => {
     router.route("/verifyOtp").post(verifyOtp);
     router.route("/logout").delete(logoutAdmin);
     router.route("/addDocumentEnglish").post(upload.fields([{ name: "Board" }, { name: "Q1" }, { name: "Q2" }, { name: "Q3" }, { name: "Q4" }, { name: "S1" }, { name: "Year" }]),addDocument);
-    router.route("/addDocumentArabic").post(upload.fields([{ name: "Board" }, { name: "Q1" }, { name: "Q2" }, { name: "Q3" }, { name: "Q4" }, { name: "S1" }, { name: "Year" }]),addDocumentArabic);
+    router.route("/addDocumentArabic").post(
+        upload.fields([
+          { name: "Board" },
+          { name: "Q1" },
+          { name: "Q2" },
+          { name: "Q3" },
+          { name: "Q4" },
+          { name: "S1" },
+          { name: "Year" },
+        ]),
+        addDocumentArabic
+      );
+      
     router.route("/addTable").post(upload.fields([{name:"screenshotFile"}]),addTable);
     router.route("/deleteDocument/:docToDelete").delete(deleteDocument);
     router.route("/getDocuments").get(getAllDocuments);

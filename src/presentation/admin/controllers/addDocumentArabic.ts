@@ -10,7 +10,12 @@ interface CustomRequest extends Request {
 export const adminAddDocumentArabicController = (dependencies: IAdminDependencies) => {
   return async (req: CustomRequest, res: Response, next: NextFunction): Promise<void | null | any> => {
     try {
+      console.log("BODY:", req.body);
+console.log("FILES:", req.files);
+
       const { fullNameAr, nickNameAr, tadawalCode, sector } = req.body;
+      
+      console.log("the req.body aof add document : ",fullNameAr, nickNameAr, tadawalCode, sector);
       
       const requiredFields = ["Board", "Q1", "Q2", "Q3", "Q4", "S1", "Year"];
       const fileUrls: Record<string, { file: string; date: Date; year: string }> = {};
@@ -125,6 +130,8 @@ export const adminAddDocumentArabicController = (dependencies: IAdminDependencie
           sector: sector || "",
           formData: fileUrls,
         });
+        console.log("log data back-end");
+        
 
         result = await newDocument.save();
         res.status(201).json({ 

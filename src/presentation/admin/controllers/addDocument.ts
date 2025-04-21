@@ -12,10 +12,8 @@ export const adminAddDocumentController = (dependencies: IAdminDependencies) => 
     try {
       const { fullNameEn, nickNameEn, tadawalCode, sector } = req.body;
       console.log("Request files: ", req.files, "Fields: ", fullNameEn, nickNameEn);
-
       const requiredFields = ["Board", "Q1", "Q2", "Q3", "Q4", "S1", "Year"];
       const fileUrls: Record<string, { file: string | null; date: Date | null; year: string }> = {};
-
       // **Ensure all required fields have the same year before querying the database**
       const yearSet = new Set<string>();
       requiredFields.forEach((fieldKey) => {
