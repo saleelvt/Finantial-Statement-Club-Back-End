@@ -41,8 +41,8 @@ export const insertAdmin = async () => {
         console.error("Error while connecting MongoDB", error);
         process.exit(0); // Exit on DB connection failure
       });
-    app.listen(Number(process.env.PORT) || 2002, () => {
-      console.log(`Server started on port ${process.env.PORT || 2002}`);
+    app.listen(Number(process.env.PORT) || 2001, () => {
+      console.log(`Server started on port ${process.env.PORT || 2001}`);
     });
 
 
