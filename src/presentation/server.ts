@@ -4,8 +4,8 @@ import express, { Application, Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { adminRoutes } from "@/infrastructure/routers";
-import { adminDependencies } from "@/boot/adminDependencies";
+import { adminRoutes } from "../infrastructure/routers";
+import { adminDependencies } from "../boot/adminDependencies";
 const EventEmitter = require("events");
 
 EventEmitter.defaultMaxListeners = 100;
