@@ -1,4 +1,4 @@
-import { adminController } from '@/presentation/admin/controllers';
+import { adminController } from '../../presentation/admin/controllers';
 import { IAdminDependencies } from './../../application/admin/interfaces/IAdminDependencies';
 import { Router } from 'express';
 import upload from '@/utilities/multer/multer';
