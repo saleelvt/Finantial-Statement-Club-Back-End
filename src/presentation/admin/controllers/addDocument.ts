@@ -10,47 +10,70 @@ interface CustomRequest extends Request {
 export const adminAddDocumentController = (dependencies: IAdminDependencies) => {
   return async (req: CustomRequest, res: Response, next: NextFunction): Promise<void | null | any> => {
     try {
-      const { fullNameEn, nickNameEn, tadawalCode, sector } = req.body;
-      console.log("Request files: ", req.files, "Fields: ", fullNameEn, nickNameEn);
-      const requiredFields = ["Board", "Q1", "Q2", "Q3", "Q4", "S1", "Year"];
-      const fileUrls: Record<string, { file: string | null; date: Date | null; year: string }> = {};
-      // **Ensure all required fields have the same year before querying the database**
-      const yearSet = new Set<string>();
-      requiredFields.forEach((fieldKey) => {
-        const year = req.body[`${fieldKey}Year`]?.trim();
-        if (year) yearSet.add(year);
-      });
+      console.log("BODY:", req.body);
+      console.log("FILES:", req.files);
 
-      if (yearSet.size > 1) {
-        console.log("Financial year mismatch detected.");
+      const { fullNameEn, nickNameEn, tadawalCode, sector } = req.body;
+      
+      console.log("the req.body of add document : ", fullNameEn, nickNameEn, tadawalCode, sector);
+      
+      const requiredFields = ["Board", "Q1", "Q2", "Q3", "Q4", "S1", "Year"];
+      const fileUrls: Record<string, { file: string; date: Date; year: string }> = {};
+
+      // Check if at least one field has a file
+      const hasAtLeastOneFile = Object.keys(req.files || {}).some(key => 
+        requiredFields.includes(key) && req.files[key]?.length > 0
+      );
+
+      if (!hasAtLeastOneFile) {
         return res.status(400).json({
           success: false,
-          message: "All form data fields must have the same year.",
+          message: "At least one file must be uploaded.",
         });
       }
 
-      // **Check if documents with the same Tadawal code already exist**
-      const existDocuments = await Document.find({ tadawalCode: tadawalCode });
-      if (existDocuments.length > 0) {
-        console.log("Existing documents with Tadawal code: ", existDocuments);
+      // Ensure all required fields have the same year before proceeding
+      const yearSet = new Set<string>();
+      const fieldsWithFiles: string[] = [];
+      
+      requiredFields.forEach((fieldKey) => {
+        if (req.files[fieldKey]?.length > 0) {
+          fieldsWithFiles.push(fieldKey);
+          const year = req.body[`${fieldKey}Year`]?.trim();
+          if (year) yearSet.add(year);
+        }
+      });
 
-        // Check each required field for a matching year
-        for (const fieldKey of requiredFields) {
-          const reqYear = req.body[`${fieldKey}Year`]?.trim();
-          if (!reqYear) continue; // Skip if no year is provided
+      if (yearSet.size === 0) {
+        return res.status(400).json({
+          success: false,
+          message: "At least one year must be specified for the uploaded files.",
+        });
+      }
+      if (yearSet.size > 1) {
+        return res.status(400).json({
+          success: false,
+          message: "All files must have the same year.",
+        });
+      }
 
-          for (const doc of existDocuments) {
-            if (doc.formData?.[fieldKey]?.year === reqYear) {
-              return res.status(400).json({
-                success: false,
-                message: `File with ${fieldKey} year ${reqYear} already exists in one of the documents.`,
-              });
-            }
+      const currentYear = [...yearSet][0]; // The year for the current submission
+      // Find existing document with the same tadawalCode
+      const existingDocuments = await Document.find({ tadawalCode: tadawalCode });
+      
+      // Check if any field already exists with the same year in any document
+      for (const fieldKey of fieldsWithFiles) {
+        for (const doc of existingDocuments) {
+          if (doc.formData?.[fieldKey]?.year === currentYear) {
+            return res.status(400).json({
+              success: false,
+              message: `${fieldKey} for year ${currentYear} already exists in one of the documents.`,
+            });
           }
         }
       }
-      
-      // **Process file uploads**
+
+      // Process file uploads
       for (const fieldKey of requiredFields) {
         const fileArray = req.files[fieldKey];
         if (fileArray && fileArray.length > 0) {
@@ -59,24 +82,65 @@ export const adminAddDocumentController = (dependencies: IAdminDependencies) => 
           const date = req.body[`${fieldKey}Date`] ? new Date(req.body[`${fieldKey}Date`]) : null;
           const year = req.body[`${fieldKey}Year`] ? req.body[`${fieldKey}Year`].trim() : "";
           fileUrls[fieldKey] = { file: s3Url, date, year };
-        } else {
-          fileUrls[fieldKey] = { file: null, date: null, year: "" };
         }
       }
 
-      // **Create and save the new document**
-      const newDocument = new Document({
-        fullNameEn: fullNameEn || "",
-        nickNameEn: nickNameEn || "",
-        tadawalCode: tadawalCode || "",
-        sector: sector || "",
-        formData: fileUrls,
-      });
+      // Find if there's an existing document with the same tadawalCode and year
+      let existingYearDocument = null;
 
-      await newDocument.save();
-      res.status(200).json({ success: true, message: "Document created successfully", data: newDocument });
+      // Look for a document that already has this year in any field
+      for (const doc of existingDocuments) {
+        for (const field of requiredFields) {
+          if (doc.formData?.[field]?.year === currentYear) {
+            existingYearDocument = doc;
+            break;
+          }
+        }
+        if (existingYearDocument) break;
+      }
+
+      let result;
+
+      if (existingYearDocument) {
+        // Update existing document for the same year
+        const formData = { ...existingYearDocument.formData };
+        
+        // Add the new fields to the existing document
+        for (const fieldKey of fieldsWithFiles) {
+          formData[fieldKey] = fileUrls[fieldKey];
+        }
+
+        // Update the document
+        result = await Document.findByIdAndUpdate(
+          existingYearDocument._id,
+          { formData },
+          { new: true }
+        );
+
+        res.status(200).json({ 
+          success: true, 
+          message: "Document updated successfully", 
+          data: result 
+        });
+      } else {
+        // Create a new document since there's no existing document with this year
+        const newDocument = new Document({
+          fullNameEn: fullNameEn || "",
+          nickNameEn: nickNameEn || "",
+          tadawalCode: tadawalCode || "",
+          sector: sector || "",
+          formData: fileUrls,
+        });
+        
+        result = await newDocument.save();
+        res.status(201).json({ 
+          success: true, 
+          message: "Document created successfully", 
+          data: result 
+        });
+      }
     } catch (error) {
-      console.error("Error creating document:", error);
+      console.error("Error creating/updating document:", error);
       res.status(500).json({ success: false, message: error.message });
     }
   };

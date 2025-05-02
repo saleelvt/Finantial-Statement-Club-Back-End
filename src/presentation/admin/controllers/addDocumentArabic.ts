@@ -130,7 +130,7 @@ console.log("FILES:", req.files);
           sector: sector || "",
           formData: fileUrls,
         });
-        console.log("log data back-end");
+        
         
 
         result = await newDocument.save();
