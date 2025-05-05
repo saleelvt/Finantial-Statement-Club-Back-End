@@ -16,6 +16,7 @@ import { adminAddTableController } from "./adminAddTable";
 import { adminGetDataWithSuggestionsForTable } from "./GetDataWithSuggestionsForTable";
 import { verifyOtpController } from "./verifyOtp";
 import { adminGetDataWithYearQuartertadawalCodeForTableViewController } from "./getDataWithYearQuartertadawalCodeForTableView";
+import { adminDeleteTableController } from "./deleteTable";
 export const adminController = (dependencies: IAdminDependencies) => {
     return {
         loginAdmin: loginAdminController(dependencies),
@@ -23,6 +24,7 @@ export const adminController = (dependencies: IAdminDependencies) => {
         logoutAdmin:adminLogutController(dependencies),
         addDocument:adminAddDocumentController(dependencies),
         deleteDocument:adminDeleteDocumentController(dependencies),
+        deleteTable:adminDeleteTableController(dependencies),
         getAllDocuments:adminGetAllDocumentController(dependencies),
         getAllArabicDocuments:adminGetAllArabicDocumentController(dependencies),
         addTable:adminAddTableController(dependencies),

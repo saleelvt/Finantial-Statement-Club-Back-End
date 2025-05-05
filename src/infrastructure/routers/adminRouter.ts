@@ -4,7 +4,7 @@ import { Router } from 'express';
 import upload from '@/utilities/multer/multer';
 
 export const adminRoutes = (dependencies: IAdminDependencies) => {
-    const { loginAdmin,verifyOtp, logoutAdmin, addDocument, deleteDocument, getAllDocuments,addDocumentArabic,addTable,getAllArabicDocuments,getDocumetnByNickName,getNicknamesSuggestions,getDataWithSuggestions,getDocumentById,updateDocumentEnglish,updateDocumentArabic,getDataWithSuggestionsForTable,    getDataWithYearQuartertadawalCodeForTableView } = adminController(dependencies);
+    const { loginAdmin,verifyOtp, logoutAdmin, addDocument, deleteDocument, getAllDocuments,deleteTable,addDocumentArabic,addTable,getAllArabicDocuments,getDocumetnByNickName,getNicknamesSuggestions,getDataWithSuggestions,getDocumentById,updateDocumentEnglish,updateDocumentArabic,getDataWithSuggestionsForTable,    getDataWithYearQuartertadawalCodeForTableView } = adminController(dependencies);
     const router = Router();
     router.route("/login").post(loginAdmin);
     router.route("/verifyOtp").post(verifyOtp);
@@ -25,6 +25,7 @@ export const adminRoutes = (dependencies: IAdminDependencies) => {
       
     router.route("/addTable").post(upload.fields([{name:"screenshotFile"}]),addTable);
     router.route("/deleteDocument/:docToDelete").delete(deleteDocument);
+    router.route("/deleteTable/:TadawulCode").delete(deleteTable);
     router.route("/getDocuments").get(getAllDocuments);
     router.route("/getArabicDocuments").get(getAllArabicDocuments);
     router.route("/getDocumetnBytadawalCode").get(getDocumetnByNickName);
