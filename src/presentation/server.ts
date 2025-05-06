@@ -11,11 +11,11 @@ const EventEmitter = require("events");
 EventEmitter.defaultMaxListeners = 100;
 dotenv.config(); // Load environment variables
 const app: Application = express();
-// const allowedOrigin = process.env.CLIENT_URL;
+const allowedOrigin = process.env.CLIENT_URL;
 // CORS options
 const corsOptions = {
-  // origin:"https://finstatements.club",
-  origin:"*",
+
+  origin:allowedOrigin,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   // allowedHeaders: ["*"],
