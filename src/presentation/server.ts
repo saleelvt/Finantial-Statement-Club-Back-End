@@ -23,9 +23,9 @@ const corsOptions = {
 // Middleware setup
 app.use(express.json({ limit: "200mb" }));
 app.use(express.urlencoded({ limit: "200mb", extended: true }));
-app.use(cookieParser());
+app.use(cookieParser()); 
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+app.options("*", cors(corsOptions)); 
 app.use("/api/v1/admin", adminRoutes(adminDependencies));
 // Default route
 app.use("*", (req: Request, res: Response) => {
