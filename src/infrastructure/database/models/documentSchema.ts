@@ -16,7 +16,121 @@ const FileSchema = new Schema({
     required: false,
   },
   table: {
-    BalanceSheet: { type: String, required: false }, // S3 URL for Balance Sheet
+    BalanceSheet: {
+    // Assets section
+    assets: {
+      // Current assets subsection
+      current: {
+        scurrentAssets: { type: String },
+        items: { type: [String] },
+        itemsDate2: { type: [String] },
+        subItems: { type: [String] },
+        subItemsDate2: { type: [String] },
+        firstTotal: { type: Number },
+        firstTotalDate2: { type: Number },
+        secondTotal: { type: Number },
+        secondTotalDate2: { type: Number },
+        sfirtsTotalCurrentAssets: { type: String },
+        stotalCurrentAssets: { type: String },
+        CurrentAssetsNotes: { type: [String] }
+      },
+      
+      // Non-current assets subsection
+      nonCurrent: {
+        snonCurrentAssets: { type: String },
+        items: { type: [String] },
+        itemsDate2: { type: [String] },
+        subItems: { type: [String] },
+        subItemsDate2: { type: [String] },
+        firstTotal: { type: Number },
+        firstTotalDate2: { type: Number },
+        secondTotal: { type: Number },
+        secondTotalDate2: { type: Number },
+        sfirtsTotalnonCurrentAssets: { type: String },
+        stotalNonCurrentAssets: { type: String },
+        nonCurrentNotes: { type: [String] }
+      },
+      
+      // Asset totals and labels
+      sassets: { type: String },
+      stotalAssets: { type: String },
+      totalAssets: { type: Number },
+      totalAssetsDate2: { type: Number }
+    },
+    
+    // Additional data fields
+    data1En: { type: Schema.Types.Mixed },
+    data2En: { type: Schema.Types.Mixed },
+    
+    // Equity section
+    equity: {
+      sShareholdersEquity: { type: String },
+      items: { type: [String] },
+      itemsDate2: { type: [String] },
+      subItems: { type: [String] },
+      subItemsDate2: { type: [String] },
+      firstTotal: { type: Number },
+      firstTotalDate2: { type: Number },
+      sfirtsTotalShareholdersEquity: { type: String },
+      stotalShareholdersEquity: { type: String },
+      totalEquity: { type: Number },
+      totalEquityDate2: { type: Number },
+      equityItemsNotes: { type: [String] }
+    },
+    
+    // Liabilities section
+    liabilities: {
+      // Label for liabilities section
+      liabilities: { type: String },
+      
+      // Current liabilities subsection
+      current: {
+        scurrentliabilities: { type: String },
+        items: { type: [String] },
+        itemsDate2: { type: [String] },
+        subItems: { type: [String] },
+        subItemsDate2: { type: [String] },
+        firstTotal: { type: Number },
+        firstTotalDate2: { type: Number },
+        sfirtsTotalcurrentLiabilities: { type: String },
+        stotalcurrentliabilities: { type: String },
+        total: { type: Number },
+        totalDate2: { type: Number },
+        currentLiabilitiesNotes: { type: [String] }
+      },
+      
+      // Non-current liabilities subsection
+      nonCurrent: {
+        sNoncurrentliabilities: { type: String },
+        items: { type: [String] },
+        itemsDate2: { type: [String] },
+        subItems: { type: [String] },
+        subItemsDate2: { type: [String] },
+        firstTotal: { type: Number },
+        firstTotalDate2: { type: Number },
+        sfirtsTotalNoncurrentLiabilities: { type: String },
+        stotalNoncurrentliabilities: { type: String },
+        total: { type: Number },
+        totalDate2: { type: Number },
+        nonCurrentLiabilitiesNotes: { type: [String] }
+      },
+      
+      // Liability totals
+      stotalliabilities: { type: String },
+      totalLiabilities: { type: Number },
+      totalLiabilitiesDate2: { type: Number }
+    },
+    
+    // Section headings and totals
+    sShareholdersEquityandliabilitiess: { type: String },
+    stotalEquityAndLiabilities: { type: String },
+     // Total values at the balance sheet level
+    ItotalEquityAndLiabilities: { type: Number },
+    ItotalEquityAndLiabilitiesDate2: { type: Number },
+    
+  },
+  
+  // S3 URL for Balance Sheet 
     ProfitLoss: { type: String, required: false },   // S3 URL for Profit & Loss
     CashFlow: { type: String, required: false },     // S3 URL for Cash Flow
   },
