@@ -1,18 +1,13 @@
 import { model, Schema } from "mongoose";
 
-
-
-
-
-
-
-
 const BalanceSheetSchema = new Schema({
   assets: {
     current: {
       scurrentAssets: String,
+      currentLabels: [String],
       items: [String],
       itemsDate2: [String],
+      currentSubLabels: [String],
       subItems: [String],
       subItemsDate2: [String],
       firstTotal: Number,
@@ -25,8 +20,10 @@ const BalanceSheetSchema = new Schema({
     },
     nonCurrent: {
       snonCurrentAssets: String,
+      nonCurrentLabels: [String],
       items: [String],
       itemsDate2: [String],
+      nonCurrentSubLabels: [String],
       subItems: [String],
       subItemsDate2: [String],
       firstTotal: Number,
@@ -44,12 +41,14 @@ const BalanceSheetSchema = new Schema({
   },
   equity: {
     sShareholdersEquity: String,
+    equityLabels: [String],
     items: [String],
     itemsDate2: [String],
     subItems: [String],
     subItemsDate2: [String],
     firstTotal: Number,
     firstTotalDate2: Number,
+    equitySubLabels: [String],
     sfirtsTotalShareholdersEquity: String,
     stotalShareholdersEquity: String,
     totalEquity: Number,
@@ -60,8 +59,10 @@ const BalanceSheetSchema = new Schema({
     liabilities: String,
     current: {
       scurrentliabilities: String,
+      currentLiabilitiesLabels: [String],
       items: [String],
       itemsDate2: [String],
+      currentLiabilitiesSubLabels: [String],
       subItems: [String],
       subItemsDate2: [String],
       firstTotal: Number,
@@ -74,8 +75,10 @@ const BalanceSheetSchema = new Schema({
     },
     nonCurrent: {
       sNoncurrentliabilities: String,
+      NonCurrentLiabilitiesLabels: [String],
       items: [String],
       itemsDate2: [String],
+      NonCurrentLiabilitiesSubLabels: [String],
       subItems: [String],
       subItemsDate2: [String],
       firstTotal: Number,
@@ -95,11 +98,6 @@ const BalanceSheetSchema = new Schema({
   ItotalEquityAndLiabilities: Number,
   ItotalEquityAndLiabilitiesDate2: Number,
 });
-
-
-
-
-
 
 const FileSchema = new Schema({
   file: {
@@ -129,17 +127,6 @@ const FileSchema = new Schema({
     },
   },
 });
-
-
-
-
-
-
-
-
-
-
-
 
 const DocumentSchema = new Schema(
   {
