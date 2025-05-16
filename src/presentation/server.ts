@@ -16,10 +16,10 @@ const app: Application = express();
 // ------------------------------
 // ✅ CORS configuration
 // ------------------------------
-// const allowedOrigin = process.env.CLIENT_URL || 'https://finstatements.club';
+const allowedOrigin = process.env.CLIENT_URL || 'https://finstatements.club';
 
 const corsOptions = {
-  origin:  'https://finstatements.club',
+  origin:  allowedOrigin,
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"],
