@@ -19,7 +19,7 @@ const app: Application = express();
 // const allowedOrigin = process.env.CLIENT_URL || 'https://finstatements.club';
 
 const corsOptions = {
-  origin:  ['https://finstatements.club', 'http://localhost:5173'],
+  origin:  'https://finstatements.club',
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"],
