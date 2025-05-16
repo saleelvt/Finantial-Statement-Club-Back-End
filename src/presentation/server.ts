@@ -19,10 +19,10 @@ const app: Application = express();
 const allowedOrigin = process.env.CLIENT_URL ;
 
 const corsOptions = {
-  origin:  allowedOrigin,
-  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+  origin: allowedOrigin,
   credentials: true,
-allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+  allowedHeaders: ['Content-Type', 'X-Requested-With', 'Authorization'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 };
 
 app.use(cors(corsOptions));
