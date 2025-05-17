@@ -190,16 +190,11 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
           liabilities: {
             liabilities: data.liabilities?.liabilities || "",
             current: {
-              scurrentliabilities:
-                data.liabilities?.current?.scurrentliabilities || "",
-              currentLiabilitiesLabels: ensureArray(
-                data.liabilities?.current?.CurrentLiabilitiesLabelsAr
-              ),
+              scurrentliabilities:  data.liabilities?.current?.scurrentliabilities || "",
+               currentLiabilitiesLabels: ensureArray(data.liabilities?.current?.currentLiabilitiesLabelsAr ),
+               currentLiabilitiesSubLabels: ensureArray(data.liabilities?.current?.currentSubLiabilitiesLabelsAr ),
               items: ensureArray(data.liabilities?.current?.items),
               itemsDate2: ensureArray(data.liabilities?.current?.itemsDate2),
-              currentLiabilitiesSubLabels: ensureArray(
-                data.liabilities?.current?.CurrentSubLiabilitiesLabelsAr
-              ),
               subItems: ensureArray(data.liabilities?.current?.subItems),
               subItemsDate2: ensureArray(
                 data.liabilities?.current?.subItemsDate2

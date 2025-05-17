@@ -1,62 +1,33 @@
 // presentation/server.ts
-import express, { Application, Request, Response, NextFunction } from "express";
+import express, { Application, Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { adminRoutes } from "../infrastructure/routers";
 import { adminDependencies } from "../boot/adminDependencies";
-
 const EventEmitter = require("events");
+
 EventEmitter.defaultMaxListeners = 100;
-
-dotenv.config(); // Load .env
-
+dotenv.config(); // Load environment variables
 const app: Application = express();
-
-// ------------------------------
-// ✅ CORS configuration
-// ------------------------------
-const allowedOrigin = process.env.CLIENT_URL ;
-
+const allowedOrigin = process.env.CLIENT_URL;
+// CORS options
 const corsOptions = {
-  origin: allowedOrigin,
+
+  origin:allowedOrigin,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
-  allowedHeaders: ['Content-Type', 'X-Requested-With', 'Authorization'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+  // allowedHeaders: ["*"],
 };
-
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // Preflight requests
-
-// ------------------------------
-// ✅ Body parser limits (200MB)
-// ------------------------------
+// Middleware setup
 app.use(express.json({ limit: "200mb" }));
-app.use(express.urlencoded({ extended: true, limit: "200mb" }));
-
-// ------------------------------
-// ✅ Middleware
-// ------------------------------
-app.use(cookieParser());
-
-// ------------------------------
-// ✅ Routes
-// ------------------------------
+app.use(express.urlencoded({ limit: "200mb", extended: true }));
+app.use(cookieParser()); 
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); 
 app.use("/api/v1/admin", adminRoutes(adminDependencies));
-
-// ------------------------------
-// ✅ 404 Handler
-// ------------------------------
+// Default route
 app.use("*", (req: Request, res: Response) => {
   res.status(404).json({ success: false, status: 404, message: "API Not Found" });
 });
-
-// ------------------------------
-// ✅ Error Handler (optional but useful)
-// ------------------------------
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.error("Internal error:", err.message);
-  res.status(500).json({ success: false, message: "Internal Server Error" });
-});
-
-export default app;
+export default app; // Export the Express instance (not yet listening)
