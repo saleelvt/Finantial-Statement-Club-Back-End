@@ -90,9 +90,9 @@ const FileSchema = new Schema({
         current: {
           scurrentliabilities: { type: String },
           currentLiabilitiesLabels: { type: [String] },
+          currentLiabilitiesSubLabels: { type: [String] },
           items: { type: [String] },
           itemsDate2: { type: [String] },
-          currentLiabilitiesSubLabels: { type: [String] },
           subItems: { type: [String] },
           subItemsDate2: { type: [String] },
           firstTotal: { type: Number },

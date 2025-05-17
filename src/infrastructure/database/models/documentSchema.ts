@@ -87,22 +87,22 @@ const FileSchema = new Schema({
         liabilities: { type: String },
 
         // Current liabilities subsection
-       current: {
-  scurrentliabilities: { type: String },
-  currentLiabilitiesLabels: { type: [String] },
-  currentLiabilitiesSubLabels: { type: [String] }, 
-  items: { type: [String] },
-  itemsDate2: { type: [String] },
-  subItems: { type: [String] },
-  subItemsDate2: { type: [String] },
-  firstTotal: { type: Number },
-  firstTotalDate2: { type: Number },
-  sfirtsTotalcurrentLiabilities: { type: String },
-  stotalcurrentliabilities: { type: String },
-  total: { type: Number },
-  totalDate2: { type: Number },
-  currentLiabilitiesNotes: { type: [String] },
-},
+        current: {
+          scurrentliabilities: { type: String },
+          currentLiabilitiesLabels: { type: [String] },
+          currentLiabilitiesSubLabels: { type: [String] },
+          items: { type: [String] },
+          itemsDate2: { type: [String] },
+          subItems: { type: [String] },
+          subItemsDate2: { type: [String] },
+          firstTotal: { type: Number },
+          firstTotalDate2: { type: Number },
+          sfirtsTotalcurrentLiabilities: { type: String },
+          stotalcurrentliabilities: { type: String },
+          total: { type: Number },
+          totalDate2: { type: Number },
+          currentLiabilitiesNotes: { type: [String] },
+        },
 
         // Non-current liabilities subsection
         nonCurrent: {
