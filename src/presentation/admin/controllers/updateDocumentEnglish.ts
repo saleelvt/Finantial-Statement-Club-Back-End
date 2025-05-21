@@ -16,7 +16,6 @@ export const updateDocumentEnglishController = (dependencies: IAdminDependencies
         if (!id || !language) {
           return res.status(400).json({ success: false, message: "ID and language are required to update the document" });
         }
-  
         const requiredFields = ["Board", "Q1", "Q2", "Q3", "Q4", "S1", "Year"];
         const fileUrls: Record<string, { file: string | null; date: Date | null; year: string }> = {};
   
@@ -38,7 +37,6 @@ export const updateDocumentEnglishController = (dependencies: IAdminDependencies
             const s3Url = await uploadFileToS3(file.buffer, file.originalname);
             const date = req.body[`${fieldKey}Date`] ? new Date(req.body[`${fieldKey}Date`]) : documentToUpdate.formData?.[fieldKey]?.date;
             const year = req.body[`${fieldKey}Year`] || documentToUpdate.formData?.[fieldKey]?.year || "";
-  
             fileUrls[fieldKey] = { file: s3Url, date, year };
           } else {
             const existingField = documentToUpdate.formData?.[fieldKey];
@@ -63,7 +61,7 @@ export const updateDocumentEnglishController = (dependencies: IAdminDependencies
         console.log("my loged document current nICK name ",  documentToUpdate.nickNameEn );
         console.log("my loged document current TADAWAL name ",  documentToUpdate.tadawalCode );
         console.log("my loged document current sector name ",  documentToUpdate.sector );
-        console.log("my loged document current formData ",  documentToUpdate.formData )
+        console.log("my loged document current formData ",  documentToUpdate.formData)
         try {
             var last = await Document.findOneAndUpdate(
                 { _id: id }, 

@@ -132,6 +132,7 @@ const FileSchema = new Schema({
       // Total values at the balance sheet level
       ItotalEquityAndLiabilities: { type: Number },
       ItotalEquityAndLiabilitiesDate2: { type: Number },
+   
     },
 
     // S3 URL for Balance Sheet
