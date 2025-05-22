@@ -135,9 +135,7 @@ const FileSchema = new Schema({
       ItotalEquityAndLiabilitiesDate2: { type: Number },
     },
 
-    // S3 URL for Balance Sheet
-    ProfitLoss: { type: String, required: false }, // S3 URL for Profit & Loss
-    CashFlow: { type: String, required: false }, // S3 URL for Cash Flow
+  
   },
   createdAt: {
     type: Date,

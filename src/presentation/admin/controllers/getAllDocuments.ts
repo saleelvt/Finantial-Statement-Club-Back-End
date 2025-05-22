@@ -6,7 +6,6 @@ import { Request, Response, NextFunction } from "express";
 export const adminGetAllDocumentController = (dependencies: IAdminDependencies) => {
   return async (req: Request, res: Response, next: NextFunction): Promise<void | null | any> => {
     try {
-      
       // Parse skip and limit from query params
       const skip = parseInt(req.query.skip as string) || 0;
       const limit = parseInt(req.query.limit as string) || 300;

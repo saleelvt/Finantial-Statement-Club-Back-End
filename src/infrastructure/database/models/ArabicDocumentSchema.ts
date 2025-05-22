@@ -135,9 +135,6 @@ const FileSchema = new Schema({
    
     },
 
-    // S3 URL for Balance Sheet
-    ProfitLoss: { type: String, required: false }, // S3 URL for Profit & Loss
-    CashFlow: { type: String, required: false }, // S3 URL for Cash Flow
   },
   createdAt: {
     type: Date,
