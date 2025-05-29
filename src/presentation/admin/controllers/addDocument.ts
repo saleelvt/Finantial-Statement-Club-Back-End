@@ -12,7 +12,6 @@ export const adminAddDocumentController = (dependencies: IAdminDependencies) => 
     try {
       console.log("BODY:", req.body);
       console.log("FILES:", req.files);
-
       const { fullNameEn, nickNameEn, tadawalCode, sector } = req.body;
       
       console.log("the req.body of add document : ", fullNameEn, nickNameEn, tadawalCode, sector);

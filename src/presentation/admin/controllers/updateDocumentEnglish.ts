@@ -41,8 +41,7 @@ export const updateDocumentEnglishController = (dependencies: IAdminDependencies
           message: "At least one file must be uploaded.",
         });
       }
-
-      // ✅ Collect all existing years from formData
+      
       const existingYears = new Set<string>();
       for (const fieldKey of requiredFields) {
         const year = documentToUpdate.formData?.[fieldKey]?.year;
@@ -63,8 +62,6 @@ export const updateDocumentEnglishController = (dependencies: IAdminDependencies
           incomingYears.add(year);
         }
       }
-
-      // ✅ Rule: existingYears.size > 0 → all incoming years must match
       if (existingYears.size > 0) {
         const existingYear = Array.from(existingYears)[0];
         for (const y of incomingYears) {
@@ -77,7 +74,6 @@ export const updateDocumentEnglishController = (dependencies: IAdminDependencies
         }
       }
 
-      // ✅ Rule: all incoming years must be same
       if (incomingYears.size > 1) {
         return res.status(400).json({
           success: false,
@@ -85,7 +81,6 @@ export const updateDocumentEnglishController = (dependencies: IAdminDependencies
         });
       }
 
-      // ✅ Store files
       for (const fieldKey of requiredFields) {
         const fileArray = req.files?.[fieldKey] || [];
         if (fileArray.length > 0) {
@@ -104,7 +99,6 @@ export const updateDocumentEnglishController = (dependencies: IAdminDependencies
         }
       }
 
-      // ✅ Update document
       documentToUpdate.fullNameEn = fullNameEn || documentToUpdate.fullNameEn;
       documentToUpdate.nickNameEn = nickNameEn || documentToUpdate.nickNameEn;
       documentToUpdate.tadawalCode = tadawalCode || documentToUpdate.tadawalCode;

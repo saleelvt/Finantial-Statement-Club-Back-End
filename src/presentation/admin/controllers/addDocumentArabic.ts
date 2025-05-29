@@ -10,21 +10,16 @@ interface CustomRequest extends Request {
 export const adminAddDocumentArabicController = (dependencies: IAdminDependencies) => {
   return async (req: CustomRequest, res: Response, next: NextFunction): Promise<void | null | any> => {
     try {
-      console.log("BODY:", req.body);
-console.log("FILES:", req.files);
 
-      const { fullNameAr, nickNameAr, tadawalCode, sector } = req.body;
-      
+
+      const { fullNameAr, nickNameAr, tadawalCode, sector } = req.body;    
       console.log("the req.body aof add document : ",fullNameAr, nickNameAr, tadawalCode, sector);
-      
       const requiredFields = ["Board", "Q1", "Q2", "Q3", "Q4", "S1", "Year"];
       const fileUrls: Record<string, { file: string; date: Date; year: string }> = {};
-
       // Check if at least one field has a file
       const hasAtLeastOneFile = Object.keys(req.files || {}).some(key => 
         requiredFields.includes(key) && req.files[key]?.length > 0
       );
-
       if (!hasAtLeastOneFile) {
         return res.status(400).json({
           success: false,
@@ -35,7 +30,6 @@ console.log("FILES:", req.files);
       // Ensure all required fields have the same year before proceeding
       const yearSet = new Set<string>();
       const fieldsWithFiles: string[] = [];
-      
       requiredFields.forEach((fieldKey) => {
         if (req.files[fieldKey]?.length > 0) {
           fieldsWithFiles.push(fieldKey);
@@ -43,7 +37,6 @@ console.log("FILES:", req.files);
           if (year) yearSet.add(year);
         }
       });
-
       if (yearSet.size === 0) {
         return res.status(400).json({
           success: false,
@@ -62,9 +55,19 @@ console.log("FILES:", req.files);
       const existingDocuments = await ArabicDocument.find({ tadawalCode: tadawalCode });
       
       // Check if any field already exists with the same year in any document
-      for (const fieldKey of fieldsWithFiles) {
+     for (const fieldKey of fieldsWithFiles) {
+        console.log(`Checking field: ${fieldKey}`);
+        
         for (const doc of existingDocuments) {
-          if (doc.formData?.[fieldKey]?.year === currentYear) {
+          console.log(`Document ${doc._id}:`, doc.formData?.[fieldKey]);
+          
+          // Check if this field exists in the document and has the same year
+          if (doc.formData && 
+              doc.formData[fieldKey] && 
+              doc.formData[fieldKey].year === currentYear) {
+            
+            console.log(`Conflict found: ${fieldKey} already exists for year ${currentYear}`);
+            
             return res.status(400).json({
               success: false,
               message: `${fieldKey} for year ${currentYear} already exists in one of the documents.`,

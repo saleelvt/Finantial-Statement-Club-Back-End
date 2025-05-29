@@ -21,8 +21,7 @@ export const adminRoutes = (dependencies: IAdminDependencies) => {
           { name: "Year" },
         ]),
         addDocumentArabic
-      );
-      
+      );      
     router.route("/addTable").post(upload.fields([{name:"screenshotFile"}]),addTable);
     router.route("/deleteDocument/:docToDelete").delete(deleteDocument);
     router.route("/deleteTable/:TadawulCode").delete(deleteTable);
