@@ -8,13 +8,18 @@ export const adminGetAllArabicDocumentController = (
 ) => {
   return async (req: Request, res: Response, next: NextFunction): Promise<void | null | any> => {
     try {
-      const response = await ArabicDocument.find()
-      if (!response || response.length === 0) {
-        return res.status(200).json({ success: true, data: [] });
-      }
-      return res.status(200).json({ success: true, data: response });
-    } catch (error) {
-      next(error);
-    }
+         // Fetch only selected fields
+         const documents = await ArabicDocument.find().select(
+           "_id fullNameAr nickNameAr tadawalCode sector createdAt"
+         );
+   
+         if (!documents || documents.length === 0) {
+           return res.status(404).json({ success: false, message: "NOT FOUND" });
+         }
+   
+         return res.status(200).json({ success: true, data: documents });
+       } catch (error) {
+         next(error);
+       }
   };
 };
