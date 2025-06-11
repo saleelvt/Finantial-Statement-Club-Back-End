@@ -8,5 +8,4 @@ export interface AdminEntity {
     password:string;
     role?: "user" | "admin" | "salon";
     userList?:ObjectId[];
-}
-
+} 

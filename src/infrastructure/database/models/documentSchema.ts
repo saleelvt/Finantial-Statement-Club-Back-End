@@ -130,12 +130,106 @@ const FileSchema = new Schema({
       // Section headings and totals
       sShareholdersEquityandliabilitiess: { type: String },
       stotalEquityAndLiabilities: { type: String },
-      // Total values at the balance sheet level
       ItotalEquityAndLiabilities: { type: Number },
       ItotalEquityAndLiabilitiesDate2: { type: Number },
     },
 
-  
+   CashFlow: {
+  // Additional data fields
+    date1En: { type: Schema.Types.Mixed },
+    date2En: { type: Schema.Types.Mixed },
+    sectionOne: {
+    sectionOneLabelsEn:{ type: [String] },
+    sectionOneNotesEn: { type: [String] },
+    sectionOneItemsEn: { type: [String] },
+    sectionOneItemsDate2En: { type: [String] },
+    sectionOneTotalLabel: String,
+    TotalsectionOneItemsEn: Number,
+    TotalsectionOneItemsDate2En: Number,
+  },
+
+  sectionTwo: {
+    sectionTwoLabelsEn:{ type: [String] },
+    sectionTwoNotesEn:{ type: [String] },
+    sectionTwoItemsEn: { type: [String] },
+    sectionTwoItemsDate2En:{ type: [String] },
+    sectionTwoTotalLabel: String,
+    TotalsectionTwoItemsEn: Number,
+    TotalsectionTwoItemsDate2En: Number,
+  },
+
+  sectionThree: {
+    sectionThreeLabelsEn:{ type: [String] },
+    sectionThreeNotesEn:{ type: [String] },
+    sectionThreeItemsEn: { type: [String] },
+    sectionThreeItemsDate2En:{ type: [String] },
+    sectionThreeTotalLabel: String,
+    TotalsectionThreeItemsEn: Number,
+    TotalsectionThreeItemsDate2En: Number,
+  },
+
+  sectionFour: {
+    sectionFourLabelsEn:{ type: [String] },
+    sectionFourNotesEn: { type: [String] },
+    sectionFourItemsEn:{ type: [String] },
+    sectionFourItemsDate2En:{ type: [String] },
+    sectionFourTotalLabel: String,
+    TotalsectionFourItemsEn: Number,
+    TotalsectionFourItemsDate2En: Number,
+  },
+
+    sectionFourAttributeOne: {
+  sectionFourAttribute: { type: String },
+  sectionFourAttributeLabelsEn: { type: [String] },
+  sectionFourAttributeItemsEn: { type: [String] },
+  sectionFourAttributeItemsDate2En: { type: [String] },
+  TotalsectionFourAttributeItemsEn: { type: Number },
+  TotalsectionFourAttributeItemsDate2En: { type: Number },
+},
+
+sectionOtherComprehensiveIncome: {
+  sectionFourOtherComprehensiveIncome: { type: String },
+  sectionFourOtherComprehensiveIncomeSubheading: { type: String },
+  sectionFourOtherComprehensiveIncomeSubheadingLabelsEn: { type: [String] },
+  sectionFourOtherComprehensiveIncomeSubheadingNotesEn: { type: [String] },
+  sectionFourOtherComprehensiveIncomeSubheadingItemsEn: { type: [String] },
+  sectionFourOtherComprehensiveIncomeSubheadingItemsDate2En: { type: [String] },
+  sectionFourOtherTotalComprehensiveIncome: { type: String },
+  TotalsectionFourOtherComprehensiveIncomeSubheadingItemsEn: { type: Number },
+  TotalsectionFourOtherComprehensiveIncomeSubheadingItemsDate2En: { type: Number },
+},
+
+sectionAttributeTwo: {
+  sectionFourAttribute2: { type: String },
+  sectionFourAttribute2LabelsEn: { type: [String] },
+  sectionFourAttribute2ItemsEn: { type: [String] },
+  sectionFourAttribute2ItemsDate2En: { type: [String] },
+  TotalsectionFourAttribute2ItemsEn: { type: Number },
+  TotalsectionFourAttribute2ItemsDate2En: { type: Number },
+},
+
+
+
+  sectionFive: {
+    sectionFiveLabelsEn: { type: [String] },
+    sectionFiveNotesEn:{ type: [String] },
+    sectionFiveItemsEn: { type: [String] },
+    sectionFiveItemsDate2En:{ type: [String] },
+    sectionFiveTotalLabel: String,
+    TotalsectionFiveItemsEn: Number,
+    TotalsectionFiveItemsDate2En: Number,
+  },
+
+  sectionSix: {
+    sectionSixLabelsEn:{ type: [String] },
+    sectionSixNotesEn: { type: [String] },
+    sectionSixItemsEn: { type: [String] },
+    sectionSixItemsDate2En: { type: [String] },
+    sectionSixTotalLabel: String,
+    TotalsectionSixItemsEn: Number,
+    TotalsectionSixItemsDate2En: Number,
+  },
+}
   },
   createdAt: {
     type: Date,
@@ -146,13 +240,13 @@ const FileSchema = new Schema({
 const DocumentSchema = new Schema(
   {
     fullNameEn: {
-      type: String,
+      type: String, 
       required: true,
     },
     nickNameEn: {
       type: String,
       required: true,
-    },
+    }, 
     tadawalCode: {
       type: String,
       required: true,

@@ -38,15 +38,12 @@ export const adminGetDataWithYearQuartertadawalCodeForTableViewController = (
             return quarterData.table;
           }
         }
-
         return null;
       };
 
       const englishTable = findMatchingTable(englishDocs);
       const arabicTable = findMatchingTable(arabicDocs);
 
-      console.log("the back-end response fotghe data ", englishTable,arabicTable);
-      
 
       // Return response
       return res.status(200).json({
