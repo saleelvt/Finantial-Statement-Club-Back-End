@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyOtpController = void 0;
 const otpSchema_1 = require("@/infrastructure/database/models/otpSchema");
+const generateAccessToken_1 = require("@/utilities/jwt/generateAccessToken");
 const verifyOtpController = (dependencies) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
@@ -19,10 +20,12 @@ const verifyOtpController = (dependencies) => {
             const dbOtp = yield otpSchema_1.Otp.findOne({ email });
             if (dbOtp && otp === dbOtp.otp) {
                 console.log("otp valide aanu ketto ");
-                // const { accessToken, refreshToken } = generateTokens(dbOtp._id.toString());
+                const { accessToken } = (0, generateAccessToken_1.generateTokens)(dbOtp._id.toString());
+                console.log("the accessToken iws : ", accessToken);
                 return res.status(200).json({
                     message: "OTP verified successfully",
                     success: true,
+                    accessToken: accessToken
                 });
             }
             console.log("otp invalid");

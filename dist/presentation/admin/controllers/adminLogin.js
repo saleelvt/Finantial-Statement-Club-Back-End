@@ -28,14 +28,12 @@ const loginAdminController = (dependencies) => {
             if (!data) {
                 return res
                     .status(401)
-                    .json({ success: false, message: "Invalid credentials" });
+                    .json({ success: false, message: "Invalid credentials  Email || Password" });
             }
             const otp = (0, generateOtp_1.generateOtp)();
-            console.log("this is my otp for the client login ");
             const emailExist = yield otpSchema_1.Otp.findOne({ email: email });
             let dbOtp;
             if (emailExist) {
-                console.log("otp unde");
                 dbOtp = yield otpSchema_1.Otp.findByIdAndUpdate({ email: email, otp }, { $set: { otp, createdAt: new Date() } });
             }
             else {
@@ -59,7 +57,6 @@ const loginAdminController = (dependencies) => {
             });
         }
         catch (error) {
-            console.error(error, "<< Something went wrong in user Login >>");
             res.status(500).json({
                 success: false,
                 message: "Internal Server Error",

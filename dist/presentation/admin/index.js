@@ -27,3 +27,7 @@ __exportStar(require("./controllers/getDocumentById"), exports);
 __exportStar(require("./controllers/updateDocumentEnglish"), exports);
 __exportStar(require("./controllers/updateDocumentArabic"), exports);
 __exportStar(require("./controllers/verifyOtp"), exports);
+__exportStar(require("./controllers/GetDataWithSuggestionsForTable"), exports);
+__exportStar(require("./controllers/getDataWithYearQuartertadawalCodeForTableView"), exports);
+__exportStar(require("./controllers/deleteTable"), exports);
+__exportStar(require("./controllers/getAllDocumentsAdmin"), exports);

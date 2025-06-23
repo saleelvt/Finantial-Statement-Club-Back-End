@@ -45,9 +45,9 @@ const client_s3_1 = require("@aws-sdk/client-s3");
  * Create an S3 client using AWS SDK v3.
  */
 const s3Client = new client_s3_1.S3Client({
-    region: process.env.AWS_REGION,
+    region: process.env.AWS_REGION, // Example: 'us-east-1'
     credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID, // Set in environment variables
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY, // Set in environment variables
     },
 });
@@ -60,9 +60,9 @@ const s3Client = new client_s3_1.S3Client({
 const uploadFileToS3 = (fileBuffer, fileName) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const params = {
-            Bucket: process.env.AWS_S3_BUCKET_NAME,
-            Key: `pdfs/${fileName}`,
-            Body: fileBuffer,
+            Bucket: process.env.AWS_S3_BUCKET_NAME, // The bucket name (from .env)
+            Key: `pdfs/${fileName}`, // Save under "pdfs" folder
+            Body: fileBuffer, // File content as buffer
             ContentType: "application/pdf", // Explicitly set to PDF type
         };
         // Use S3Client to upload the file

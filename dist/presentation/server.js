@@ -8,8 +8,8 @@ const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
-const routers_1 = require("@/infrastructure/routers");
-const adminDependencies_1 = require("@/boot/adminDependencies");
+const routers_1 = require("../infrastructure/routers");
+const adminDependencies_1 = require("../boot/adminDependencies");
 const EventEmitter = require("events");
 EventEmitter.defaultMaxListeners = 100;
 dotenv_1.default.config(); // Load environment variables
@@ -20,7 +20,7 @@ const corsOptions = {
     origin: allowedOrigin,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
-    // allowedHeaders:'*'
+    // allowedHeaders: ["*"],
 };
 // Middleware setup
 app.use(express_1.default.json({ limit: "200mb" }));

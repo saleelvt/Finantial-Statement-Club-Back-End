@@ -152,6 +152,7 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
               sassets: data.assets?.sassets || "",
               stotalAssets: data.assets?.stotalAssets || "",
               totalAssets: safeParseFloat(data.assets?.totalAssets),
+
               totalAssetsDate2: safeParseFloat(data.assets?.totalAssetsDate2),
             },
             // Additional data fields
@@ -305,6 +306,7 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
   date2En: data.date2,
 
   sectionOne: {
+     sectionOneFirstLabelEn: data.sectionOne?.sectionOneFirstLabelEn || "",
     sectionOneLabelsEn: ensureArray(data.sectionOne?.sectionOneLabelsEn),
     sectionOneNotesEn: ensureArray(data.sectionOne?.sectionOneNotesEn),
     sectionOneItemsEn: ensureArray(data.sectionOne?.sectionOneItemsEn),
@@ -344,57 +346,122 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
     TotalsectionFourItemsDate2En: safeParseFloat(data.sectionFour?.TotalsectionFourItemsDate2En),
   },
 
+  sectionFourSub: {
+     sectionFourSubFirstLabelEn: data.sectionFourSub?.sectionFourSubFirstLabelEn || "",
+    sectionFourSubLabelsEn: ensureArray(data.sectionFourSub?.sectionFourSubLabelsEn),
+    sectionFourSubNotesEn: ensureArray(data.sectionFourSub?.sectionFourSubNotesEn),
+    sectionFourSubItemsEn: ensureArray(data.sectionFourSub?.sectionFourSubItemsEn),
+    sectionFourSubItemsDate2En: ensureArray(data.sectionFourSub?.sectionFourSubItemsDate2En),
+    sectionFourSubTotalLabel: data.sectionFourSub?.sectionFourSubTotalLabel || "",
+    TotalsectionFourSubItemsEn: safeParseFloat(data.sectionFourSub?.TotalsectionFourSubItemsEn),
+    TotalsectionFourSubItemsDate2En: safeParseFloat(data.sectionFourSub?.TotalsectionFourSubItemsDate2En),
+  },  
 
-  sectionFourAttributeOne: {
-  sectionFourAttribute: data.sectionAttributeOne?.sectionFourAttribute,
-  sectionFourAttributeLabelsEn: ensureArray(data.sectionAttributeOne?.sectionFourAttributeLabelsEn),
-  sectionFourAttributeItemsEn: ensureArray(data.sectionAttributeOne?.sectionFourAttributeItemsEn),
-  sectionFourAttributeItemsDate2En: ensureArray(data.sectionAttributeOne?.sectionFourAttributeItemsDate2En) ,
-  TotalsectionFourAttributeItemsEn: safeParseFloat(data.sectionAttributeOne?.TotalsectionFourAttributeItemsEn),
-  TotalsectionFourAttributeItemsDate2En: safeParseFloat(data.sectionAttributeOne?.TotalsectionFourAttributeItemsDate2En),
-},
-sectionOtherComprehensiveIncome: {
-  sectionFourOtherComprehensiveIncome: data.sectionOtherComprehensiveIncome?.sectionFourOtherComprehensiveIncome || "",
-  sectionFourOtherComprehensiveIncomeSubheading: data.sectionOtherComprehensiveIncome?.sectionFourOtherComprehensiveIncomeSubheading || "",
-  sectionFourOtherComprehensiveIncomeSubheadingLabelsEn: ensureArray(data.sectionOtherComprehensiveIncome?.sectionFourOtherComprehensiveIncomeSubheadingLabelsEn),
-  sectionFourOtherComprehensiveIncomeSubheadingNotesEn: ensureArray(data.sectionOtherComprehensiveIncome?.sectionFourOtherComprehensiveIncomeSubheadingNotesEn),
-  sectionFourOtherComprehensiveIncomeSubheadingItemsEn: ensureArray(data.sectionOtherComprehensiveIncome?.sectionFourOtherComprehensiveIncomeSubheadingItemsEn),
-  sectionFourOtherComprehensiveIncomeSubheadingItemsDate2En: ensureArray(data.sectionOtherComprehensiveIncome?.sectionFourOtherComprehensiveIncomeSubheadingItemsDate2En),
-  sectionFourOtherTotalComprehensiveIncome: data.sectionOtherComprehensiveIncome?.sectionFourOtherTotalComprehensiveIncome || "",
-  TotalsectionFourOtherComprehensiveIncomeSubheadingItemsEn: safeParseFloat(data.sectionOtherComprehensiveIncome?.TotalsectionFourOtherComprehensiveIncomeSubheadingItemsEn),
-  TotalsectionFourOtherComprehensiveIncomeSubheadingItemsDate2En: safeParseFloat(data.sectionOtherComprehensiveIncome?.TotalsectionFourOtherComprehensiveIncomeSubheadingItemsDate2En),
-},
-sectionAttributeTwo: {
-  sectionFourAttribute2: data.sectionAttributeTwo?.sectionFourAttribute2 || "",
-  sectionFourAttribute2LabelsEn: ensureArray(data.sectionAttributeTwo?.sectionFourAttribute2LabelsEn),
  
-  sectionFourAttribute2ItemsEn: ensureArray(data.sectionAttributeTwo?.sectionFourAttribute2ItemsEn),
-  sectionFourAttribute2ItemsDate2En: ensureArray(data.sectionAttributeTwo?.sectionFourAttribute2ItemsDate2En),
-
-  TotalsectionFourAttribute2ItemsEn: safeParseFloat(data.sectionAttributeTwo?.TotalsectionFourAttribute2ItemsEn),
-  TotalsectionFourAttribute2ItemsDate2En: safeParseFloat(data.sectionAttributeTwo?.TotalsectionFourAttribute2ItemsDate2En),
-},
-
-
-  sectionFive: {
-    sectionFiveLabelsEn: ensureArray(data.sectionFive?.sectionFiveLabelsEn),
-    sectionFiveNotesEn: ensureArray(data.sectionFive?.sectionFiveNotesEn),
-    sectionFiveItemsEn: ensureArray(data.sectionFive?.sectionFiveItemsEn),
-    sectionFiveItemsDate2En: ensureArray(data.sectionFive?.sectionFiveItemsDate2En),
-    sectionFiveTotalLabel: data.sectionFive?.sectionFiveTotalLabel || "",
-    TotalsectionFiveItemsEn: safeParseFloat(data.sectionFive?.TotalsectionFiveItemsEn),
-    TotalsectionFiveItemsDate2En: safeParseFloat(data.sectionFive?.TotalsectionFiveItemsDate2En),
+  sectionAttributeOne: {
+    sectionFourAttribute: data?.sectionAttributeOne?.sectionFourAttribute || "",
+    sectionFourAttributeLabelsEn: ensureArray(data?.sectionAttributeOne?.sectionFourAttributeLabelsEn),
+    sectionFourAttributeItemsEn: ensureArray(data?.sectionAttributeOne?.sectionFourAttributeItemsEn),
+    sectionFourAttributeItemsDate2En: ensureArray(data?.sectionAttributeOne?.sectionFourAttributeItemsDate2En),
+    TotalsectionFourAttributeItemsEn: safeParseFloat(data?.sectionAttributeOne?.TotalsectionFourAttributeItemsEn),
+    TotalsectionFourAttributeItemsDate2En: safeParseFloat(data?.sectionAttributeOne?.TotalsectionFourAttributeItemsDate2En),
   },
 
-  sectionSix: {
-    sectionSixLabelsEn: ensureArray(data.sectionSix?.sectionSixLabelsEn),
-    sectionSixNotesEn: ensureArray(data.sectionSix?.sectionSixNotesEn),
-    sectionSixItemsEn: ensureArray(data.sectionSix?.sectionSixItemsEn),
-    sectionSixItemsDate2En: ensureArray(data.sectionSix?.sectionSixItemsDate2En),
-    sectionSixTotalLabel: data.sectionSix?.sectionSixTotalLabel || "",
-    TotalsectionSixItemsEn: safeParseFloat(data.sectionSix?.TotalsectionSixItemsEn),
-    TotalsectionSixItemsDate2En: safeParseFloat(data.sectionSix?.TotalsectionSixItemsDate2En),
-  }
+  sectionAttributeTwo: {
+    sectionFourAttribute2: data?.sectionAttributeTwo?.sectionFourAttribute2 || "",
+    sectionFourAttribute2LabelsEn: ensureArray(data?.sectionAttributeTwo?.sectionFourAttribute2LabelsEn),
+    sectionFourAttribute2ItemsEn: ensureArray(data?.sectionAttributeTwo?.sectionFourAttribute2ItemsEn),
+    sectionFourAttribute2ItemsDate2En: ensureArray(data?.sectionAttributeTwo?.sectionFourAttribute2ItemsDate2En),
+    TotalsectionFourAttribute2ItemsEn: safeParseFloat(data?.sectionAttributeTwo?.TotalsectionFourAttribute2ItemsEn),
+    TotalsectionFourAttribute2ItemsDate2En: safeParseFloat(data?.sectionAttributeTwo?.TotalsectionFourAttribute2ItemsDate2En),
+  },
+
+  sectionOtherComprehensiveIncome: {
+    sectionFourOtherComprehensiveIncome: data?.sectionOtherComprehensiveIncome?.sectionFourOtherComprehensiveIncome || "",
+    sectionFourOtherComprehensiveIncomeSubheadingLabelsEn: ensureArray(data?.sectionOtherComprehensiveIncome?.sectionFourOtherComprehensiveIncomeSubheadingLabelsEn),
+    sectionFourOtherComprehensiveIncomeSubheadingNotesEn: ensureArray(data?.sectionOtherComprehensiveIncome?.sectionFourOtherComprehensiveIncomeSubheadingNotesEn),
+    sectionFourOtherComprehensiveIncomeSubheadingItemsEn: ensureArray(data?.sectionOtherComprehensiveIncome?.sectionFourOtherComprehensiveIncomeSubheadingItemsEn),
+    sectionFourOtherComprehensiveIncomeSubheadingItemsDate2En: ensureArray(data?.sectionOtherComprehensiveIncome?.sectionFourOtherComprehensiveIncomeSubheadingItemsDate2En),
+  },
+
+
+
+   Table2: {
+  dateTwo1En: data.Table2?.dateTwo1En,
+  dateTwo2En: data.Table2?.dateTwo2En,
+  
+  sectionOneTable2: {
+    sectionLastLabel: data.Table2?.sectionOneTable2?.sectionLastLabel || "",
+    TotalsectionFourSubItemsEn: safeParseFloat(data.Table2?.sectionOneTable2?.TotalsectionFourSubItemsEn),
+    TotalsectionFourSubItemsDate2En: safeParseFloat(data.Table2?.sectionOneTable2?.TotalsectionFourSubItemsDate2En),
+    sectionSevenLastLabel: data.Table2?.sectionOneTable2?.sectionSevenLastLabel || "",
+    sectionSevenSubheading: data.Table2?.sectionOneTable2?.sectionSevenSubheading || "",
+    sectionLastLabelsEn: ensureArray(data.Table2?.sectionOneTable2?.sectionLastLabelsEn),
+    sectionLastNotesEn: ensureArray(data.Table2?.sectionOneTable2?.sectionLastNotesEn),
+    sectionLastItemsEn: ensureArray(data.Table2?.sectionOneTable2?.sectionLastItemsEn),
+    sectionLastItemsDate2En: ensureArray(data.Table2?.sectionOneTable2?.sectionLastItemsDate2En),
+    sectionLastTotalLabelEn: data.Table2?.sectionOneTable2?.sectionLastTotalLabelEn || "",
+    TotalSectionLastLabelItemsEn: safeParseFloat(data.Table2?.sectionOneTable2?.TotalSectionLastLabelItemsEn),
+    TotalSectionLastItemsDate2En: safeParseFloat(data.Table2?.sectionOneTable2?.TotalSectionLastItemsDate2En),
+  },
+
+  sectionTwoTable2: {
+    sectionSevenSubheading2: data.Table2?.sectionTwoTable2?.sectionSevenSubheading2 || "",
+    sectionLastLabelsEn2: ensureArray(data.Table2?.sectionTwoTable2?.sectionLastLabelsEn2),
+    sectionLastNotesEn2: ensureArray(data.Table2?.sectionTwoTable2?.sectionLastNotesEn2),
+    sectionLastItemsEn2: ensureArray(data.Table2?.sectionTwoTable2?.sectionLastItemsEn2),
+    sectionLastItemsDate2En2: ensureArray(data.Table2?.sectionTwoTable2?.sectionLastItemsDate2En2),
+    sectionLastTotalLabelEn2: data.Table2?.sectionTwoTable2?.sectionLastTotalLabelEn2 || "",
+    TotalSectionLastLabelItemsEn2: safeParseFloat(data.Table2?.sectionTwoTable2?.TotalSectionLastLabelItemsEn2),
+    TotalSectionLastItemsDate2En2: safeParseFloat(data.Table2?.sectionTwoTable2?.TotalSectionLastItemsDate2En2),
+    
+    totalOtherComp: {
+      SectionSevenSecondLastLabel2: data.Table2?.sectionTwoTable2?.totalOtherComp?.SectionSevenSecondLastLabel2 || "",
+      TotalsectionSevenSecondLastItemEn: safeParseFloat(data.Table2?.sectionTwoTable2?.totalOtherComp?.TotalsectionSevenSecondLastItemEn),
+      TotalsectionSevenSecondLastItemsDate2En: safeParseFloat(data.Table2?.sectionTwoTable2?.totalOtherComp?.TotalsectionSevenSecondLastItemsDate2En),
+    },
+    
+    totalComprehensiveLoss: {
+      SectionSevenLastLabel2: data.Table2?.sectionTwoTable2?.totalComprehensiveLoss?.SectionSevenLastLabel2 || "",
+      TotalsectionSevenLastItemEn: safeParseFloat(data.Table2?.sectionTwoTable2?.totalComprehensiveLoss?.TotalsectionSevenLastItemEn),
+      TotalsectionSevenLastItemsDate2En: safeParseFloat(data.Table2?.sectionTwoTable2?.totalComprehensiveLoss?.TotalsectionSevenLastItemsDate2En),
+    },
+  },
+
+  sectionAttributeOneTable2: {
+    sectionFourAttributeTable2: data.Table2?.sectionAttributeOneTable2?.sectionFourAttributeTable2 || "",
+    sectionFourAttributeLabelsEnTable2: ensureArray(data.Table2?.sectionAttributeOneTable2?.sectionFourAttributeLabelsEnTable2),
+    sectionFourAttributeItemsEnTable2: ensureArray(data.Table2?.sectionAttributeOneTable2?.sectionFourAttributeItemsEnTable2),
+    sectionFourAttributeItemsDate2EnTable2: ensureArray(data.Table2?.sectionAttributeOneTable2?.sectionFourAttributeItemsDate2EnTable2),
+    TotalsectionFourAttributeItemsEnTable2: safeParseFloat(data.Table2?.sectionAttributeOneTable2?.TotalsectionFourAttributeItemsEnTable2),
+    TotalsectionFourAttributeItemsDate2EnTable2: safeParseFloat(data.Table2?.sectionAttributeOneTable2?.TotalsectionFourAttributeItemsDate2EnTable2),
+  },
+
+  sectionAttributeTwoTable2: {
+    sectionFourAttribute2Table2: data.Table2?.sectionAttributeTwoTable2?.sectionFourAttribute2Table2 || "",
+    sectionFourAttribute2LabelsEnTable2: ensureArray(data.Table2?.sectionAttributeTwoTable2?.sectionFourAttribute2LabelsEnTable2),
+    sectionFourAttribute2ItemsEnTable2: ensureArray(data.Table2?.sectionAttributeTwoTable2?.sectionFourAttribute2ItemsEnTable2),
+    sectionFourAttribute2ItemsDate2EnTable2: ensureArray(data.Table2?.sectionAttributeTwoTable2?.sectionFourAttribute2ItemsDate2EnTable2),
+    TotalsectionFourAttribute2ItemsEnTable2: safeParseFloat(data.Table2?.sectionAttributeTwoTable2?.TotalsectionFourAttribute2ItemsEnTable2),
+    TotalsectionFourAttribute2ItemsDate2EnTable2: safeParseFloat(data.Table2?.sectionAttributeTwoTable2?.TotalsectionFourAttribute2ItemsDate2EnTable2),
+  },
+
+  sectionOtherComprehensiveIncomeTable2: {
+    sectionFourOtherComprehensiveIncomeTable2: data.Table2?.sectionOtherComprehensiveIncomeTable2?.sectionFourOtherComprehensiveIncomeTable2 || "",
+    sectionFourOtherComprehensiveIncomeSubheadingLabelsEnTable2: ensureArray(data.Table2?.sectionOtherComprehensiveIncomeTable2?.sectionFourOtherComprehensiveIncomeSubheadingLabelsEnTable2),
+    sectionFourOtherComprehensiveIncomeSubheadingNotesEnTable2: ensureArray(data.Table2?.sectionOtherComprehensiveIncomeTable2?.sectionFourOtherComprehensiveIncomeSubheadingNotesEnTable2),
+    sectionFourOtherComprehensiveIncomeSubheadingItemsEnTable2: ensureArray(data.Table2?.sectionOtherComprehensiveIncomeTable2?.sectionFourOtherComprehensiveIncomeSubheadingItemsEnTable2),
+    sectionFourOtherComprehensiveIncomeSubheadingItemsDate2EnTable2: ensureArray(data.Table2?.sectionOtherComprehensiveIncomeTable2?.sectionFourOtherComprehensiveIncomeSubheadingItemsDate2EnTable2),
+  },
+},
+
+
+
+
+
+
+
+
 };
 
 
@@ -709,97 +776,165 @@ sectionAttributeTwo: {
          const CashFlowDataAr = {
   date1Ar: data.qdate1,
   date2Ar: data.qdate2,
-
   sectionOne: {
-    sectionOneLabelsEn: ensureArray(data.sectionOne?.qsectionOneLabelsEn),
-    sectionOneNotesEn: ensureArray(data.sectionOne?.qsectionOneNotesEn),
-    sectionOneItemsEn: ensureArray(data.sectionOne?.qsectionOneItemsEn),
-    sectionOneItemsDate2En: ensureArray(data.sectionOne?.qsectionOneItemsDate2En),
-    sectionOneTotalLabel: data.sectionOne?.qsectionOneTotalLabel || "",
-    TotalsectionOneItemsEn: safeParseFloat(data.sectionOne?.qTotalsectionOneItemsEn),
-    TotalsectionOneItemsDate2En: safeParseFloat(data.sectionOne?.qTotalsectionOneItemsDate2En),
+     sectionOneFirstLabelEn: data.qsectionOne?.qsectionOneFirstLabelEn || "",
+    sectionOneLabelsEn: ensureArray(data.qsectionOne?.qsectionOneLabelsEn),
+    sectionOneNotesEn: ensureArray(data.qsectionOne?.qsectionOneNotesEn),
+    sectionOneItemsEn: ensureArray(data.qsectionOne?.qsectionOneItemsEn),
+    sectionOneItemsDate2En: ensureArray(data.qsectionOne?.qsectionOneItemsDate2En),
+    sectionOneTotalLabel: data.qsectionOne?.qsectionOneTotalLabel || "",
+    TotalsectionOneItemsEn: safeParseFloat(data.qsectionOne?.qTotalsectionOneItemsEn),
+    TotalsectionOneItemsDate2En: safeParseFloat(data.qsectionOne?.qTotalsectionOneItemsDate2En),
   },
-
   sectionTwo: {
-    sectionTwoLabelsEn: ensureArray(data.sectionTwo?.qsectionTwoLabelsEn),
-    sectionTwoNotesEn: ensureArray(data.sectionTwo?.qsectionTwoNotesEn),
-    sectionTwoItemsEn: ensureArray(data.sectionTwo?.qsectionTwoItemsEn),
-    sectionTwoItemsDate2En: ensureArray(data.sectionTwo?.qsectionTwoItemsDate2En),
-    sectionTwoTotalLabel: data.sectionTwo?.qsectionTwoTotalLabel || "",
-    TotalsectionTwoItemsEn: safeParseFloat(data.sectionTwo?.qTotalsectionTwoItemsEn),
-    TotalsectionTwoItemsDate2En: safeParseFloat(data.sectionTwo?.qTotalsectionTwoItemsDate2En),
+    sectionTwoLabelsEn: ensureArray(data.qsectionTwo?.qsectionTwoLabelsEn),
+    sectionTwoNotesEn: ensureArray(data.qsectionTwo?.qsectionTwoNotesEn),
+    sectionTwoItemsEn: ensureArray(data.qsectionTwo?.qsectionTwoItemsEn),
+    sectionTwoItemsDate2En: ensureArray(data.qsectionTwo?.qsectionTwoItemsDate2En),
+    sectionTwoTotalLabel: data.qsectionTwo?.qsectionTwoTotalLabel || "",
+    TotalsectionTwoItemsEn: safeParseFloat(data.qsectionTwo?.qTotalsectionTwoItemsEn),
+    TotalsectionTwoItemsDate2En: safeParseFloat(data.qsectionTwo?.qTotalsectionTwoItemsDate2En),
   },
-
   sectionThree: {
-    sectionThreeLabelsEn: ensureArray(data.sectionThree?.qsectionThreeLabelsEn),
-    sectionThreeNotesEn: ensureArray(data.sectionThree?.qsectionThreeNotesEn),
-    sectionThreeItemsEn: ensureArray(data.sectionThree?.qsectionThreeItemsEn),
-    sectionThreeItemsDate2En: ensureArray(data.sectionThree?.qsectionThreeItemsDate2En),
-    sectionThreeTotalLabel: data.sectionThree?.qsectionThreeTotalLabel || "",
-    TotalsectionThreeItemsEn: safeParseFloat(data.sectionThree?.qTotalsectionThreeItemsEn),
-    TotalsectionThreeItemsDate2En: safeParseFloat(data.sectionThree?.qTotalsectionThreeItemsDate2En),
+    sectionThreeLabelsEn: ensureArray(data.qsectionThree?.qsectionThreeLabelsEn),
+    sectionThreeNotesEn: ensureArray(data.qsectionThree?.qsectionThreeNotesEn),
+    sectionThreeItemsEn: ensureArray(data.qsectionThree?.qsectionThreeItemsEn),
+    sectionThreeItemsDate2En: ensureArray(data.qsectionThree?.qsectionThreeItemsDate2En),
+    sectionThreeTotalLabel: data.qsectionThree?.qsectionThreeTotalLabel || "",
+    TotalsectionThreeItemsEn: safeParseFloat(data.qsectionThree?.qTotalsectionThreeItemsEn),
+    TotalsectionThreeItemsDate2En: safeParseFloat(data.qsectionThree?.qTotalsectionThreeItemsDate2En),
   },
-
   sectionFour: {
-    sectionFourLabelsEn: ensureArray(data.sectionFour?.qsectionFourLabelsEn),
-    sectionFourNotesEn: ensureArray(data.sectionFour?.qsectionFourNotesEn),
-    sectionFourItemsEn: ensureArray(data.sectionFour?.qsectionFourItemsEn),
-    sectionFourItemsDate2En: ensureArray(data.sectionFour?.qsectionFourItemsDate2En),
-    sectionFourTotalLabel: data.sectionFour?.qsectionFourTotalLabel || "",
-    TotalsectionFourItemsEn: safeParseFloat(data.sectionFour?.qTotalsectionFourItemsEn),
-    TotalsectionFourItemsDate2En: safeParseFloat(data.sectionFour?.qTotalsectionFourItemsDate2En),
+    sectionFourLabelsEn: ensureArray(data.qsectionFour?.qsectionFourLabelsEn),
+    sectionFourNotesEn: ensureArray(data.qsectionFour?.qsectionFourNotesEn),
+    sectionFourItemsEn: ensureArray(data.qsectionFour?.qsectionFourItemsEn),
+    sectionFourItemsDate2En: ensureArray(data.qsectionFour?.qsectionFourItemsDate2En),
+    sectionFourTotalLabel: data.qsectionFour?.qsectionFourTotalLabel || "",
+    TotalsectionFourItemsEn: safeParseFloat(data.qsectionFour?.qTotalsectionFourItemsEn),
+    TotalsectionFourItemsDate2En: safeParseFloat(data.qsectionFour?.qTotalsectionFourItemsDate2En),
   },
+  
 
-  sectionFourAttributeOne: {
-  sectionFourAttribute: data.sectionAttributeOne?.qsectionFourAttribute,
-  sectionFourAttributeLabelsEn: ensureArray(data.sectionAttributeOne?.qsectionFourAttributeLabelsEn),
-  sectionFourAttributeItemsEn: ensureArray(data.sectionAttributeOne?.qsectionFourAttributeItemsEn),
-  sectionFourAttributeItemsDate2En: ensureArray(data.sectionAttributeOne?.qsectionFourAttributeItemsDate2En) ,
-  TotalsectionFourAttributeItemsEn: safeParseFloat(data.sectionAttributeOne?.qTotalsectionFourAttributeItemsEn),
-  TotalsectionFourAttributeItemsDate2En: safeParseFloat(data.sectionAttributeOne?.qTotalsectionFourAttributeItemsDate2En),
+sectionFourSub: {
+     sectionFourSubFirstLabelEn: data.qsectionFourSub?.qsectionFourSubFirstLabelEn || "",
+    sectionFourSubLabelsEn: ensureArray(data.qsectionFourSub?.qsectionFourSubLabelsEn),
+    sectionFourSubNotesEn: ensureArray(data.qsectionFourSub?.qsectionFourSubNotesEn),
+    sectionFourSubItemsEn: ensureArray(data.qsectionFourSub?.qsectionFourSubItemsEn),
+    sectionFourSubItemsDate2En: ensureArray(data.qsectionFourSub?.qsectionFourSubItemsDate2En),
+    sectionFourSubTotalLabel: data.qsectionFourSub?.qsectionFourSubTotalLabel || "",
+    TotalsectionFourSubItemsEn: safeParseFloat(data.qsectionFourSub?.qTotalsectionFourSubItemsEn),
+    TotalsectionFourSubItemsDate2En: safeParseFloat(data.qsectionFourSub?.qTotalsectionFourSubItemsDate2En),
+  },  
+
+  sectionAttributeOne: {
+  sectionFourAttribute: data.qsectionAttributeOne?.qsectionFourAttribute,
+  sectionFourAttributeLabelsEn: ensureArray(data.qsectionAttributeOne?.qsectionFourAttributeLabelsEn),
+  sectionFourAttributeItemsEn: ensureArray(data.qsectionAttributeOne?.qsectionFourAttributeItemsEn),
+  sectionFourAttributeItemsDate2En: ensureArray(data.qsectionAttributeOne?.qsectionFourAttributeItemsDate2En) ,
+  TotalsectionFourAttributeItemsEn: safeParseFloat(data.qsectionAttributeOne?.qTotalsectionFourAttributeItemsEn),
+  TotalsectionFourAttributeItemsDate2En: safeParseFloat(data.qsectionAttributeOne?.qTotalsectionFourAttributeItemsDate2En),
+},
+
+
+sectionAttributeTwo: {
+  sectionFourAttribute2: data.qsectionAttributeTwo?.qsectionFourAttribute2 || "",
+  sectionFourAttribute2LabelsEn: ensureArray(data.qsectionAttributeTwo?.qsectionFourAttribute2LabelsEn),
+  sectionFourAttribute2ItemsEn: ensureArray(data.qsectionAttributeTwo?.qsectionFourAttribute2ItemsEn),
+  sectionFourAttribute2ItemsDate2En: ensureArray(data.qsectionAttributeTwo?.qsectionFourAttribute2ItemsDate2En),
+  TotalsectionFourAttribute2ItemsEn: safeParseFloat(data.qsectionAttributeTwo?.qTotalsectionFourAttribute2ItemsEn),
+  TotalsectionFourAttribute2ItemsDate2En: safeParseFloat(data.qsectionAttributeTwo?.qTotalsectionFourAttribute2ItemsDate2En),
 },
 sectionOtherComprehensiveIncome: {
-  sectionFourOtherComprehensiveIncome: data.sectionOtherComprehensiveIncome?.qsectionFourOtherComprehensiveIncome || "",
-  sectionFourOtherComprehensiveIncomeSubheading: data.sectionOtherComprehensiveIncome?.qsectionFourOtherComprehensiveIncomeSubheading || "",
-  sectionFourOtherComprehensiveIncomeSubheadingLabelsEn: ensureArray(data.sectionOtherComprehensiveIncome?.qsectionFourOtherComprehensiveIncomeSubheadingLabelsEn),
-  sectionFourOtherComprehensiveIncomeSubheadingNotesEn: ensureArray(data.sectionOtherComprehensiveIncome?.qsectionFourOtherComprehensiveIncomeSubheadingNotesEn),
-  sectionFourOtherComprehensiveIncomeSubheadingItemsEn: ensureArray(data.sectionOtherComprehensiveIncome?.qsectionFourOtherComprehensiveIncomeSubheadingItemsEn),
-  sectionFourOtherComprehensiveIncomeSubheadingItemsDate2En: ensureArray(data.sectionOtherComprehensiveIncome?.qsectionFourOtherComprehensiveIncomeSubheadingItemsDate2En),
-  sectionFourOtherTotalComprehensiveIncome: data.sectionOtherComprehensiveIncome?.qsectionFourOtherTotalComprehensiveIncome || "",
-  TotalsectionFourOtherComprehensiveIncomeSubheadingItemsEn: safeParseFloat(data.sectionOtherComprehensiveIncome?.qTotalsectionFourOtherComprehensiveIncomeSubheadingItemsEn),
-  TotalsectionFourOtherComprehensiveIncomeSubheadingItemsDate2En: safeParseFloat(data.sectionOtherComprehensiveIncome?.qTotalsectionFourOtherComprehensiveIncomeSubheadingItemsDate2En),
-},
-sectionAttributeTwo: {
-  sectionFourAttribute2: data.sectionAttributeTwo?.qsectionFourAttribute2 || "",
-  sectionFourAttribute2LabelsEn: ensureArray(data.sectionAttributeTwo?.qsectionFourAttribute2LabelsEn),
- 
-  sectionFourAttribute2ItemsEn: ensureArray(data.sectionAttributeTwo?.qsectionFourAttribute2ItemsEn),
-  sectionFourAttribute2ItemsDate2En: ensureArray(data.sectionAttributeTwo?.qsectionFourAttribute2ItemsDate2En),
-
-  TotalsectionFourAttribute2ItemsEn: safeParseFloat(data.sectionAttributeTwo?.qTotalsectionFourAttribute2ItemsEn),
-  TotalsectionFourAttribute2ItemsDate2En: safeParseFloat(data.sectionAttributeTwo?.qTotalsectionFourAttribute2ItemsDate2En),
+  sectionFourOtherComprehensiveIncome: data.qsectionOtherComprehensiveIncome?.qsectionFourOtherComprehensiveIncome || "",
+  sectionFourOtherComprehensiveIncomeSubheading: data.qsectionOtherComprehensiveIncome?.qsectionFourOtherComprehensiveIncomeSubheading || "",
+  sectionFourOtherComprehensiveIncomeSubheadingLabelsEn: ensureArray(data.qsectionOtherComprehensiveIncome?.qsectionFourOtherComprehensiveIncomeSubheadingLabelsEn),
+  sectionFourOtherComprehensiveIncomeSubheadingNotesEn: ensureArray(data.qsectionOtherComprehensiveIncome?.qsectionFourOtherComprehensiveIncomeSubheadingNotesEn),
+  sectionFourOtherComprehensiveIncomeSubheadingItemsEn: ensureArray(data.qsectionOtherComprehensiveIncome?.qsectionFourOtherComprehensiveIncomeSubheadingItemsEn),
+  sectionFourOtherComprehensiveIncomeSubheadingItemsDate2En: ensureArray(data.qsectionOtherComprehensiveIncome?.qsectionFourOtherComprehensiveIncomeSubheadingItemsDate2En),
 },
 
 
-  sectionFive: {
-    sectionFiveLabelsEn: ensureArray(data.sectionFive?.qsectionFiveLabelsEn),
-    sectionFiveNotesEn: ensureArray(data.sectionFive?.qsectionFiveNotesEn),
-    sectionFiveItemsEn: ensureArray(data.sectionFive?.qsectionFiveItemsEn),
-    sectionFiveItemsDate2En: ensureArray(data.sectionFive?.qsectionFiveItemsDate2En),
-    sectionFiveTotalLabel: data.sectionFive?.qsectionFiveTotalLabel || "",
-    TotalsectionFiveItemsEn: safeParseFloat(data.sectionFive?.qTotalsectionFiveItemsEn),
-    TotalsectionFiveItemsDate2En: safeParseFloat(data.sectionFive?.qTotalsectionFiveItemsDate2En),
-  },
+  Table2:{
 
-  sectionSix: {
-    sectionSixLabelsEn: ensureArray(data.sectionSix?.qsectionSixLabelsEn),
-    sectionSixNotesEn: ensureArray(data.sectionSix?.qsectionSixNotesEn),
-    sectionSixItemsEn: ensureArray(data.sectionSix?.qsectionSixItemsEn),
-    sectionSixItemsDate2En: ensureArray(data.sectionSix?.qsectionSixItemsDate2En),
-    sectionSixTotalLabel: data.sectionSix?.qsectionSixTotalLabel || "",
-    TotalsectionSixItemsEn: safeParseFloat(data.sectionSix?.qTotalsectionSixItemsEn),
-    TotalsectionSixItemsDate2En: safeParseFloat(data.sectionSix?.qTotalsectionSixItemsDate2En),
+      dateTwo1Ar:data.qTable2.qdateTwo1Ar,
+      dateTwo2Ar:data.qTable2.qdateTwo2Ar,
+
+    sectionOneTable2: {
+      sectionLastLabel: data.qTable2?.qsectionOneTable2?.qsectionLastLabel || "",
+      TotalsectionFourSubItemsEn: safeParseFloat(data.qTable2?.qsectionOneTable2?.qTotalsectionFourSubItemsEn),
+      TotalsectionFourSubItemsDate2En: safeParseFloat(data.qTable2?.qsectionOneTable2?.qTotalsectionFourSubItemsDate2En),
+      sectionSevenLastLabel: data.qTable2?.qsectionOneTable2?.qsectionSevenLastLabel || "",
+      sectionSevenSubheading: data.qTable2?.qsectionOneTable2?.qsectionSevenSubheading || "",
+      sectionLastLabelsEn: ensureArray(data.qTable2?.qsectionOneTable2?.qsectionLastLabelsEn),
+      sectionLastNotesEn: ensureArray(data.qTable2?.qsectionOneTable2?.qsectionLastNotesEn),
+      sectionLastItemsEn: ensureArray(data.qTable2?.qsectionOneTable2?.qsectionLastItemsEn),
+      sectionLastItemsDate2En: ensureArray(data.qTable2?.qsectionOneTable2?.qsectionLastItemsDate2En),
+      sectionLastTotalLabelEn: data.qTable2?.qsectionOneTable2?.qsectionLastTotalLabelEn || "",
+      TotalSectionLastLabelItemsEn: safeParseFloat(data.qTable2?.qsectionOneTable2?.qTotalSectionLastLabelItemsEn),
+      TotalSectionLastItemsDate2En: safeParseFloat(data.qTable2?.qsectionOneTable2?.qTotalSectionLastItemsDate2En),
+    },
+
+    sectionTwoTable2: {
+      sectionSevenSubheading2: data.qTable2?.qsectionTwoTable2?.qsectionSevenSubheading2 || "",
+      sectionLastLabelsEn2: ensureArray(data.qTable2?.qsectionTwoTable2?.qsectionLastLabelsEn2),
+      sectionLastNotesEn2: ensureArray(data.qTable2?.qsectionTwoTable2?.qsectionLastNotesEn2),
+      sectionLastItemsEn2: ensureArray(data.qTable2?.qsectionTwoTable2?.qsectionLastItemsEn2),
+      sectionLastItemsDate2En2: ensureArray(data.qTable2?.qsectionTwoTable2?.qsectionLastItemsDate2En2),
+      sectionLastTotalLabelEn2: data.qTable2?.qsectionTwoTable2?.qsectionLastTotalLabelEn2 || "",
+      TotalSectionLastLabelItemsEn2: safeParseFloat(data.qTable2?.qsectionTwoTable2?.qTotalSectionLastLabelItemsEn2),
+      TotalSectionLastItemsDate2En2: safeParseFloat(data.qTable2?.qsectionTwoTable2?.qTotalSectionLastItemsDate2En2),
+
+      totalOtherComp: {
+        SectionSevenSecondLastLabel2: data.qTable2?.qsectionTwoTable2?.qtotalOtherComp?.qSectionSevenSecondLastLabel2 || "",
+        TotalsectionSevenSecondLastItemEn: safeParseFloat(data.qTable2?.qsectionTwoTable2?.qtotalOtherComp?.qTotalsectionSevenSecondLastItemEn),
+        TotalsectionSevenSecondLastItemsDate2En: safeParseFloat(data.qTable2?.qsectionTwoTable2?.qtotalOtherComp?.qTotalsectionSevenSecondLastItemsDate2En),
+      },
+
+      totalComprehensiveLoss: {
+        SectionSevenLastLabel2: data.qTable2?.qsectionTwoTable2?.qtotalComprehensiveLoss?.qSectionSevenLastLabel2 || "",
+        TotalsectionSevenLastItemEn: safeParseFloat(data.qTable2?.qsectionTwoTable2?.qtotalComprehensiveLoss?.qTotalsectionSevenLastItemEn),
+        TotalsectionSevenLastItemsDate2En: safeParseFloat(data.qTable2?.qsectionTwoTable2?.qtotalComprehensiveLoss?.qTotalsectionSevenLastItemsDate2En),
+      },
+    },
+
+    sectionAttributeOneTable2: {
+    sectionFourAttributeTable2: data.qTable2?.qsectionAttributeOneTable2?.qsectionFourAttributeTable2 || "",
+    sectionFourAttributeLabelsEnTable2: ensureArray(data.qTable2?.qsectionAttributeOneTable2?.qsectionFourAttributeLabelsEnTable2),
+    sectionFourAttributeItemsEnTable2: ensureArray(data.qTable2?.qsectionAttributeOneTable2?.qsectionFourAttributeItemsEnTable2),
+    sectionFourAttributeItemsDate2EnTable2: ensureArray(data.qTable2?.qsectionAttributeOneTable2?.qsectionFourAttributeItemsDate2EnTable2),
+    TotalsectionFourAttributeItemsEnTable2: safeParseFloat(data.qTable2?.qsectionAttributeOneTable2?.qTotalsectionFourAttributeItemsEnTable2),
+    TotalsectionFourAttributeItemsDate2EnTable2: safeParseFloat(data.qTable2?.qsectionAttributeOneTable2?.qTotalsectionFourAttributeItemsDate2EnTable2),
+    },
+
+    sectionAttributeTwoTable2: {
+      sectionFourAttribute2Table2: data.qTable2?.qsectionAttributeTwoTable2?.qsectionFourAttribute2Table2 || "",
+      sectionFourAttribute2LabelsEnTable2: ensureArray(data.qTable2?.qsectionAttributeTwoTable2?.qsectionFourAttribute2LabelsEnTable2),
+      sectionFourAttribute2ItemsEnTable2: ensureArray(data.qTable2?.qsectionAttributeTwoTable2?.qsectionFourAttribute2ItemsEnTable2),
+      sectionFourAttribute2ItemsDate2EnTable2: ensureArray(data.qTable2?.qsectionAttributeTwoTable2?.qsectionFourAttribute2ItemsDate2EnTable2),
+      TotalsectionFourAttribute2ItemsEnTable2: safeParseFloat(data.qTable2?.qsectionAttributeTwoTable2?.qTotalsectionFourAttribute2ItemsEnTable2),
+      TotalsectionFourAttribute2ItemsDate2EnTable2: safeParseFloat(data.qTable2?.qsectionAttributeTwoTable2?.qTotalsectionFourAttribute2ItemsDate2EnTable2),
+    },
+
+    sectionOtherComprehensiveIncomeTable2: {
+      sectionFourOtherComprehensiveIncomeTable2: data.qTable2?.qsectionOtherComprehensiveIncomeTable2?.qsectionFourOtherComprehensiveIncomeTable2 || "",
+      sectionFourOtherComprehensiveIncomeSubheadingLabelsEnTable2: ensureArray(data.qTable2?.qsectionOtherComprehensiveIncomeTable2?.qsectionFourOtherComprehensiveIncomeSubheadingLabelsEnTable2),
+      sectionFourOtherComprehensiveIncomeSubheadingNotesEnTable2: ensureArray(data.qTable2?.qsectionOtherComprehensiveIncomeTable2?.qsectionFourOtherComprehensiveIncomeSubheadingNotesEnTable2),
+      sectionFourOtherComprehensiveIncomeSubheadingItemsEnTable2: ensureArray(data.qTable2?.qsectionOtherComprehensiveIncomeTable2?.qsectionFourOtherComprehensiveIncomeSubheadingItemsEnTable2),
+      sectionFourOtherComprehensiveIncomeSubheadingItemsDate2EnTable2: ensureArray(data.qTable2?.qsectionOtherComprehensiveIncomeTable2?.qsectionFourOtherComprehensiveIncomeSubheadingItemsDate2EnTable2),
+    },
+
+
   }
+
+
+
+
+
+
+
+
+
+
 };
 
 

@@ -9,9 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.adminGetAllDocumentController = void 0;
+exports.adminGetAdminAllDocumentController = void 0;
 const documentSchema_1 = require("@/infrastructure/database/models/documentSchema");
-const adminGetAllDocumentController = (dependencies) => {
+const adminGetAdminAllDocumentController = (dependencies) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             // Fetch only selected fields
@@ -26,4 +26,4 @@ const adminGetAllDocumentController = (dependencies) => {
         }
     });
 };
-exports.adminGetAllDocumentController = adminGetAllDocumentController;
+exports.adminGetAdminAllDocumentController = adminGetAdminAllDocumentController;

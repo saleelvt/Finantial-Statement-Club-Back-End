@@ -9,7 +9,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const generateTokens = (adminId) => {
     const accessToken = jsonwebtoken_1.default.sign({ adminId }, process.env.ACCESS_TOKEN_SECRET || "yourAccessSecret", // Access token secret
-    { expiresIn: "1h" } // Set expiration for the access token
+    { expiresIn: "24h" } // Set expiration for the access token (24 hours)
     );
     const refreshToken = jsonwebtoken_1.default.sign({ adminId }, process.env.REFRESH_TOKEN_SECRET || "yourRefreshSecret", // Refresh token secret
     { expiresIn: "7d" } // Set expiration for the refresh token

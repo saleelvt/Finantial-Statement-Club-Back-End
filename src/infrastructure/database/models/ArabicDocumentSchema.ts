@@ -141,6 +141,7 @@ const FileSchema = new Schema({
       date1Ar: { type: Schema.Types.Mixed },
       date2Ar: { type: Schema.Types.Mixed },
   sectionOne: {
+    sectionOneFirstLabelEn: String,
     sectionOneLabelsEn:{ type: [String] },
     sectionOneNotesEn: { type: [String] },
     sectionOneItemsEn:{ type: [String] },
@@ -179,57 +180,106 @@ const FileSchema = new Schema({
     TotalsectionFourItemsDate2En: Number,
   },
 
-   sectionFourAttributeOne: {
-  sectionFourAttribute: { type: String },
-  sectionFourAttributeLabelsEn: { type: [String] },
-  sectionFourAttributeItemsEn: { type: [String] },
-  sectionFourAttributeItemsDate2En: { type: [String] },
-  TotalsectionFourAttributeItemsEn: { type: Number },
-  TotalsectionFourAttributeItemsDate2En: { type: Number },
-},
+     sectionFourSub: {
+        sectionFourSubFirstLabelEn: String,
+        sectionFourSubLabelsEn: { type: [String] },
+        sectionFourSubNotesEn: { type: [String] },
+        sectionFourSubItemsEn: { type: [String] },
+        sectionFourSubItemsDate2En: { type: [String] },
+        sectionFourSubTotalLabel: String,
+        TotalsectionFourSubItemsEn: Number,
+        TotalsectionFourSubItemsDate2En: Number,
+      },
 
-sectionOtherComprehensiveIncome: {
-  sectionFourOtherComprehensiveIncome: { type: String },
-  sectionFourOtherComprehensiveIncomeSubheading: { type: String },
-  sectionFourOtherComprehensiveIncomeSubheadingLabelsEn: { type: [String] },
-  sectionFourOtherComprehensiveIncomeSubheadingNotesEn: { type: [String] },
-  sectionFourOtherComprehensiveIncomeSubheadingItemsEn: { type: [String] },
-  sectionFourOtherComprehensiveIncomeSubheadingItemsDate2En: { type: [String] },
-  sectionFourOtherTotalComprehensiveIncome: { type: String },
-  TotalsectionFourOtherComprehensiveIncomeSubheadingItemsEn: { type: Number },
-  TotalsectionFourOtherComprehensiveIncomeSubheadingItemsDate2En: { type: Number },
-},
+   sectionAttributeOne: {
+        sectionFourAttribute: { type: String },
+        sectionFourAttributeLabelsEn: { type: [String] },
+        sectionFourAttributeItemsEn: { type: [String] },
+        sectionFourAttributeItemsDate2En: { type: [String] },
+        TotalsectionFourAttributeItemsEn: { type: Number },
+        TotalsectionFourAttributeItemsDate2En: { type: Number },
+      },
 
-sectionAttributeTwo: {
-  sectionFourAttribute2: { type: String },
-  sectionFourAttribute2LabelsEn: { type: [String] },
-  sectionFourAttribute2ItemsEn: { type: [String] },
-  sectionFourAttribute2ItemsDate2En: { type: [String] },
-  TotalsectionFourAttribute2ItemsEn: { type: Number },
-  TotalsectionFourAttribute2ItemsDate2En: { type: Number },
-},
+   sectionAttributeTwo: {
+        sectionFourAttribute2: { type: String },
+        sectionFourAttribute2LabelsEn: { type: [String] },
+        sectionFourAttribute2ItemsEn: { type: [String] },
+        sectionFourAttribute2ItemsDate2En: { type: [String] },
+        TotalsectionFourAttribute2ItemsEn: { type: Number },
+        TotalsectionFourAttribute2ItemsDate2En: { type: Number },
+      },
+      sectionOtherComprehensiveIncome: {
+        sectionFourOtherComprehensiveIncome: { type: String },
+        sectionFourOtherComprehensiveIncomeSubheadingLabelsEn: {type:[String]},
+        sectionFourOtherComprehensiveIncomeSubheadingNotesEn: { type: [String]},
+        sectionFourOtherComprehensiveIncomeSubheadingItemsEn: { type: [String] },
+        sectionFourOtherComprehensiveIncomeSubheadingItemsDate2En: { type: [String] },
+      },
 
-
-
-  sectionFive: {
-    sectionFiveLabelsEn: { type: [String] },
-    sectionFiveNotesEn:{ type: [String] },
-    sectionFiveItemsEn:{ type: [String] },
-    sectionFiveItemsDate2En: { type: [String] },
-    sectionFiveTotalLabel: String,
-    TotalsectionFiveItemsEn: Number,
-    TotalsectionFiveItemsDate2En: Number,
-  },
-  sectionSix: {
-    sectionSixLabelsEn:{ type: [String] },
-    sectionSixNotesEn:{ type: [String] },
-    sectionSixItemsEn: { type: [String] },
-    sectionSixItemsDate2En: { type: [String] },
-    sectionSixTotalLabel: String,
-    TotalsectionSixItemsEn: Number,
-    TotalsectionSixItemsDate2En: Number,
-  },
-}
+       Table2: {
+              dateTwo1Ar: { type: Schema.Types.Mixed },
+              dateTwo2Ar: { type: Schema.Types.Mixed },
+                sectionOneTable2: {
+                sectionLastLabel: { type: String },
+                TotalsectionFourSubItemsEn: { type: Number },
+                TotalsectionFourSubItemsDate2En: { type: Number },
+                sectionSevenLastLabel: { type: String },
+                sectionSevenSubheading: { type: String },
+                sectionLastLabelsEn: { type: [String] },
+                sectionLastNotesEn: { type: [String] },
+                sectionLastItemsEn: { type: [String] },
+                sectionLastItemsDate2En: { type: [String] },
+                sectionLastTotalLabelEn: { type: String },
+                TotalSectionLastLabelItemsEn: { type: Number },
+                TotalSectionLastItemsDate2En: { type: Number },
+              },
+              sectionTwoTable2: {
+                sectionSevenSubheading2: { type: String },
+                sectionLastLabelsEn2: { type: [String] },
+                sectionLastNotesEn2: { type: [String] },
+                sectionLastItemsEn2: { type: [String] },
+                sectionLastItemsDate2En2: { type: [String] },
+                sectionLastTotalLabelEn2: { type: String },
+                TotalSectionLastLabelItemsEn2: { type: Number },
+                TotalSectionLastItemsDate2En2: { type: Number },
+                totalOtherComp: {
+                  SectionSevenSecondLastLabel2: { type: String },
+                  TotalsectionSevenSecondLastItemEn: { type: Number },
+                  TotalsectionSevenSecondLastItemsDate2En: { type: Number },
+                },
+                totalComprehensiveLoss: {
+                  SectionSevenLastLabel2: { type: String },
+                  TotalsectionSevenLastItemEn: { type: Number },
+                  TotalsectionSevenLastItemsDate2En: { type: Number },
+                },
+              },
+      
+              sectionAttributeOneTable2: {
+                sectionFourAttributeTable2: { type: String },
+                sectionFourAttributeLabelsEnTable2: { type: [String] },
+                sectionFourAttributeItemsEnTable2: { type: [String] },
+                sectionFourAttributeItemsDate2EnTable2: { type: [String] },
+                TotalsectionFourAttributeItemsEnTable2: { type: Number },
+                TotalsectionFourAttributeItemsDate2EnTable2: { type: Number },
+              },
+      
+              sectionAttributeTwoTable2: {
+                sectionFourAttribute2Table2: { type: String },
+                sectionFourAttribute2LabelsEnTable2: { type: [String] },
+                sectionFourAttribute2ItemsEnTable2: { type: [String] },
+                sectionFourAttribute2ItemsDate2EnTable2: { type: [String] },
+                TotalsectionFourAttribute2ItemsEnTable2: { type: Number },
+                TotalsectionFourAttribute2ItemsDate2EnTable2: { type: Number },
+              },
+              sectionOtherComprehensiveIncomeTable2: {
+                sectionFourOtherComprehensiveIncomeTable2: { type: String },
+                sectionFourOtherComprehensiveIncomeSubheadingLabelsEnTable2: {  type: [String],          },
+                sectionFourOtherComprehensiveIncomeSubheadingNotesEnTable2: {            type: [String],         },
+                sectionFourOtherComprehensiveIncomeSubheadingItemsEnTable2: {          type: [String],        },
+                sectionFourOtherComprehensiveIncomeSubheadingItemsDate2EnTable2: {         type: [String],       },
+              },
+            },
+         }
 
   },
   createdAt: {

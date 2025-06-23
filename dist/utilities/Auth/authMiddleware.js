@@ -3,28 +3,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verifyAccessToken = void 0;
+exports.authMiddleware = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
-const verifyAccessToken = (req, res, next) => {
-    const token = req.cookies.access_token;
-    if (!token) {
-        return res
-            .status(401)
-            .json({ message: 'Access denied. No token provided.' });
+const authMiddleware = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    console.log("thiiiiiiiiiiiiiiiiiiiiiiieeeeeeeereirier: #$@$#@", authHeader);
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return res.status(401).json({ message: "Unauthorized: No token provided" });
     }
-    const secret = process.env.JWT_SECRET;
-    if (!secret) {
-        return res.status(500).json({ message: 'JWT secret is not defined' });
-    }
+    const token = authHeader.split(" ")[1];
     try {
-        const decoded = jsonwebtoken_1.default.verify(token, secret);
-        res.locals.user = decoded; // Store the decoded user in locals
-        next(); // Pass control to the next middleware or route handler
+        const decoded = jsonwebtoken_1.default.verify(token, process.env.ACCESS_TOKEN_SECRET || "yourAccessSecret");
+        req.adminId = decoded.adminId; // Attach decoded data to the request object
+        next(); // Pass control to the next middleware/route
     }
-    catch (err) {
-        return res.status(400).json({ message: 'Invalid token.' });
+    catch (error) {
+        return res.status(403).json({ message: "Forbidden: Invalid token" });
     }
 };
-exports.verifyAccessToken = verifyAccessToken;
+exports.authMiddleware = authMiddleware;

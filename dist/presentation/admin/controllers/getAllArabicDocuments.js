@@ -14,11 +14,12 @@ const ArabicDocumentSchema_1 = require("@/infrastructure/database/models/ArabicD
 const adminGetAllArabicDocumentController = (dependencies) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const response = yield ArabicDocumentSchema_1.ArabicDocument.find();
-            if (!response)
-                res.status(404).json({ success: false, message: "NOT FOUNT" });
-            console.log("the all details for the usage ", response);
-            return res.status(200).json({ success: true, data: response });
+            // Fetch only selected fields
+            const documents = yield ArabicDocumentSchema_1.ArabicDocument.find().select("_id fullNameAr nickNameAr tadawalCode sector createdAt");
+            if (!documents || documents.length === 0) {
+                return res.status(404).json({ success: false, message: "NOT FOUND" });
+            }
+            return res.status(200).json({ success: true, data: documents });
         }
         catch (error) {
             next(error);
