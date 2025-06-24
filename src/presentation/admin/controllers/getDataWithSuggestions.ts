@@ -10,8 +10,7 @@ export const adminGetDataWithSuggestionsController = (dependencies: IAdminDepend
       const { name, language } = req.query;
       if (!name || typeof name !== "string") {
         return res.status(400).json({ message: "Name is required and must be a string." });
-      }
-      
+      }     
       // Suggestions variable
       let suggestions: string[] = [];
       if (language === "Arabic") {

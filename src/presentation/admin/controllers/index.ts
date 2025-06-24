@@ -1,3 +1,4 @@
+import { adminGetAdminAllDocumentController } from './getAllDocumentsAdmin';
 import { IAdminDependencies } from "@/application/admin/interfaces/IAdminDependencies";
 import { loginAdminController } from "./adminLogin";
 import { adminLogutController } from "./adminLogout";
@@ -15,6 +16,9 @@ import { updateDocumentArabicController } from "./updateDocumentArabic";
 import { adminAddTableController } from "./adminAddTable";
 import { adminGetDataWithSuggestionsForTable } from "./GetDataWithSuggestionsForTable";
 import { verifyOtpController } from "./verifyOtp";
+import { adminGetDataWithYearQuartertadawalCodeForTableViewController } from "./getDataWithYearQuartertadawalCodeForTableView";
+
+import { adminDeleteTableController } from "./deleteTable";
 export const adminController = (dependencies: IAdminDependencies) => {
     return {
         loginAdmin: loginAdminController(dependencies),
@@ -22,7 +26,9 @@ export const adminController = (dependencies: IAdminDependencies) => {
         logoutAdmin:adminLogutController(dependencies),
         addDocument:adminAddDocumentController(dependencies),
         deleteDocument:adminDeleteDocumentController(dependencies),
+        deleteTable:adminDeleteTableController(dependencies),
         getAllDocuments:adminGetAllDocumentController(dependencies),
+        getAllAdminDocuments:adminGetAdminAllDocumentController(dependencies),
         getAllArabicDocuments:adminGetAllArabicDocumentController(dependencies),
         addTable:adminAddTableController(dependencies),
         addDocumentArabic:adminAddDocumentArabicController(dependencies),
@@ -32,7 +38,9 @@ export const adminController = (dependencies: IAdminDependencies) => {
         getDocumentById:adminGetDocumentByIdController(dependencies),
         updateDocumentEnglish:updateDocumentEnglishController(dependencies),
         updateDocumentArabic:updateDocumentArabicController(dependencies),
-        getDataWithSuggestionsForTable:adminGetDataWithSuggestionsForTable(dependencies)
+        getDataWithSuggestionsForTable:adminGetDataWithSuggestionsForTable(dependencies),
+        getDataWithYearQuartertadawalCodeForTableView:adminGetDataWithYearQuartertadawalCodeForTableViewController(dependencies)
+        
         
     };
 };

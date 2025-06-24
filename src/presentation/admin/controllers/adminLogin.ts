@@ -28,20 +28,16 @@ export const loginAdminController = (dependencies: IAdminDependencies) => {
         email,
         password
       );
-
       if (!data) {
         return res
           .status(401)
-          .json({ success: false, message: "Invalid credentials" });
+          .json({ success: false, message: "Invalid credentials  Email || Password" });
       }
-
       const otp = generateOtp();
-      console.log("this is my otp for the client login ");
       const emailExist = await Otp.findOne({ email: email });
 
       let dbOtp;
       if (emailExist) {
-        console.log("otp unde");
         dbOtp = await Otp.findByIdAndUpdate(
           { email: email, otp },
           { $set: { otp, createdAt: new Date() } }
@@ -70,7 +66,6 @@ export const loginAdminController = (dependencies: IAdminDependencies) => {
         data: data,
       });
     } catch (error) {
-      console.error(error, "<< Something went wrong in user Login >>");
       res.status(500).json({
         success: false,
         message: "Internal Server Error",

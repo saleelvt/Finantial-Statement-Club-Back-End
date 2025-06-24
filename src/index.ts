@@ -15,9 +15,9 @@ export const insertAdmin = async () => {
     email: "techno12.ab@outlook.com",
     password: "admin@13",
   };
-  
+
   // Insert logic for saving admin to the database if required here
-  try {
+  try { 
     const existingAdmin = await Admin.findOne({ email: sampleAdmin.email });
     if (!existingAdmin) {
       const newAdmin = new Admin(sampleAdmin);
@@ -41,8 +41,8 @@ export const insertAdmin = async () => {
         console.error("Error while connecting MongoDB", error);
         process.exit(0); // Exit on DB connection failure
       });
-    app.listen(Number(process.env.PORT) || 2002, () => {
-      console.log(`Server started on port ${process.env.PORT || 2002}`);
+    app.listen(Number(process.env.PORT) || 2001, () => {
+      console.log(`Server started on port ${process.env.PORT || 2001}`);
     });
 
 

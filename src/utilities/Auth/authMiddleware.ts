@@ -1,30 +1,27 @@
-import Jwt from 'jsonwebtoken';
-import { Request, Response, NextFunction } from 'express';
-import dotenv from 'dotenv';
+import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
 
+export interface AuthRequest extends Request {
+  adminId?: string; // Add custom property to request
+}
 
-dotenv.config();
-
-export const verifyAccessToken = ( req: Request,res: Response,next: NextFunction) :any  => {
-  const token = req.cookies.access_token;
-
-  if (!token) {
-    return res
-      .status(401)
-      .json({ message: 'Access denied. No token provided.' });
+export const authMiddleware = (req: AuthRequest, res: Response, next: NextFunction) : any  => {
+  const authHeader = req.headers.authorization;
+  console.log("thiiiiiiiiiiiiiiiiiiiiiiieeeeeeeereirier: #$@$#@",authHeader);
+   
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ message: "Unauthorized: No token provided" });
   }
 
-  const secret = process.env.JWT_SECRET;
-
-  if (!secret) {
-    return res.status(500).json({ message: 'JWT secret is not defined' });
-  }
+  const token = authHeader.split(" ")[1];
 
   try {
-    const decoded = Jwt.verify(token, secret);
-    res.locals.user = decoded; // Store the decoded user in locals
-     next(); // Pass control to the next middleware or route handler
-  } catch (err) {
-    return res.status(400).json({ message: 'Invalid token.' });
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET || "yourAccessSecret") as { adminId: string };
+    req.adminId = decoded.adminId; // Attach decoded data to the request object
+    next(); // Pass control to the next middleware/route
+  } catch (error) {
+
+    return res.status(403).json({ message: "Forbidden: Invalid token" });
   }
 };
+
