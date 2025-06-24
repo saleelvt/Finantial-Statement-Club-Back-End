@@ -262,7 +262,7 @@ const FileSchema = new Schema({
                 TotalsectionFourAttributeItemsEnTable2: { type: Number },
                 TotalsectionFourAttributeItemsDate2EnTable2: { type: Number },
               },
-      
+    
               sectionAttributeTwoTable2: {
                 sectionFourAttribute2Table2: { type: String },
                 sectionFourAttribute2LabelsEnTable2: { type: [String] },
