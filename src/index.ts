@@ -8,8 +8,6 @@ dotenv.config(); // Load environment variables
 
 
 
-
-
 (async () => {
   try {
     console.log("Initializing server and database connection...");
@@ -23,7 +21,6 @@ dotenv.config(); // Load environment variables
     app.listen(Number(process.env.PORT) || 2001, () => {
       console.log(`Server started on port ${process.env.PORT || 2001}`);
     });
-
 
   } catch (error: any) {
     console.log("Error on start up: ", error);

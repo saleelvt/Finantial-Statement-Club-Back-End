@@ -16,9 +16,7 @@ const FileSchema = new Schema({
   },
   table: {
     BalanceSheet: {
-      // Assets section
       assets: {
-        // Current assets subsection
         current: {
           scurrentAssets: { type: String },
           currentLabels: { type: [String] },
@@ -133,7 +131,7 @@ const FileSchema = new Schema({
       ItotalEquityAndLiabilities: { type: Number },
       ItotalEquityAndLiabilitiesDate2: { type: Number },
     },
-    CashFlow: {
+    ProfitLoss: {
       date1En: { type: Schema.Types.Mixed },
       date2En: { type: Schema.Types.Mixed },
       sectionOne: {
@@ -269,12 +267,135 @@ const FileSchema = new Schema({
         sectionOtherComprehensiveIncomeTable2: {
           sectionFourOtherComprehensiveIncomeTable2: { type: String },
           sectionFourOtherComprehensiveIncomeSubheadingLabelsEnTable2: {  type: [String],          },
-          sectionFourOtherComprehensiveIncomeSubheadingNotesEnTable2: {            type: [String],         },
-          sectionFourOtherComprehensiveIncomeSubheadingItemsEnTable2: {          type: [String],        },
+          sectionFourOtherComprehensiveIncomeSubheadingNotesEnTable2: {       type: [String],         },
+          sectionFourOtherComprehensiveIncomeSubheadingItemsEnTable2: {      type: [String],        },
           sectionFourOtherComprehensiveIncomeSubheadingItemsDate2EnTable2: {         type: [String],       },
         },
       },
     },
+
+
+
+    CashFlow:{
+
+
+ // Main dates
+  date1En: { type: Schema.Types.Mixed },
+  date2En: { type: Schema.Types.Mixed },
+
+  // Section One - Operating activities
+  sectionOne: {
+    sectionOneFirstLabelEn: String,
+    sectionOneSecondLabelEn: String,
+    sectionOneLabelsEn: { type: [String] },
+    sectionOneNotesEn: { type: [String] },
+    sectionOneItemsEn: { type: [String] },
+    sectionOneItemsDate2En: { type: [String] },
+  },
+
+  // Section Two - Adjustments for
+  sectionTwo: {
+    sectionTwoFirstLabel: String,
+    sectionTwoLabelsEn: { type: [String] },
+    sectionTwoNotesEn: { type: [String] },
+    sectionTwoItemsEn: { type: [String] },
+    sectionTwoItemsDate2En: { type: [String] },
+    sectionTwoTotalLabel: String,
+    TotalsectionTwoItemsEn: Number,
+    TotalsectionTwoItemsDate2En: Number,
+  },
+
+  // Section Three - Working capital adjustments
+  sectionThree: {
+    sectionThreeFirstLabel: String,
+    sectionThreeLabelsEn: { type: [String] },
+    sectionThreeNotesEn: { type: [String] },
+    sectionThreeItemsEn: { type: [String] },
+    sectionThreeItemsDate2En: { type: [String] },
+    sectionThreeTotalLabel: String,
+    TotalsectionThreeItemsEn: Number,
+    TotalsectionThreeItemsDate2En: Number,
+  },
+
+  // Section Four - Other changes
+  sectionFour: {
+    sectionFourFirstLabel: String,
+    sectionFourLabelsEn: { type: [String] },
+    sectionFourNotesEn: { type: [String] },
+    sectionFourItemsEn: { type: [String] },
+    sectionFourItemsDate2En: { type: [String] },
+    sectionFourTotalLabel: String,
+    TotalsectionFourItemsEn: Number,
+    TotalsectionFourItemsDate2En: Number,
+  },
+
+  // Section Five - Investing activities
+  sectionFive: {
+    sectionFiveFirstLabel: String,
+    sectionFiveLabelsEn: { type: [String] },
+    sectionFiveNotesEn: { type: [String] },
+    sectionFiveItemsEn: { type: [String] },
+    sectionFiveItemsDate2En: { type: [String] },
+    sectionFiveTotalLabel: String,
+    TotalsectionFiveItemsEn: Number,
+    TotalsectionFiveItemsDate2En: Number,
+  },
+
+  // Section Six - Financing activities
+  sectionSix: {
+    sectionSixFirstLabel: String,
+    sectionSixLabelsEn: { type: [String] },
+    sectionSixNotesEn: { type: [String] },
+    sectionSixItemsEn: { type: [String] },
+    sectionSixItemsDate2En: { type: [String] },
+    sectionSixTotalLabel: String,
+    TotalsectionSixItemsEn: Number,
+    TotalsectionSixItemsDate2En: Number,
+    sectionSixSecondTotalLabel: String,
+    TotalsectionSixSecondItemsEn: Number,
+    TotalsectionSixSecondItemsDate2En: Number,
+  },
+
+  // Section Seven - Cash and cash equivalents
+  sectionSeven: {
+    sectionSevenLabelsEn: { type: [String] },
+    sectionSevenNotesEn: { type: [String] },
+    sectionSevenItemsEn: { type: [String] },
+    sectionSevenItemsDate2En: { type: [String] },
+    sectionSevenTotalLabel: String,
+    TotalsectionSevenItemsEn: Number,
+    TotalsectionSevenItemsDate2En: Number,
+  },
+
+  // Section Eight - Significant non-cash transactions
+  sectionEight: {
+    sectionEightLabelsEn: { type: [String] },
+    sectionEightNotesEn: { type: [String] },
+    sectionEightItemsEn: { type: [String] },
+    sectionEightItemsDate2En: { type: [String] },
+    sectionEightLastLabel: String,
+  },
+
+  // Table2 - Second table with its own dates
+  Table2: {
+    dateTwo1En: { type: Schema.Types.Mixed },
+    dateTwo2En: { type: Schema.Types.Mixed },
+    sectionOneTable2: {
+      sectionNineLabelsEn: { type: [String] },
+      sectionNineNotesEn: { type: [String] },
+      sectionNineItemsEn: { type: [String] },
+      sectionNineItemsDate2En: { type: [String] },
+    }
+  }
+
+
+
+    }
+
+
+
+
+
   },
   createdAt: {
     type: Date,

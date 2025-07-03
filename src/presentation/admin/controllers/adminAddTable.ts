@@ -82,6 +82,8 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
           };
         }
         // Process data for BalanceSheet if that's the selected table type
+
+
         if (category === "BalanceSheet" && data) {
           // Create the BalanceSheet object according to schema structure
           const balanceSheetData = {
@@ -279,12 +281,12 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
               error: saveError.message,
             });
           }
-        } else if (category === "CashFlow" && data) {
-          console.log("this is the cashflow object : English Back-end ", data);
+        } else if (category === "ProfitLoss" && data) { 
 
-        const CashFlowData = {
-  date1En: data.date1,
-  date2En: data.date2,
+
+        const ProfitLossData = {
+        date1En: data.date1,
+       date2En: data.date2,
 
   sectionOne: {
      sectionOneFirstLabelEn: data.sectionOne?.sectionOneFirstLabelEn || "",
@@ -438,14 +440,158 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
 };
 
 
+
+
+
+
           // Assign the data
-          matchedDocument.formData[section].table.CashFlow = CashFlowData;
+          matchedDocument.formData[section].table.ProfitLoss = ProfitLossData;
 
           try {
             await matchedDocument.save();
             return res.status(200).json({
               success: true,
-              message: "Cash Flow data English saved successfully.",
+              message: "Profit Loss data data English saved successfully.",
+              Tabledata: matchedDocument.formData[section].table.ProfitLoss,
+            });
+          } catch (saveError) {
+            console.error("Error saving document:", saveError);
+            return res.status(500).json({
+              success: false,
+              message: "Error saving document",
+              error: saveError.message,
+            });
+          }
+
+
+        } else if (category === "CashFlow" && data) {
+
+
+
+
+
+const CashFlowData = {
+  // Main dates
+  date1En: data.date1,
+  date2En: data.date2,
+
+  // Section One - Operating activities
+  sectionOne: {
+    sectionOneFirstLabelEn: data.sectionOne?.sectionOneFirstLabelEn || "",
+    sectionOneSecondLabelEn: data.sectionOne?.sectionOneSecondLabelEn || "",
+    sectionOneLabelsEn: ensureArray(data.sectionOne?.sectionOneLabelsEn),
+    sectionOneNotesEn: ensureArray(data.sectionOne?.sectionOneNotesEn),
+    sectionOneItemsEn: ensureArray(data.sectionOne?.sectionOneItemsEn),
+    sectionOneItemsDate2En: ensureArray(data.sectionOne?.sectionOneItemsDate2En),
+  },
+
+  // Section Two - Adjustments for
+  sectionTwo: {
+    sectionTwoFirstLabel: data.sectionTwo?.sectionTwoFirstLabel || "",
+    sectionTwoLabelsEn: ensureArray(data.sectionTwo?.sectionTwoLabelsEn),
+    sectionTwoNotesEn: ensureArray(data.sectionTwo?.sectionTwoNotesEn),
+    sectionTwoItemsEn: ensureArray(data.sectionTwo?.sectionTwoItemsEn),
+    sectionTwoItemsDate2En: ensureArray(data.sectionTwo?.sectionTwoItemsDate2En),
+    sectionTwoTotalLabel: data.sectionTwo?.sectionTwoTotalLabel || "",
+    TotalsectionTwoItemsEn: safeParseFloat(data.sectionTwo?.TotalsectionTwoItemsEn),
+    TotalsectionTwoItemsDate2En: safeParseFloat(data.sectionTwo?.TotalsectionTwoItemsDate2En),
+  },
+
+  // Section Three - Working capital adjustments
+  sectionThree: {
+    sectionThreeFirstLabel: data.sectionThree?.sectionThreeFirstLabel || "",
+    sectionThreeLabelsEn: ensureArray(data.sectionThree?.sectionThreeLabelsEn),
+    sectionThreeNotesEn: ensureArray(data.sectionThree?.sectionThreeNotesEn),
+    sectionThreeItemsEn: ensureArray(data.sectionThree?.sectionThreeItemsEn),
+    sectionThreeItemsDate2En: ensureArray(data.sectionThree?.sectionThreeItemsDate2En),
+    sectionThreeTotalLabel: data.sectionThree?.sectionThreeTotalLabel || "",
+    TotalsectionThreeItemsEn: safeParseFloat(data.sectionThree?.TotalsectionThreeItemsEn),
+    TotalsectionThreeItemsDate2En: safeParseFloat(data.sectionThree?.TotalsectionThreeItemsDate2En),
+  },
+
+  // Section Four - Other changes
+  sectionFour: {
+    sectionFourFirstLabel: data.sectionFour?.sectionFourFirstLabel || "",
+    sectionFourLabelsEn: ensureArray(data.sectionFour?.sectionFourLabelsEn),
+    sectionFourNotesEn: ensureArray(data.sectionFour?.sectionFourNotesEn),
+    sectionFourItemsEn: ensureArray(data.sectionFour?.sectionFourItemsEn),
+    sectionFourItemsDate2En: ensureArray(data.sectionFour?.sectionFourItemsDate2En),
+    sectionFourTotalLabel: data.sectionFour?.sectionFourTotalLabel || "",
+    TotalsectionFourItemsEn: safeParseFloat(data.sectionFour?.TotalsectionFourItemsEn),
+    TotalsectionFourItemsDate2En: safeParseFloat(data.sectionFour?.TotalsectionFourItemsDate2En),
+  },
+
+  // Section Five - Investing activities
+  sectionFive: {
+    sectionFiveFirstLabel: data.sectionFive?.sectionFiveFirstLabel || "",
+    sectionFiveLabelsEn: ensureArray(data.sectionFive?.sectionFiveLabelsEn),
+    sectionFiveNotesEn: ensureArray(data.sectionFive?.sectionFiveNotesEn),
+    sectionFiveItemsEn: ensureArray(data.sectionFive?.sectionFiveItemsEn),
+    sectionFiveItemsDate2En: ensureArray(data.sectionFive?.sectionFiveItemsDate2En),
+    sectionFiveTotalLabel: data.sectionFive?.sectionFiveTotalLabel || "",
+    TotalsectionFiveItemsEn: safeParseFloat(data.sectionFive?.TotalsectionFiveItemsEn),
+    TotalsectionFiveItemsDate2En: safeParseFloat(data.sectionFive?.TotalsectionFiveItemsDate2En),
+  },
+
+  // Section Six - Financing activities
+  sectionSix: {
+    sectionSixFirstLabel: data.sectionSix?.sectionSixFirstLabel || "",
+    sectionSixLabelsEn: ensureArray(data.sectionSix?.sectionSixLabelsEn),
+    sectionSixNotesEn: ensureArray(data.sectionSix?.sectionSixNotesEn),
+    sectionSixItemsEn: ensureArray(data.sectionSix?.sectionSixItemsEn),
+    sectionSixItemsDate2En: ensureArray(data.sectionSix?.sectionSixItemsDate2En),
+    sectionSixTotalLabel: data.sectionSix?.sectionSixTotalLabel || "",
+    TotalsectionSixItemsEn: safeParseFloat(data.sectionSix?.TotalsectionSixItemsEn),
+    TotalsectionSixItemsDate2En: safeParseFloat(data.sectionSix?.TotalsectionSixItemsDate2En),
+    sectionSixSecondTotalLabel: data.sectionSix?.sectionSixSecondTotalLabel || "",
+    TotalsectionSixSecondItemsEn: safeParseFloat(data.sectionSix?.TotalsectionSixSecondItemsEn),
+    TotalsectionSixSecondItemsDate2En: safeParseFloat(data.sectionSix?.TotalsectionSixSecondItemsDate2En),
+  },
+
+  // Section Seven - Cash and cash equivalents
+  sectionSeven: {
+    sectionSevenLabelsEn: ensureArray(data.sectionSeven?.sectionSevenLabelsEn),
+    sectionSevenNotesEn: ensureArray(data.sectionSeven?.sectionSevenNotesEn),
+    sectionSevenItemsEn: ensureArray(data.sectionSeven?.sectionSevenItemsEn),
+    sectionSevenItemsDate2En: ensureArray(data.sectionSeven?.sectionSevenItemsDate2En),
+    sectionSevenTotalLabel: data.sectionSeven?.sectionSevenTotalLabel || "",
+    TotalsectionSevenItemsEn: safeParseFloat(data.sectionSeven?.TotalsectionSevenItemsEn),
+    TotalsectionSevenItemsDate2En: safeParseFloat(data.sectionSeven?.TotalsectionSevenItemsDate2En),
+  },
+
+  // Section Eight - Significant non-cash transactions
+  sectionEight: {
+    sectionEightLabelsEn: ensureArray(data.sectionEight?.sectionEightLabelsEn),
+    sectionEightNotesEn: ensureArray(data.sectionEight?.sectionEightNotesEn),
+    sectionEightItemsEn: ensureArray(data.sectionEight?.sectionEightItemsEn),
+    sectionEightItemsDate2En: ensureArray(data.sectionEight?.sectionEightItemsDate2En),
+    sectionEightLastLabel: data.sectionEight?.sectionEightLastLabel || "",
+  },
+
+  // Table2 - Second table with its own dates
+ Table2: {
+    dateTwo1En: data.Table2?.dateTwo1En,
+    dateTwo2En: data.Table2?.dateTwo2En,
+    sectionOneTable2: {
+      sectionNineLabelsEn: ensureArray(data.Table2?.sectionOneTable2?.sectionNineLabelsEn),
+      sectionNineNotesEn: ensureArray(data.Table2?.sectionOneTable2?.sectionNineNotesEn),
+      sectionNineItemsEn: ensureArray(data.Table2?.sectionOneTable2?.sectionNineItemsEn),
+      sectionNineItemsDate2En: ensureArray(data.Table2?.sectionOneTable2?.sectionNineItemsDate2En),
+    }
+  }
+};
+
+
+
+          // Assign the data
+          matchedDocument.formData[section].table.CashFlow = CashFlowData
+
+
+          try {
+            await matchedDocument.save();
+            return res.status(200).json({
+              success: true,
+              message: "cashFlow  data data English saved successfully.",
               Tabledata: matchedDocument.formData[section].table.CashFlow,
             });
           } catch (saveError) {
@@ -456,12 +602,62 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
               error: saveError.message,
             });
           }
-        } else {
+
+
+
+
+
+ 
+
+} else {
           return res.status(400).json({
             success: false,
             message: "Invalid table category or missing data.",
           });
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       } else if (language === "Arabic") {
         const existingDocuments = await ArabicDocument.find({ tadawalCode });
 
@@ -742,11 +938,11 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
               error: saveError.message,
             });
           }
-        } else if(category === "CashFlow" && data){
+        } else if(category === "ProfitLoss" && data){
 
-           console.log("this is the cashflow object Arabic : back-end ", data);
+        
 
-         const CashFlowDataAr = {
+         const ProfitLossDataAr = {
   date1Ar: data.qdate1,
   date2Ar: data.qdate2,
   sectionOne: {
@@ -898,15 +1094,159 @@ sectionOtherComprehensiveIncome: {
 
 };
 
-
           // Assign the data
-          matchedDocument.formData[section].table.CashFlow = CashFlowDataAr;
+          matchedDocument.formData[section].table.ProfitLoss = ProfitLossDataAr;
 
           try {
             await matchedDocument.save();
             return res.status(200).json({
               success: true,
-              message: "Cash Flow data Arabic saved successfully.",
+              message: "ProfitLoss  data Arabic saved successfully.",
+              Tabledata: matchedDocument.formData[section].table.ProfitLoss,
+            });
+          } catch (saveError) {
+            console.error("Error saving document:", saveError);
+            return res.status(500).json({
+              success: false,
+              message: "Error saving document",
+              error: saveError.message,
+            });
+          }
+
+        }
+        
+        
+         else if (category === "CashFlow" && data) {
+
+
+
+
+
+const CashFlowData = {
+  // Main dates
+  date1En: data.qdate1,
+  date2En: data.qdate2,
+
+  // Section One - Operating activities
+  sectionOne: {
+    sectionOneFirstLabelEn: data.qsectionOne?.qsectionOneFirstLabelEn || "",
+    sectionOneSecondLabelEn: data.qsectionOne?.qsectionOneSecondLabelEn || "",
+    sectionOneLabelsEn: ensureArray(data.qsectionOne?.qsectionOneLabelsEn),
+    sectionOneNotesEn: ensureArray(data.qsectionOne?.qsectionOneNotesEn),
+    sectionOneItemsEn: ensureArray(data.qsectionOne?.qsectionOneItemsEn),
+    sectionOneItemsDate2En: ensureArray(data.qsectionOne?.qsectionOneItemsDate2En),
+  },
+
+  // Section Two - Adjustments for
+  sectionTwo: {
+    sectionTwoFirstLabel: data.qsectionTwo?.qsectionTwoFirstLabel || "",
+    sectionTwoLabelsEn: ensureArray(data.qsectionTwo?.qsectionTwoLabelsEn),
+    sectionTwoNotesEn: ensureArray(data.qsectionTwo?.qsectionTwoNotesEn),
+    sectionTwoItemsEn: ensureArray(data.qsectionTwo?.qsectionTwoItemsEn),
+    sectionTwoItemsDate2En: ensureArray(data.qsectionTwo?.qsectionTwoItemsDate2En),
+    sectionTwoTotalLabel: data.qsectionTwo?.qsectionTwoTotalLabel || "",
+    TotalsectionTwoItemsEn: safeParseFloat(data.qsectionTwo?.qTotalsectionTwoItemsEn),
+    TotalsectionTwoItemsDate2En: safeParseFloat(data.qsectionTwo?.qTotalsectionTwoItemsDate2En),
+  },
+
+  // Section Three - Working capital adjustments
+sectionThree: {
+  sectionThreeFirstLabel: data.qsectionThree?.qsectionThreeFirstLabel || "",
+  sectionThreeLabelsEn: ensureArray(data.qsectionThree?.qsectionThreeLabelsEn),
+  sectionThreeNotesEn: ensureArray(data.qsectionThree?.qsectionThreeNotesEn),
+  sectionThreeItemsEn: ensureArray(data.qsectionThree?.qsectionThreeItemsEn),
+  sectionThreeItemsDate2En: ensureArray(data.qsectionThree?.qsectionThreeItemsDate2En),
+  sectionThreeTotalLabel: data.qsectionThree?.qsectionThreeTotalLabel || "",
+  TotalsectionThreeItemsEn: safeParseFloat(data.qsectionThree?.qTotalsectionThreeItemsEn),
+  TotalsectionThreeItemsDate2En: safeParseFloat(data.qsectionThree?.qTotalsectionThreeItemsDate2En),
+},
+
+  // Section Four - Other changes
+ sectionFour: {
+  sectionFourFirstLabel: data.qsectionFour?.qsectionFourFirstLabel || "",
+  sectionFourLabelsEn: ensureArray(data.qsectionFour?.qsectionFourLabelsEn),
+  sectionFourNotesEn: ensureArray(data.qsectionFour?.qsectionFourNotesEn),
+  sectionFourItemsEn: ensureArray(data.qsectionFour?.qsectionFourItemsEn),
+  sectionFourItemsDate2En: ensureArray(data.qsectionFour?.qsectionFourItemsDate2En),
+  sectionFourTotalLabel: data.qsectionFour?.qsectionFourTotalLabel || "",
+  TotalsectionFourItemsEn: safeParseFloat(data.qsectionFour?.qTotalsectionFourItemsEn),
+  TotalsectionFourItemsDate2En: safeParseFloat(data.qsectionFour?.qTotalsectionFourItemsDate2En),
+},
+
+
+  // Section Five - Investing activities
+sectionFive: {
+  sectionFiveFirstLabel: data.qsectionFive?.qsectionFiveFirstLabel || "",
+  sectionFiveLabelsEn: ensureArray(data.qsectionFive?.qsectionFiveLabelsEn),
+  sectionFiveNotesEn: ensureArray(data.qsectionFive?.qsectionFiveNotesEn),
+  sectionFiveItemsEn: ensureArray(data.qsectionFive?.qsectionFiveItemsEn),
+  sectionFiveItemsDate2En: ensureArray(data.qsectionFive?.qsectionFiveItemsDate2En),
+  sectionFiveTotalLabel: data.qsectionFive?.qsectionFiveTotalLabel || "",
+  TotalsectionFiveItemsEn: safeParseFloat(data.qsectionFive?.qTotalsectionFiveItemsEn),
+  TotalsectionFiveItemsDate2En: safeParseFloat(data.qsectionFive?.qTotalsectionFiveItemsDate2En),
+},
+
+  // Section Six - Financing activities
+ sectionSix: {
+  sectionSixFirstLabel: data.qsectionSix?.qsectionSixFirstLabel || "",
+  sectionSixLabelsEn: ensureArray(data.qsectionSix?.qsectionSixLabelsEn),
+  sectionSixNotesEn: ensureArray(data.qsectionSix?.qsectionSixNotesEn),
+  sectionSixItemsEn: ensureArray(data.qsectionSix?.qsectionSixItemsEn),
+  sectionSixItemsDate2En: ensureArray(data.qsectionSix?.qsectionSixItemsDate2En),
+  sectionSixTotalLabel: data.qsectionSix?.qsectionSixTotalLabel || "",
+  TotalsectionSixItemsEn: safeParseFloat(data.qsectionSix?.qTotalsectionSixItemsEn),
+  TotalsectionSixItemsDate2En: safeParseFloat(data.qsectionSix?.qTotalsectionSixItemsDate2En),
+  sectionSixSecondTotalLabel: data.qsectionSix?.qsectionSixSecondTotalLabel || "",
+  TotalsectionSixSecondItemsEn: safeParseFloat(data.qsectionSix?.qTotalsectionSixSecondItemsEn),
+  TotalsectionSixSecondItemsDate2En: safeParseFloat(data.qsectionSix?.qTotalsectionSixSecondItemsDate2En),
+},
+
+
+  // Section Seven - Cash and cash equivalents
+sectionSeven: {
+  sectionSevenLabelsEn: ensureArray(data.qsectionSeven?.qsectionSevenLabelsEn),
+  sectionSevenNotesEn: ensureArray(data.qsectionSeven?.qsectionSevenNotesEn),
+  sectionSevenItemsEn: ensureArray(data.qsectionSeven?.qsectionSevenItemsEn),
+  sectionSevenItemsDate2En: ensureArray(data.qsectionSeven?.qsectionSevenItemsDate2En),
+  sectionSevenTotalLabel: data.qsectionSeven?.qsectionSevenTotalLabel || "",
+  TotalsectionSevenItemsEn: safeParseFloat(data.qsectionSeven?.qTotalsectionSevenItemsEn),
+  TotalsectionSevenItemsDate2En: safeParseFloat(data.qsectionSeven?.qTotalsectionSevenItemsDate2En),
+},
+
+
+  // Section Eight - Significant non-cash transactions
+ sectionEight: {
+  sectionEightLabelsEn: ensureArray(data.qsectionEight?.qsectionEightLabelsEn),
+  sectionEightNotesEn: ensureArray(data.qsectionEight?.qsectionEightNotesEn),
+  sectionEightItemsEn: ensureArray(data.qsectionEight?.qsectionEightItemsEn),
+  sectionEightItemsDate2En: ensureArray(data.qsectionEight?.qsectionEightItemsDate2En),
+  sectionEightLastLabel: data.qsectionEight?.qsectionEightLastLabel || "",
+},
+
+  // Table2 - Second table with its own dates
+Table2: {
+  dateTwo1En: data.qTable2?.qdateTwo1En,
+  dateTwo2En: data.qTable2?.qdateTwo2En,
+  sectionOneTable2: {
+    sectionNineLabelsEn: ensureArray(data.qTable2?.qsectionOneTable2?.qsectionNineLabelsEn),
+    sectionNineNotesEn: ensureArray(data.qTable2?.qsectionOneTable2?.qsectionNineNotesEn),
+    sectionNineItemsEn: ensureArray(data.qTable2?.qsectionOneTable2?.qsectionNineItemsEn),
+    sectionNineItemsDate2En: ensureArray(data.qTable2?.qsectionOneTable2?.qsectionNineItemsDate2En),
+  }
+}
+};
+
+
+
+          // Assign the data
+          matchedDocument.formData[section].table.CashFlow = CashFlowData
+
+
+          try {
+            await matchedDocument.save();
+            return res.status(200).json({
+              success: true,
+              message: "CashFlow Data data data English saved successfully.",
               Tabledata: matchedDocument.formData[section].table.CashFlow,
             });
           } catch (saveError) {
@@ -918,7 +1258,15 @@ sectionOtherComprehensiveIncome: {
             });
           }
 
-        }else {
+
+
+
+
+ 
+
+} else
+        
+        {
           return res.status(400).json({
             success: false,
             message: "Invalid table category or missing data.",
