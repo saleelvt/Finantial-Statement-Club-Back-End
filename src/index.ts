@@ -8,28 +8,7 @@ dotenv.config(); // Load environment variables
 
 
 
-// Function to initialize an admin (example)
-export const insertAdmin = async () => {
-  const sampleAdmin = {
-    userName: "FinancialClub",
-    email: "techno12.ab@outlook.com",
-    password: "admin@13",
-  };
 
-  // Insert logic for saving admin to the database if required here
-  try { 
-    const existingAdmin = await Admin.findOne({ email: sampleAdmin.email });
-    if (!existingAdmin) {
-      const newAdmin = new Admin(sampleAdmin);
-      await newAdmin.save();
-      console.log("this is the admin now ", newAdmin);
-    } else {
-      console.log(" ADMIN ALLREDY EXISTED  ");
-    }
-  }  catch (error) {
-    console.error("Failed to insert sample admin:", error);
-  }
-};
 
 (async () => {
   try {
@@ -56,4 +35,3 @@ export const insertAdmin = async () => {
   }
 })();
 
-// insertAdmin()

@@ -38,7 +38,7 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
       const {
         tadawalCode,
         selectedYear,
-        quarterYear,
+        quarterYear, 
         selectedTableType,
         language,
         data,
@@ -52,7 +52,6 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
           .status(400)
           .json({ success: false, message: "Missing required fields." });
       }
-
       if (language === "English") {
         const existingDocuments = await Document.find({ tadawalCode });
 
@@ -108,24 +107,16 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
                   data.assets?.current?.firstTotalDate2
                 ),
                 secondTotal: safeParseFloat(data.assets?.current?.secondTotal),
-                secondTotalDate2: safeParseFloat(
-                  data.assets?.current?.secondTotalDate2
-                ),
+                secondTotalDate2: safeParseFloat( data.assets?.current?.secondTotalDate2 ),
                 sfirtsTotalCurrentAssets:
                   data.assets?.current?.sfirtsTotalCurrentAssets || "",
-                stotalCurrentAssets:
-                  data.assets?.current?.stotalCurrentAssets || "",
-              },
-              nonCurrent: {
-                snonCurrentAssets:
-                  data.assets?.nonCurrent?.snonCurrentAssets || "",
-                nonCurrentLabels: ensureArray(
-                  data.assets?.nonCurrent?.nonCurrentLabelsAr
+                stotalCurrentAssets: data.assets?.current?.stotalCurrentAssets || "", },
+              nonCurrent: { snonCurrentAssets: data.assets?.nonCurrent?.snonCurrentAssets || "",
+                 nonCurrentLabels: ensureArray( data.assets?.nonCurrent?.nonCurrentLabelsAr
                 ),
                 items: ensureArray(data.assets?.nonCurrent?.items),
                 itemsDate2: ensureArray(data.assets?.nonCurrent?.itemsDate2),
-                nonCurrentSubLabels: ensureArray(
-                  data.assets?.nonCurrent?.nonCurrentSubLabelsAr
+                nonCurrentSubLabels: ensureArray( data.assets?.nonCurrent?.nonCurrentSubLabelsAr
                 ),
                 subItems: ensureArray(data.assets?.nonCurrent?.subItems),
                 subItemsDate2: ensureArray(
@@ -169,34 +160,24 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
               subItemsDate2: ensureArray(data.equity?.subItemsDate2),
               firstTotal: safeParseFloat(data.equity?.firstTotal),
               firstTotalDate2: safeParseFloat(data.equity?.firstTotalDate2),
-              sfirtsTotalShareholdersEquity:
-                data.equity?.sfirtsTotalShareholdersEquity || "",
-              stotalShareholdersEquity:
-                data.equity?.stotalShareholdersEquity || "",
+              sfirtsTotalShareholdersEquity: data.equity?.sfirtsTotalShareholdersEquity || "",
+              stotalShareholdersEquity:data.equity?.stotalShareholdersEquity || "",
               totalEquity: safeParseFloat(data.equity?.totalEquity),
               totalEquityDate2: safeParseFloat(data.equity?.totalEquityDate2),
               equityItemsNotes: ensureArray(data.equity?.equityItemsNotes),
             },
-
             // Liabilities section
             liabilities: {
               liabilities: data.liabilities?.liabilities || "",
-
               current: {
-                scurrentliabilities:
-                  data.liabilities?.current?.scurrentliabilities || "",
-                currentLiabilitiesLabels: ensureArray(
-                  data.liabilities?.current?.currentLiabilitiesLabelsAr
-                ),
-                currentLiabilitiesSubLabels: ensureArray(
-                  data.liabilities?.current?.currentSubLiabilitiesLabelsAr
-                ),
+                scurrentliabilities:data.liabilities?.current?.scurrentliabilities || "",
+                currentLiabilitiesLabels: ensureArray(data.liabilities?.current?.currentLiabilitiesLabelsAr ),
+                currentLiabilitiesSubLabels: ensureArray(data.liabilities?.current?.currentSubLiabilitiesLabelsAr),
                 items: ensureArray(data.liabilities?.current?.items),
                 itemsDate2: ensureArray(data.liabilities?.current?.itemsDate2),
                 subItems: ensureArray(data.liabilities?.current?.subItems),
-                subItemsDate2: ensureArray(
-                  data.liabilities?.current?.subItemsDate2
-                ),
+                subItemsDate2: ensureArray( data.liabilities?.current?.subItemsDate2
+ ),
                 firstTotal: safeParseFloat(
                   data.liabilities?.current?.firstTotal
                 ),
@@ -384,8 +365,6 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
     sectionFourOtherComprehensiveIncomeSubheadingItemsDate2En: ensureArray(data?.sectionOtherComprehensiveIncome?.sectionFourOtherComprehensiveIncomeSubheadingItemsDate2En),
   },
 
-
-
    Table2: {
   dateTwo1En: data.Table2?.dateTwo1En,
   dateTwo2En: data.Table2?.dateTwo2En,
@@ -454,12 +433,6 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
     sectionFourOtherComprehensiveIncomeSubheadingItemsDate2EnTable2: ensureArray(data.Table2?.sectionOtherComprehensiveIncomeTable2?.sectionFourOtherComprehensiveIncomeSubheadingItemsDate2EnTable2),
   },
 },
-
-
-
-
-
-
 
 
 };
@@ -853,7 +826,6 @@ sectionOtherComprehensiveIncome: {
   sectionFourOtherComprehensiveIncomeSubheadingItemsDate2En: ensureArray(data.qsectionOtherComprehensiveIncome?.qsectionFourOtherComprehensiveIncomeSubheadingItemsDate2En),
 },
 
-
   Table2:{
 
       dateTwo1Ar:data.qTable2.qdateTwo1Ar,
@@ -922,18 +894,7 @@ sectionOtherComprehensiveIncome: {
       sectionFourOtherComprehensiveIncomeSubheadingItemsEnTable2: ensureArray(data.qTable2?.qsectionOtherComprehensiveIncomeTable2?.qsectionFourOtherComprehensiveIncomeSubheadingItemsEnTable2),
       sectionFourOtherComprehensiveIncomeSubheadingItemsDate2EnTable2: ensureArray(data.qTable2?.qsectionOtherComprehensiveIncomeTable2?.qsectionFourOtherComprehensiveIncomeSubheadingItemsDate2EnTable2),
     },
-
-
   }
-
-
-
-
-
-
-
-
-
 
 };
 

@@ -11,11 +11,11 @@ export const verifyOtpController = (dependencies: IAdminDependencies) => {
   return async (req: Request, res: Response, next: NextFunction) : Promise<any> => {
     try {
         const { otp,email } = req.body;
-      console.log('this sim y gjf req body of  the verify otp controller!!!!!!!! is' , otp,email) ;
+ 
       const dbOtp = await Otp.findOne({ email });
       
       if (dbOtp && otp === dbOtp.otp) {
-        console.log("otp valide aanu ketto ");
+     
         
         const { accessToken } = generateTokens(dbOtp._id.toString());
         console.log("the accessToken iws : ", accessToken);
