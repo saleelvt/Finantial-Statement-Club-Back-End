@@ -466,10 +466,6 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
 
         } else if (category === "CashFlow" && data) {
 
-
-
-
-
 const CashFlowData = {
   // Main dates
   date1En: data.date1,
@@ -493,6 +489,7 @@ const CashFlowData = {
     sectionTwoItemsEn: ensureArray(data.sectionTwo?.sectionTwoItemsEn),
     sectionTwoItemsDate2En: ensureArray(data.sectionTwo?.sectionTwoItemsDate2En),
     sectionTwoTotalLabel: data.sectionTwo?.sectionTwoTotalLabel || "",
+    sectionTwoTotalNote: data.sectionTwo?.sectionTwoTotalNote || "",
     TotalsectionTwoItemsEn: safeParseFloat(data.sectionTwo?.TotalsectionTwoItemsEn),
     TotalsectionTwoItemsDate2En: safeParseFloat(data.sectionTwo?.TotalsectionTwoItemsDate2En),
   },
@@ -505,6 +502,7 @@ const CashFlowData = {
     sectionThreeItemsEn: ensureArray(data.sectionThree?.sectionThreeItemsEn),
     sectionThreeItemsDate2En: ensureArray(data.sectionThree?.sectionThreeItemsDate2En),
     sectionThreeTotalLabel: data.sectionThree?.sectionThreeTotalLabel || "",
+    sectionThreeTotalNote: data.sectionThree?.sectionThreeTotalNote || "",
     TotalsectionThreeItemsEn: safeParseFloat(data.sectionThree?.TotalsectionThreeItemsEn),
     TotalsectionThreeItemsDate2En: safeParseFloat(data.sectionThree?.TotalsectionThreeItemsDate2En),
   },
@@ -517,6 +515,7 @@ const CashFlowData = {
     sectionFourItemsEn: ensureArray(data.sectionFour?.sectionFourItemsEn),
     sectionFourItemsDate2En: ensureArray(data.sectionFour?.sectionFourItemsDate2En),
     sectionFourTotalLabel: data.sectionFour?.sectionFourTotalLabel || "",
+    sectionFourTotalNote: data.sectionFour?.sectionFourTotalNote || "",
     TotalsectionFourItemsEn: safeParseFloat(data.sectionFour?.TotalsectionFourItemsEn),
     TotalsectionFourItemsDate2En: safeParseFloat(data.sectionFour?.TotalsectionFourItemsDate2En),
   },
@@ -529,10 +528,10 @@ const CashFlowData = {
     sectionFiveItemsEn: ensureArray(data.sectionFive?.sectionFiveItemsEn),
     sectionFiveItemsDate2En: ensureArray(data.sectionFive?.sectionFiveItemsDate2En),
     sectionFiveTotalLabel: data.sectionFive?.sectionFiveTotalLabel || "",
+    sectionFiveTotalNote: data.sectionFive?.sectionFiveTotalNote || "",
     TotalsectionFiveItemsEn: safeParseFloat(data.sectionFive?.TotalsectionFiveItemsEn),
     TotalsectionFiveItemsDate2En: safeParseFloat(data.sectionFive?.TotalsectionFiveItemsDate2En),
   },
-
   // Section Six - Financing activities
   sectionSix: {
     sectionSixFirstLabel: data.sectionSix?.sectionSixFirstLabel || "",
@@ -541,9 +540,11 @@ const CashFlowData = {
     sectionSixItemsEn: ensureArray(data.sectionSix?.sectionSixItemsEn),
     sectionSixItemsDate2En: ensureArray(data.sectionSix?.sectionSixItemsDate2En),
     sectionSixTotalLabel: data.sectionSix?.sectionSixTotalLabel || "",
+    sectionSixTotalNote: data.sectionSix?.sectionSixTotalNote || "",
     TotalsectionSixItemsEn: safeParseFloat(data.sectionSix?.TotalsectionSixItemsEn),
     TotalsectionSixItemsDate2En: safeParseFloat(data.sectionSix?.TotalsectionSixItemsDate2En),
     sectionSixSecondTotalLabel: data.sectionSix?.sectionSixSecondTotalLabel || "",
+    sectionSixSecondTotalNote: data.sectionSix?.sectionSixSecondTotalNote || "",
     TotalsectionSixSecondItemsEn: safeParseFloat(data.sectionSix?.TotalsectionSixSecondItemsEn),
     TotalsectionSixSecondItemsDate2En: safeParseFloat(data.sectionSix?.TotalsectionSixSecondItemsDate2En),
   },
@@ -555,6 +556,7 @@ const CashFlowData = {
     sectionSevenItemsEn: ensureArray(data.sectionSeven?.sectionSevenItemsEn),
     sectionSevenItemsDate2En: ensureArray(data.sectionSeven?.sectionSevenItemsDate2En),
     sectionSevenTotalLabel: data.sectionSeven?.sectionSevenTotalLabel || "",
+    sectionSevenTotalNote: data.sectionSeven?.sectionSevenTotalNote || "",
     TotalsectionSevenItemsEn: safeParseFloat(data.sectionSeven?.TotalsectionSevenItemsEn),
     TotalsectionSevenItemsDate2En: safeParseFloat(data.sectionSeven?.TotalsectionSevenItemsDate2En),
   },
@@ -1118,10 +1120,6 @@ sectionOtherComprehensiveIncome: {
         
          else if (category === "CashFlow" && data) {
 
-
-
-
-
 const CashFlowData = {
   // Main dates
   date1En: data.qdate1,
@@ -1145,6 +1143,7 @@ const CashFlowData = {
     sectionTwoItemsEn: ensureArray(data.qsectionTwo?.qsectionTwoItemsEn),
     sectionTwoItemsDate2En: ensureArray(data.qsectionTwo?.qsectionTwoItemsDate2En),
     sectionTwoTotalLabel: data.qsectionTwo?.qsectionTwoTotalLabel || "",
+    sectionTwoTotalNote: data.qsectionTwo?.qsectionTwoTotalNote || "",
     TotalsectionTwoItemsEn: safeParseFloat(data.qsectionTwo?.qTotalsectionTwoItemsEn),
     TotalsectionTwoItemsDate2En: safeParseFloat(data.qsectionTwo?.qTotalsectionTwoItemsDate2En),
   },
@@ -1157,6 +1156,7 @@ sectionThree: {
   sectionThreeItemsEn: ensureArray(data.qsectionThree?.qsectionThreeItemsEn),
   sectionThreeItemsDate2En: ensureArray(data.qsectionThree?.qsectionThreeItemsDate2En),
   sectionThreeTotalLabel: data.qsectionThree?.qsectionThreeTotalLabel || "",
+  sectionThreeTotalNote: data.qsectionThree?.qsectionThreeTotalNote || "",
   TotalsectionThreeItemsEn: safeParseFloat(data.qsectionThree?.qTotalsectionThreeItemsEn),
   TotalsectionThreeItemsDate2En: safeParseFloat(data.qsectionThree?.qTotalsectionThreeItemsDate2En),
 },
@@ -1169,6 +1169,7 @@ sectionThree: {
   sectionFourItemsEn: ensureArray(data.qsectionFour?.qsectionFourItemsEn),
   sectionFourItemsDate2En: ensureArray(data.qsectionFour?.qsectionFourItemsDate2En),
   sectionFourTotalLabel: data.qsectionFour?.qsectionFourTotalLabel || "",
+  sectionFourTotalNote: data.qsectionFour?.qsectionFourTotalNote || "",
   TotalsectionFourItemsEn: safeParseFloat(data.qsectionFour?.qTotalsectionFourItemsEn),
   TotalsectionFourItemsDate2En: safeParseFloat(data.qsectionFour?.qTotalsectionFourItemsDate2En),
 },
@@ -1182,6 +1183,7 @@ sectionFive: {
   sectionFiveItemsEn: ensureArray(data.qsectionFive?.qsectionFiveItemsEn),
   sectionFiveItemsDate2En: ensureArray(data.qsectionFive?.qsectionFiveItemsDate2En),
   sectionFiveTotalLabel: data.qsectionFive?.qsectionFiveTotalLabel || "",
+  sectionFiveTotalNote: data.qsectionFive?.qsectionFiveTotalNote || "",
   TotalsectionFiveItemsEn: safeParseFloat(data.qsectionFive?.qTotalsectionFiveItemsEn),
   TotalsectionFiveItemsDate2En: safeParseFloat(data.qsectionFive?.qTotalsectionFiveItemsDate2En),
 },
@@ -1194,9 +1196,11 @@ sectionFive: {
   sectionSixItemsEn: ensureArray(data.qsectionSix?.qsectionSixItemsEn),
   sectionSixItemsDate2En: ensureArray(data.qsectionSix?.qsectionSixItemsDate2En),
   sectionSixTotalLabel: data.qsectionSix?.qsectionSixTotalLabel || "",
+  sectionSixTotalNote: data.qsectionSix?.qsectionSixTotalNote || "",
   TotalsectionSixItemsEn: safeParseFloat(data.qsectionSix?.qTotalsectionSixItemsEn),
   TotalsectionSixItemsDate2En: safeParseFloat(data.qsectionSix?.qTotalsectionSixItemsDate2En),
   sectionSixSecondTotalLabel: data.qsectionSix?.qsectionSixSecondTotalLabel || "",
+  sectionSixSecondTotalNote: data.qsectionSix?.qsectionSixSecondTotalNote || "",
   TotalsectionSixSecondItemsEn: safeParseFloat(data.qsectionSix?.qTotalsectionSixSecondItemsEn),
   TotalsectionSixSecondItemsDate2En: safeParseFloat(data.qsectionSix?.qTotalsectionSixSecondItemsDate2En),
 },
@@ -1209,6 +1213,7 @@ sectionSeven: {
   sectionSevenItemsEn: ensureArray(data.qsectionSeven?.qsectionSevenItemsEn),
   sectionSevenItemsDate2En: ensureArray(data.qsectionSeven?.qsectionSevenItemsDate2En),
   sectionSevenTotalLabel: data.qsectionSeven?.qsectionSevenTotalLabel || "",
+  sectionSevenTotalNote: data.qsectionSeven?.qsectionSevenTotalNote || "",
   TotalsectionSevenItemsEn: safeParseFloat(data.qsectionSeven?.qTotalsectionSevenItemsEn),
   TotalsectionSevenItemsDate2En: safeParseFloat(data.qsectionSeven?.qTotalsectionSevenItemsDate2En),
 },

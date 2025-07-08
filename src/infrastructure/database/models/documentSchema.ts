@@ -277,8 +277,6 @@ const FileSchema = new Schema({
 
 
     CashFlow:{
-
-
  // Main dates
   date1En: { type: Schema.Types.Mixed },
   date2En: { type: Schema.Types.Mixed },
@@ -301,6 +299,7 @@ const FileSchema = new Schema({
     sectionTwoItemsEn: { type: [String] },
     sectionTwoItemsDate2En: { type: [String] },
     sectionTwoTotalLabel: String,
+    sectionTwoTotalNote: String,
     TotalsectionTwoItemsEn: Number,
     TotalsectionTwoItemsDate2En: Number,
   },
@@ -313,10 +312,11 @@ const FileSchema = new Schema({
     sectionThreeItemsEn: { type: [String] },
     sectionThreeItemsDate2En: { type: [String] },
     sectionThreeTotalLabel: String,
-    TotalsectionThreeItemsEn: Number,
+    sectionThreeTotalNote: String,
+    TotalsectionThreeItemsEn: Number, 
     TotalsectionThreeItemsDate2En: Number,
   },
-
+  
   // Section Four - Other changes
   sectionFour: {
     sectionFourFirstLabel: String,
@@ -325,6 +325,7 @@ const FileSchema = new Schema({
     sectionFourItemsEn: { type: [String] },
     sectionFourItemsDate2En: { type: [String] },
     sectionFourTotalLabel: String,
+    sectionFourTotalNote: String,
     TotalsectionFourItemsEn: Number,
     TotalsectionFourItemsDate2En: Number,
   },
@@ -337,6 +338,7 @@ const FileSchema = new Schema({
     sectionFiveItemsEn: { type: [String] },
     sectionFiveItemsDate2En: { type: [String] },
     sectionFiveTotalLabel: String,
+    sectionFiveTotalNote: String,
     TotalsectionFiveItemsEn: Number,
     TotalsectionFiveItemsDate2En: Number,
   },
@@ -349,9 +351,11 @@ const FileSchema = new Schema({
     sectionSixItemsEn: { type: [String] },
     sectionSixItemsDate2En: { type: [String] },
     sectionSixTotalLabel: String,
+    sectionSixTotalNote: String,
     TotalsectionSixItemsEn: Number,
     TotalsectionSixItemsDate2En: Number,
     sectionSixSecondTotalLabel: String,
+    sectionSixSecondTotalNote: String,
     TotalsectionSixSecondItemsEn: Number,
     TotalsectionSixSecondItemsDate2En: Number,
   },
@@ -363,6 +367,7 @@ const FileSchema = new Schema({
     sectionSevenItemsEn: { type: [String] },
     sectionSevenItemsDate2En: { type: [String] },
     sectionSevenTotalLabel: String,
+    sectionSevenTotalNote: String,
     TotalsectionSevenItemsEn: Number,
     TotalsectionSevenItemsDate2En: Number,
   },

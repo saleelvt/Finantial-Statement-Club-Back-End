@@ -10,8 +10,6 @@ interface CustomRequest extends Request {
 export const adminAddDocumentArabicController = (dependencies: IAdminDependencies) => {
   return async (req: CustomRequest, res: Response, next: NextFunction): Promise<void | null | any> => {
     try {
-
-
       const { fullNameAr, nickNameAr, tadawalCode, sector } = req.body;    
       console.log("the req.body aof add document : ",fullNameAr, nickNameAr, tadawalCode, sector);
       const requiredFields = ["Board", "Q1", "Q2", "Q3", "Q4", "S1", "Year"];
