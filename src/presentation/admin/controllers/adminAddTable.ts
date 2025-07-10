@@ -82,8 +82,6 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
           };
         }
         // Process data for BalanceSheet if that's the selected table type
-
-
         if (category === "BalanceSheet" && data) {
           // Create the BalanceSheet object according to schema structure
           const balanceSheetData = {
@@ -91,61 +89,45 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
             assets: {
               current: {
                 scurrentAssets: data.assets?.current?.scurrentAssets || "",
-                currentLabels: ensureArray(
-                  data.assets?.current?.currentLabelsAr
-                ),
-                CurrentAssetsNotes: ensureArray(
-                  data.assets?.current?.CurrentAssetsNotes
-                ),
+                currentLabels: ensureArray(   data.assets?.current?.currentLabelsAr  ),
+                CurrentAssetsNotes: ensureArray(  data.assets?.current?.CurrentAssetsNotes ),
                 items: ensureArray(data.assets?.current?.items),
                 itemsDate2: ensureArray(data.assets?.current?.itemsDate2),
                 subItems: ensureArray(data.assets?.current?.subItems),
-                currentSubLabels: ensureArray(
-                  data.assets?.current?.currentSubLabelsAr
-                ),
+                currentSubLabels: ensureArray(   data.assets?.current?.currentSubLabelsAr),
                 subItemsDate2: ensureArray(data.assets?.current?.subItemsDate2),
                 firstTotal: safeParseFloat(data.assets?.current?.firstTotal),
-                firstTotalDate2: safeParseFloat(
-                  data.assets?.current?.firstTotalDate2
-                ),
+                firstTotalDate2: safeParseFloat(  data.assets?.current?.firstTotalDate2 ),
                 secondTotal: safeParseFloat(data.assets?.current?.secondTotal),
                 secondTotalDate2: safeParseFloat( data.assets?.current?.secondTotalDate2 ),
-                sfirtsTotalCurrentAssets:
-                  data.assets?.current?.sfirtsTotalCurrentAssets || "",
+                sfirtsTotalCurrentAssets: data.assets?.current?.sfirtsTotalCurrentAssets || "",
                 stotalCurrentAssets: data.assets?.current?.stotalCurrentAssets || "", },
-              nonCurrent: { snonCurrentAssets: data.assets?.nonCurrent?.snonCurrentAssets || "",
-                 nonCurrentLabels: ensureArray( data.assets?.nonCurrent?.nonCurrentLabelsAr
-                ),
+                nonCurrent: { snonCurrentAssets: data.assets?.nonCurrent?.snonCurrentAssets || "",
+                nonCurrentLabels: ensureArray( data.assets?.nonCurrent?.nonCurrentLabelsAr ),
                 items: ensureArray(data.assets?.nonCurrent?.items),
                 itemsDate2: ensureArray(data.assets?.nonCurrent?.itemsDate2),
-                nonCurrentSubLabels: ensureArray( data.assets?.nonCurrent?.nonCurrentSubLabelsAr
-                ),
+                nonCurrentSubLabels: ensureArray( data.assets?.nonCurrent?.nonCurrentSubLabelsAr  ),
                 subItems: ensureArray(data.assets?.nonCurrent?.subItems),
-                subItemsDate2: ensureArray(
-                  data.assets?.nonCurrent?.subItemsDate2
-                ),
+                subItemsDate2: ensureArray(    data.assets?.nonCurrent?.subItemsDate2  ),
                 firstTotal: safeParseFloat(data.assets?.nonCurrent?.firstTotal),
-                firstTotalDate2: safeParseFloat(
-                  data.assets?.nonCurrent?.firstTotalDate2
-                ),
-                secondTotal: safeParseFloat(
-                  data.assets?.nonCurrent?.secondTotal
-                ),
-                secondTotalDate2: safeParseFloat(
-                  data.assets?.nonCurrent?.secondTotalDate2
-                ),
-                sfirtsTotalnonCurrentAssets:
-                  data.assets?.nonCurrent?.sfirtsTotalnonCurrentAssets || "",
-                stotalNonCurrentAssets:
-                  data.assets?.nonCurrent?.stotalNonCurrentAssets || "",
-                nonCurrentNotes: ensureArray(
-                  data.assets?.nonCurrent?.nonCurrentNotes
-                ),
+                firstTotalDate2: safeParseFloat(  data.assets?.nonCurrent?.firstTotalDate2 ),
+                secondTotal: safeParseFloat(  data.assets?.nonCurrent?.secondTotal  ),
+                secondTotalDate2: safeParseFloat(  data.assets?.nonCurrent?.secondTotalDate2  ),
+                sfirtsTotalnonCurrentAssets:  data.assets?.nonCurrent?.sfirtsTotalnonCurrentAssets || "",
+                stotalNonCurrentAssets: data.assets?.nonCurrent?.stotalNonCurrentAssets || "",
+                nonCurrentNotes: ensureArray(  data.assets?.nonCurrent?.nonCurrentNotes ),
+
+                sfirtsTotalnonCurrentNote: data.assets?.nonCurrent?.sfirtsTotalnonCurrentNote || "",
+                stotalNonCurrentAssetsNote: data.assets?.nonCurrent?.stotalNonCurrentAssetsNote || "",
+
+                  sfirtsTotalCurrentAssetsNote: data.assets?.current?.sfirtsTotalCurrentAssetsNote || "",
+                  stotalCurrentAssetsNote: data.assets?.current?.stotalCurrentAssetsNote || "",
+
               },
               sassets: data.assets?.sassets || "",
+              stotalAssetsNote: data.assets?.stotalAssetsNote || "",
               stotalAssets: data.assets?.stotalAssets || "",
               totalAssets: safeParseFloat(data.assets?.totalAssets),
-
               totalAssetsDate2: safeParseFloat(data.assets?.totalAssetsDate2),
             },
             // Additional data fields
@@ -164,6 +146,8 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
               firstTotalDate2: safeParseFloat(data.equity?.firstTotalDate2),
               sfirtsTotalShareholdersEquity: data.equity?.sfirtsTotalShareholdersEquity || "",
               stotalShareholdersEquity:data.equity?.stotalShareholdersEquity || "",
+              sfirtsTotalShareholdersEquityNote:data.equity?.sfirtsTotalShareholdersEquityNote || "",
+              stotalShareholdersEquityNote:data.equity?.stotalShareholdersEquityNote || "",
               totalEquity: safeParseFloat(data.equity?.totalEquity),
               totalEquityDate2: safeParseFloat(data.equity?.totalEquityDate2),
               equityItemsNotes: ensureArray(data.equity?.equityItemsNotes),
@@ -178,86 +162,49 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
                 items: ensureArray(data.liabilities?.current?.items),
                 itemsDate2: ensureArray(data.liabilities?.current?.itemsDate2),
                 subItems: ensureArray(data.liabilities?.current?.subItems),
-                subItemsDate2: ensureArray( data.liabilities?.current?.subItemsDate2
- ),
-                firstTotal: safeParseFloat(
-                  data.liabilities?.current?.firstTotal
-                ),
-                firstTotalDate2: safeParseFloat(
-                  data.liabilities?.current?.firstTotalDate2
-                ),
-                sfirtsTotalcurrentLiabilities:
-                  data.liabilities?.current?.sfirtsTotalcurrentLiabilities ||
-                  "",
-                stotalcurrentliabilities:
-                  data.liabilities?.current?.stotalcurrentliabilities || "",
+                subItemsDate2: ensureArray( data.liabilities?.current?.subItemsDate2),
+                firstTotal: safeParseFloat( data.liabilities?.current?.firstTotal ),
+                firstTotalDate2: safeParseFloat( data.liabilities?.current?.firstTotalDate2  ),
+                sfirtsTotalcurrentLiabilities:  data.liabilities?.current?.sfirtsTotalcurrentLiabilities ||  "",
+                stotalcurrentliabilities:  data.liabilities?.current?.stotalcurrentliabilities || "",
+                sfirtsTotalcurrentLiabilitiesNote:  data.liabilities?.current?.sfirtsTotalcurrentLiabilitiesNote || "",
+                stotalcurrentliabilitiesNote:  data.liabilities?.current?.stotalcurrentliabilitiesNote || "",
                 total: safeParseFloat(data.liabilities?.current?.total),
-                totalDate2: safeParseFloat(
-                  data.liabilities?.current?.totalDate2
-                ),
-                currentLiabilitiesNotes: ensureArray(
-                  data.liabilities?.current?.currentLiabilitiesNotes
-                ),
+                totalDate2: safeParseFloat( data.liabilities?.current?.totalDate2 ),
+                currentLiabilitiesNotes: ensureArray(  data.liabilities?.current?.currentLiabilitiesNotes ),
               },
-
               nonCurrent: {
-                sNoncurrentliabilities:
-                  data.liabilities?.nonCurrent?.sNoncurrentliabilities || "",
-                NonCurrentLiabilitiesLabels: ensureArray(
-                  data.liabilities?.nonCurrent?.nonCurrentLiabilitiesLabelsAr
-                ),
+                sNoncurrentliabilities:  data.liabilities?.nonCurrent?.sNoncurrentliabilities || "",
+                NonCurrentLiabilitiesLabels: ensureArray(  data.liabilities?.nonCurrent?.nonCurrentLiabilitiesLabelsAr ),
                 items: ensureArray(data.liabilities?.nonCurrent?.items),
-                itemsDate2: ensureArray(
-                  data.liabilities?.nonCurrent?.itemsDate2
-                ),
-                NonCurrentLiabilitiesSubLabels: ensureArray(
-                  data.liabilities?.nonCurrent?.nonCurrentSubLiabilitiesLabelsAr
-                ),
+                itemsDate2: ensureArray(data.liabilities?.nonCurrent?.itemsDate2 ),
+                NonCurrentLiabilitiesSubLabels: ensureArray(   data.liabilities?.nonCurrent?.nonCurrentSubLiabilitiesLabelsAr ),
                 subItems: ensureArray(data.liabilities?.nonCurrent?.subItems),
-                subItemsDate2: ensureArray(
-                  data.liabilities?.nonCurrent?.subItemsDate2
-                ),
-                firstTotal: safeParseFloat(
-                  data.liabilities?.nonCurrent?.firstTotal
-                ),
-                firstTotalDate2: safeParseFloat(
-                  data.liabilities?.nonCurrent?.firstTotalDate2
-                ),
-                sfirtsTotalNoncurrentLiabilities:
-                  data.liabilities?.nonCurrent
-                    ?.sfirtsTotalNoncurrentLiabilities || "",
-                stotalNoncurrentliabilities:
-                  data.liabilities?.nonCurrent?.stotalNoncurrentliabilities ||
-                  "",
+                subItemsDate2: ensureArray(  data.liabilities?.nonCurrent?.subItemsDate2 ),
+                firstTotal: safeParseFloat( data.liabilities?.nonCurrent?.firstTotal ),
+                firstTotalDate2: safeParseFloat(  data.liabilities?.nonCurrent?.firstTotalDate2  ),
+                sfirtsTotalNoncurrentLiabilities:  data.liabilities?.nonCurrent?.sfirtsTotalNoncurrentLiabilities || "",
+                stotalNoncurrentliabilities: data.liabilities?.nonCurrent?.stotalNoncurrentliabilities || "",
+                sfirtsTotalNoncurrentLiabilitiesNote: data.liabilities?.nonCurrent?.sfirtsTotalNoncurrentLiabilitiesNote || "",
+                stotalNoncurrentliabilitiesNote: data.liabilities?.nonCurrent?.stotalNoncurrentliabilitiesNote || "",
                 total: safeParseFloat(data.liabilities?.nonCurrent?.total),
-                totalDate2: safeParseFloat(
-                  data.liabilities?.nonCurrent?.totalDate2
-                ),
-                nonCurrentLiabilitiesNotes: ensureArray(
-                  data.liabilities?.nonCurrent?.nonCurrentLiabilitiesNotes
-                ),
+                totalDate2: safeParseFloat(   data.liabilities?.nonCurrent?.totalDate2 ),
+                nonCurrentLiabilitiesNotes: ensureArray(  data.liabilities?.nonCurrent?.nonCurrentLiabilitiesNotes ),
               },
               stotalliabilities: data.liabilities?.stotalliabilities || "",
-              totalLiabilities: safeParseFloat(
-                data.liabilities?.totalLiabilities
-              ),
-              totalLiabilitiesDate2: safeParseFloat(
-                data.liabilities?.totalLiabilitiesDate2
-              ),
+              stotalliabilitiesNote: data.liabilities?.stotalliabilitiesNote || "",
+              totalLiabilities: safeParseFloat(    data.liabilities?.totalLiabilities  ),
+              totalLiabilitiesDate2: safeParseFloat(    data.liabilities?.totalLiabilitiesDate2  ),
             },
 
             // Section headings and totals
-            sShareholdersEquityandliabilitiess:
-              data?.sShareholdersEquityandliabilitiess || "",
+            sShareholdersEquityandliabilitiess:  data?.sShareholdersEquityandliabilitiess || "",
+            stotalEquityAndLiabilitiesNote:  data?.stotalEquityAndLiabilitiesNote || "",
             stotalEquityAndLiabilities: data?.stotalEquityAndLiabilities || "",
 
             // Total values at the balance sheet level
-            ItotalEquityAndLiabilities: safeParseFloat(
-              data?.ItotalEquityAndLiabilities
-            ),
-            ItotalEquityAndLiabilitiesDate2: safeParseFloat(
-              data?.ItotalEquityAndLiabilitiesDate2
-            ),
+            ItotalEquityAndLiabilities: safeParseFloat(   data?.ItotalEquityAndLiabilities  ),
+            ItotalEquityAndLiabilitiesDate2: safeParseFloat( data?.ItotalEquityAndLiabilitiesDate2 ),
           };
 
           // Update the BalanceSheet data in the document
@@ -295,6 +242,7 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
     sectionOneItemsEn: ensureArray(data.sectionOne?.sectionOneItemsEn),
     sectionOneItemsDate2En: ensureArray(data.sectionOne?.sectionOneItemsDate2En),
     sectionOneTotalLabel: data.sectionOne?.sectionOneTotalLabel || "",
+    sectionOneTotalNote: data.sectionOne?.sectionOneTotalNote || "",
     TotalsectionOneItemsEn: safeParseFloat(data.sectionOne?.TotalsectionOneItemsEn),
     TotalsectionOneItemsDate2En: safeParseFloat(data.sectionOne?.TotalsectionOneItemsDate2En),
   },
@@ -305,6 +253,7 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
     sectionTwoItemsEn: ensureArray(data.sectionTwo?.sectionTwoItemsEn),
     sectionTwoItemsDate2En: ensureArray(data.sectionTwo?.sectionTwoItemsDate2En),
     sectionTwoTotalLabel: data.sectionTwo?.sectionTwoTotalLabel || "",
+    sectionTwoTotalNote: data.sectionTwo?.sectionTwoTotalNote || "",
     TotalsectionTwoItemsEn: safeParseFloat(data.sectionTwo?.TotalsectionTwoItemsEn),
     TotalsectionTwoItemsDate2En: safeParseFloat(data.sectionTwo?.TotalsectionTwoItemsDate2En),
   },
@@ -315,6 +264,7 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
     sectionThreeItemsEn: ensureArray(data.sectionThree?.sectionThreeItemsEn),
     sectionThreeItemsDate2En: ensureArray(data.sectionThree?.sectionThreeItemsDate2En),
     sectionThreeTotalLabel: data.sectionThree?.sectionThreeTotalLabel || "",
+    sectionThreeTotalNote: data.sectionThree?.sectionThreeTotalNote || "",
     TotalsectionThreeItemsEn: safeParseFloat(data.sectionThree?.TotalsectionThreeItemsEn),
     TotalsectionThreeItemsDate2En: safeParseFloat(data.sectionThree?.TotalsectionThreeItemsDate2En),
   },
@@ -325,6 +275,7 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
     sectionFourItemsEn: ensureArray(data.sectionFour?.sectionFourItemsEn),
     sectionFourItemsDate2En: ensureArray(data.sectionFour?.sectionFourItemsDate2En),
     sectionFourTotalLabel: data.sectionFour?.sectionFourTotalLabel || "",
+    sectionFourTotalNote: data.sectionFour?.sectionFourTotalNote || "",
     TotalsectionFourItemsEn: safeParseFloat(data.sectionFour?.TotalsectionFourItemsEn),
     TotalsectionFourItemsDate2En: safeParseFloat(data.sectionFour?.TotalsectionFourItemsDate2En),
   },
@@ -336,6 +287,7 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
     sectionFourSubItemsEn: ensureArray(data.sectionFourSub?.sectionFourSubItemsEn),
     sectionFourSubItemsDate2En: ensureArray(data.sectionFourSub?.sectionFourSubItemsDate2En),
     sectionFourSubTotalLabel: data.sectionFourSub?.sectionFourSubTotalLabel || "",
+    sectionFourSubTotalNote: data.sectionFourSub?.sectionFourSubTotalNote || "",
     TotalsectionFourSubItemsEn: safeParseFloat(data.sectionFourSub?.TotalsectionFourSubItemsEn),
     TotalsectionFourSubItemsDate2En: safeParseFloat(data.sectionFourSub?.TotalsectionFourSubItemsDate2En),
   },  
@@ -373,6 +325,7 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
   
   sectionOneTable2: {
     sectionLastLabel: data.Table2?.sectionOneTable2?.sectionLastLabel || "",
+    sectionLastNote: data.Table2?.sectionOneTable2?.sectionLastNote || "",
     TotalsectionFourSubItemsEn: safeParseFloat(data.Table2?.sectionOneTable2?.TotalsectionFourSubItemsEn),
     TotalsectionFourSubItemsDate2En: safeParseFloat(data.Table2?.sectionOneTable2?.TotalsectionFourSubItemsDate2En),
     sectionSevenLastLabel: data.Table2?.sectionOneTable2?.sectionSevenLastLabel || "",
@@ -382,6 +335,7 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
     sectionLastItemsEn: ensureArray(data.Table2?.sectionOneTable2?.sectionLastItemsEn),
     sectionLastItemsDate2En: ensureArray(data.Table2?.sectionOneTable2?.sectionLastItemsDate2En),
     sectionLastTotalLabelEn: data.Table2?.sectionOneTable2?.sectionLastTotalLabelEn || "",
+    sectionLastTotalNote: data.Table2?.sectionOneTable2?.sectionLastTotalNote || "",
     TotalSectionLastLabelItemsEn: safeParseFloat(data.Table2?.sectionOneTable2?.TotalSectionLastLabelItemsEn),
     TotalSectionLastItemsDate2En: safeParseFloat(data.Table2?.sectionOneTable2?.TotalSectionLastItemsDate2En),
   },
@@ -393,17 +347,20 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
     sectionLastItemsEn2: ensureArray(data.Table2?.sectionTwoTable2?.sectionLastItemsEn2),
     sectionLastItemsDate2En2: ensureArray(data.Table2?.sectionTwoTable2?.sectionLastItemsDate2En2),
     sectionLastTotalLabelEn2: data.Table2?.sectionTwoTable2?.sectionLastTotalLabelEn2 || "",
+    sectionLastTotalNoteEn2: data.Table2?.sectionTwoTable2?.sectionLastTotalNoteEn2 || "",
     TotalSectionLastLabelItemsEn2: safeParseFloat(data.Table2?.sectionTwoTable2?.TotalSectionLastLabelItemsEn2),
     TotalSectionLastItemsDate2En2: safeParseFloat(data.Table2?.sectionTwoTable2?.TotalSectionLastItemsDate2En2),
     
     totalOtherComp: {
       SectionSevenSecondLastLabel2: data.Table2?.sectionTwoTable2?.totalOtherComp?.SectionSevenSecondLastLabel2 || "",
+      SectionSevenSecondLastNote: data.Table2?.sectionTwoTable2?.totalOtherComp?.SectionSevenSecondLastNote || "",
       TotalsectionSevenSecondLastItemEn: safeParseFloat(data.Table2?.sectionTwoTable2?.totalOtherComp?.TotalsectionSevenSecondLastItemEn),
       TotalsectionSevenSecondLastItemsDate2En: safeParseFloat(data.Table2?.sectionTwoTable2?.totalOtherComp?.TotalsectionSevenSecondLastItemsDate2En),
     },
     
     totalComprehensiveLoss: {
       SectionSevenLastLabel2: data.Table2?.sectionTwoTable2?.totalComprehensiveLoss?.SectionSevenLastLabel2 || "",
+      SectionSevenLastNote: data.Table2?.sectionTwoTable2?.totalComprehensiveLoss?.SectionSevenLastNote || "",
       TotalsectionSevenLastItemEn: safeParseFloat(data.Table2?.sectionTwoTable2?.totalComprehensiveLoss?.TotalsectionSevenLastItemEn),
       TotalsectionSevenLastItemsDate2En: safeParseFloat(data.Table2?.sectionTwoTable2?.totalComprehensiveLoss?.TotalsectionSevenLastItemsDate2En),
     },
@@ -704,76 +661,47 @@ const CashFlowData = {
               sassets: data.qassets?.qsassets || "",
               current: {
                 scurrentAssets: data.qassets?.qcurrent?.qscurrentAssets || "",
-                currentLabels: ensureArray(
-                  data.qassets?.qcurrent?.qcurrentLabelsAr
-                ), // Fixed: was currentLabelsAr
-                CurrentAssetsNotes: ensureArray(
-                  data.qassets?.qcurrent?.qCurrentAssetsNotes
-                ),
+                currentLabels: ensureArray(data.qassets?.qcurrent?.qcurrentLabelsAr  ), // Fixed: was currentLabelsAr
+                CurrentAssetsNotes: ensureArray(  data.qassets?.qcurrent?.qCurrentAssetsNotes ),
                 items: ensureArray(data.qassets?.qcurrent?.qitems),
                 itemsDate2: ensureArray(data.qassets?.qcurrent?.qitemsDate2),
                 subItems: ensureArray(data.qassets?.qcurrent?.qsubItems),
-                currentSubLabels: ensureArray(
-                  data.qassets?.qcurrent?.qcurrentSubLabelsAr
-                ), // Fixed: was currentSubLabelsAr
-                subItemsDate2: ensureArray(
-                  data.qassets?.qcurrent?.qsubItemsDate2
-                ),
+                currentSubLabels: ensureArray(data.qassets?.qcurrent?.qcurrentSubLabelsAr  ), // Fixed: was currentSubLabelsAr
+                subItemsDate2: ensureArray( data.qassets?.qcurrent?.qsubItemsDate2 ),
                 firstTotal: safeParseFloat(data.qassets?.qcurrent?.qfirstTotal),
-                firstTotalDate2: safeParseFloat(
-                  data.qassets?.qcurrent?.qfirstTotalDate2
-                ),
-                secondTotal: safeParseFloat(
-                  data.qassets?.qcurrent?.qsecondTotal
-                ),
-                secondTotalDate2: safeParseFloat(
-                  data.qassets?.qcurrent?.qsecondTotalDate2
-                ),
-                sfirtsTotalCurrentAssets:
-                  data.qassets?.qcurrent?.qsfirtsTotalCurrentAssets || "",
-                stotalCurrentAssets:
-                  data.qassets?.qcurrent?.qstotalCurrentAssets || "",
-              },
+                firstTotalDate2: safeParseFloat( data.qassets?.qcurrent?.qfirstTotalDate2 ),
+                secondTotal: safeParseFloat( data.qassets?.qcurrent?.qsecondTotal ),
+                secondTotalDate2: safeParseFloat(   data.qassets?.qcurrent?.qsecondTotalDate2  ),
+                sfirtsTotalCurrentAssets:  data.qassets?.qcurrent?.qsfirtsTotalCurrentAssets || "",
+                stotalCurrentAssets:    data.qassets?.qcurrent?.qstotalCurrentAssets || "",
+                   sfirtsTotalCurrentAssetsNote: data.qassets?.qcurrent?.qsfirtsTotalCurrentAssetsNote || "",
+                  stotalCurrentAssetsNote: data.qassets?.qcurrent?.qstotalCurrentAssetsNote || "",
+
+                },
               nonCurrent: {
-                snonCurrentAssets:
-                  data.qassets?.qnonCurrent?.qsnonCurrentAssets || "",
-                nonCurrentLabels: ensureArray(
-                  data.qassets?.qnonCurrent?.qnonCurrentLabelsAr
-                ), // Fixed: was nonCurrentLabelsAr
-                nonCurrentNotes: ensureArray(
-                  data.qassets?.qnonCurrent?.qnonCurrentNotes
-                ),
+                snonCurrentAssets: data.qassets?.qnonCurrent?.qsnonCurrentAssets || "",
+                nonCurrentLabels: ensureArray(  data.qassets?.qnonCurrent?.qnonCurrentLabelsAr   ), // Fixed: was nonCurrentLabelsAr
+                nonCurrentNotes: ensureArray(  data.qassets?.qnonCurrent?.qnonCurrentNotes  ),
                 items: ensureArray(data.qassets?.qnonCurrent?.qitems),
                 itemsDate2: ensureArray(data.qassets?.qnonCurrent?.qitemsDate2),
                 subItems: ensureArray(data.qassets?.qnonCurrent?.qsubItems),
-                subItemsDate2: ensureArray(
-                  data.qassets?.qnonCurrent?.qsubItemsDate2
-                ),
-                nonCurrentSubLabels: ensureArray(
-                  data.qassets?.qnonCurrent?.qnonCurrentSubLabelsAr
-                ), // Fixed: was nonCurrentSubLabelsAr
-                firstTotal: safeParseFloat(
-                  data.qassets?.qnonCurrent?.qfirstTotal
-                ),
-                firstTotalDate2: safeParseFloat(
-                  data.qassets?.qnonCurrent?.qfirstTotalDate2
-                ),
-                secondTotal: safeParseFloat(
-                  data.qassets?.qnonCurrent?.qsecondTotal
-                ),
-                secondTotalDate2: safeParseFloat(
-                  data.qassets?.qnonCurrent?.qsecondTotalDate2
-                ),
-                sfirtsTotalnonCurrentAssets:
-                  data.qassets?.qnonCurrent?.qsfirtsTotalnonCurrentAssets || "",
-                stotalNonCurrentAssets:
-                  data.qassets?.qnonCurrent?.qstotalNonCurrentAssets || "",
+                subItemsDate2: ensureArray(data.qassets?.qnonCurrent?.qsubItemsDate2 ),
+                nonCurrentSubLabels: ensureArray( data.qassets?.qnonCurrent?.qnonCurrentSubLabelsAr), // Fixed: was nonCurrentSubLabelsAr
+                firstTotal: safeParseFloat(data.qassets?.qnonCurrent?.qfirstTotal),
+                firstTotalDate2: safeParseFloat(data.qassets?.qnonCurrent?.qfirstTotalDate2 ),
+                secondTotal: safeParseFloat(data.qassets?.qnonCurrent?.qsecondTotal),
+                secondTotalDate2: safeParseFloat(  data.qassets?.qnonCurrent?.qsecondTotalDate2   ),
+                sfirtsTotalnonCurrentAssets: data.qassets?.qnonCurrent?.qsfirtsTotalnonCurrentAssets || "",
+                stotalNonCurrentAssets: data.qassets?.qnonCurrent?.qstotalNonCurrentAssets || "",
+                
+                sfirtsTotalnonCurrentNote: data.qassets?.qnonCurrent?.qsfirtsTotalnonCurrentNote || "",
+                stotalNonCurrentAssetsNote: data.qassets?.qnonCurrent?.qstotalNonCurrentAssetsNote || "",
               },
               stotalAssets: data.qassets?.qstotalAssets || "", // Added missing field
               totalAssets: safeParseFloat(data.qassets?.qtotalAssets),
+              stotalAssetsNote:data.qassets?.qstotalAssetsNote || "",
               totalAssetsDate2: safeParseFloat(data.qassets?.qtotalAssetsDate2),
             },
-
             // Added missing data fields
             data1En: data.qdata1En || null,
             data2En: data.qdata2En || null,
@@ -789,113 +717,61 @@ const CashFlowData = {
               subItemsDate2: ensureArray(data.qequity?.qsubItemsDate2),
               firstTotal: safeParseFloat(data.qequity?.qfirstTotal),
               firstTotalDate2: safeParseFloat(data.qequity?.qfirstTotalDate2),
-              sfirtsTotalShareholdersEquity:
-                data.qequity?.qsfirtsTotalShareholdersEquity || "",
-              stotalShareholdersEquity:
-                data.qequity?.qstotalShareholdersEquity || "",
+              sfirtsTotalShareholdersEquity:data.qequity?.qsfirtsTotalShareholdersEquity || "",
+              sfirtsTotalShareholdersEquityNote:data.qequity?.qsfirtsTotalShareholdersEquityNote || "",
+              stotalShareholdersEquity: data.qequity?.qstotalShareholdersEquity || "",
+              stotalShareholdersEquityNote: data.qequity?.qstotalShareholdersEquityNote || "",
               totalEquity: safeParseFloat(data.qequity?.qtotalEquity),
               totalEquityDate2: safeParseFloat(data.qequity?.qtotalEquityDate2),
             },
-
             liabilities: {
               liabilities: data.qliabilities?.qliabilities || "",
-
               current: {
-                scurrentliabilities:
-                  data.qliabilities?.qcurrent?.qscurrentliabilities || "",
-                currentLiabilitiesLabels: ensureArray(
-                  data.qliabilities?.qcurrent?.qcurrentLiabilitiesLabelsAr
-                ), // Fixed: was currentLiabilitiesLabelsAr
-                currentLiabilitiesSubLabels: ensureArray(
-                  data.qliabilities?.qcurrent?.qcurrentSubLiabilitiesLabelsAr
-                ), // Fixed: was currentSubLiabilitiesLabelsAr
+                scurrentliabilities:    data.qliabilities?.qcurrent?.qscurrentliabilities || "",
+                currentLiabilitiesLabels: ensureArray(  data.qliabilities?.qcurrent?.qcurrentLiabilitiesLabelsAr             ), // Fixed: was currentLiabilitiesLabelsAr
+                currentLiabilitiesSubLabels: ensureArray( data.qliabilities?.qcurrent?.qcurrentSubLiabilitiesLabelsAr ), // Fixed: was currentSubLiabilitiesLabelsAr
                 items: ensureArray(data.qliabilities?.qcurrent?.qitems),
-                itemsDate2: ensureArray(
-                  data.qliabilities?.qcurrent?.qitemsDate2
-                ),
+                itemsDate2: ensureArray(data.qliabilities?.qcurrent?.qitemsDate2),
                 subItems: ensureArray(data.qliabilities?.qcurrent?.qsubItems),
-                subItemsDate2: ensureArray(
-                  data.qliabilities?.qcurrent?.qsubItemsDate2
-                ),
-                currentLiabilitiesNotes: ensureArray(
-                  data.qliabilities?.qcurrent?.qcurrentLiabilitiesNotes
-                ),
-                firstTotal: safeParseFloat(
-                  data.qliabilities?.qcurrent?.qfirstTotal
-                ),
-                firstTotalDate2: safeParseFloat(
-                  data.qliabilities?.qcurrent?.qfirstTotalDate2
-                ),
+                subItemsDate2: ensureArray(data.qliabilities?.qcurrent?.qsubItemsDate2),
+                currentLiabilitiesNotes: ensureArray(data.qliabilities?.qcurrent?.qcurrentLiabilitiesNotes),
+                firstTotal: safeParseFloat(data.qliabilities?.qcurrent?.qfirstTotal),
+                firstTotalDate2: safeParseFloat(data.qliabilities?.qcurrent?.qfirstTotalDate2),
                 total: safeParseFloat(data.qliabilities?.qcurrent?.qtotal),
-                totalDate2: safeParseFloat(
-                  data.qliabilities?.qcurrent?.qtotalDate2
-                ),
-                sfirtsTotalcurrentLiabilities:
-                  data.qliabilities?.qcurrent?.qsfirtsTotalcurrentLiabilities ||
-                  "",
-                stotalcurrentliabilities:
-                  data.qliabilities?.qcurrent?.qstotalcurrentliabilities || "",
+                totalDate2: safeParseFloat(data.qliabilities?.qcurrent?.qtotalDate2),
+                sfirtsTotalcurrentLiabilities:data.qliabilities?.qcurrent?.qsfirtsTotalcurrentLiabilities ||"",
+                stotalcurrentliabilities:data.qliabilities?.qcurrent?.qstotalcurrentliabilities || "",
+                qstotalcurrentliabilitiesNote:data.qliabilities?.qcurrent?.qstotalcurrentliabilitiesNote || "",
+                qsfirtsTotalcurrentLiabilitiesNote:data.qliabilities?.qcurrent?.qsfirtsTotalcurrentLiabilitiesNote || "",
               },
-
               nonCurrent: {
-                sNoncurrentliabilities:
-                  data.qliabilities?.qnonCurrent?.qsNoncurrentliabilities || "",
-                NonCurrentLiabilitiesLabels: ensureArray(
-                  data.qliabilities?.qnonCurrent?.qnonCurrentLiabilitiesLabelsAr
-                ), // Fixed: was NonCurrentLiabilitiesLabelsAr
-                NonCurrentLiabilitiesSubLabels: ensureArray(
-                  data.qliabilities?.qnonCurrent
-                    ?.qnonCurrentSubLiabilitiesLabelsAr
-                ), // Fixed: was NonCurrentLiabilitiesSubLabelsAr
-                nonCurrentLiabilitiesNotes: ensureArray(
-                  data.qliabilities?.qnonCurrent?.qnonCurrentLiabilitiesNotes
-                ),
+                sNoncurrentliabilities:data.qliabilities?.qnonCurrent?.qsNoncurrentliabilities || "",
+                NonCurrentLiabilitiesLabels: ensureArray(data.qliabilities?.qnonCurrent?.qnonCurrentLiabilitiesLabelsAr), // Fixed: was NonCurrentLiabilitiesLabelsAr
+                NonCurrentLiabilitiesSubLabels: ensureArray(data.qliabilities?.qnonCurrent?.qnonCurrentSubLiabilitiesLabelsAr), // Fixed: was NonCurrentLiabilitiesSubLabelsAr
+                nonCurrentLiabilitiesNotes: ensureArray(data.qliabilities?.qnonCurrent?.qnonCurrentLiabilitiesNotes),
                 items: ensureArray(data.qliabilities?.qnonCurrent?.qitems),
-                itemsDate2: ensureArray(
-                  data.qliabilities?.qnonCurrent?.qitemsDate2
-                ),
-                subItems: ensureArray(
-                  data.qliabilities?.qnonCurrent?.qsubItems
-                ),
-                subItemsDate2: ensureArray(
-                  data.qliabilities?.qnonCurrent?.qsubItemsDate2
-                ),
-                firstTotal: safeParseFloat(
-                  data.qliabilities?.qnonCurrent?.qfirstTotal
-                ),
-                firstTotalDate2: safeParseFloat(
-                  data.qliabilities?.qnonCurrent?.qfirstTotalDate2
-                ),
+                itemsDate2: ensureArray(data.qliabilities?.qnonCurrent?.qitemsDate2),
+                subItems: ensureArray(data.qliabilities?.qnonCurrent?.qsubItems),
+                subItemsDate2: ensureArray(data.qliabilities?.qnonCurrent?.qsubItemsDate2),
+                firstTotal: safeParseFloat(data.qliabilities?.qnonCurrent?.qfirstTotal),
+                firstTotalDate2: safeParseFloat(data.qliabilities?.qnonCurrent?.qfirstTotalDate2),
                 total: safeParseFloat(data.qliabilities?.qnonCurrent?.qtotal),
-                totalDate2: safeParseFloat(
-                  data.qliabilities?.qnonCurrent?.qtotalDate2
-                ),
-                sfirtsTotalNoncurrentLiabilities:
-                  data.qliabilities?.qnonCurrent
-                    ?.qsfirtsTotalNoncurrentLiabilities || "",
-                stotalNoncurrentliabilities:
-                  data.qliabilities?.qnonCurrent
-                    ?.qstotalNoncurrentliabilities || "",
+                totalDate2: safeParseFloat(data.qliabilities?.qnonCurrent?.qtotalDate2),
+                sfirtsTotalNoncurrentLiabilities:data.qliabilities?.qnonCurrent?.qsfirtsTotalNoncurrentLiabilities || "",
+                stotalNoncurrentliabilities:data.qliabilities?.qnonCurrent?.qstotalNoncurrentliabilities || "",
+                stotalNoncurrentliabilitiesNote:data.qliabilities?.qcurrent?.qstotalNoncurrentliabilitiesNote || "",
+                sfirtsTotalNoncurrentLiabilitiesNote:data.qliabilities?.qcurrent?.qsfirtsTotalNoncurrentLiabilitiesNote || "",
               },
-
               stotalliabilities: data.qliabilities?.qstotalliabilities || "",
-              totalLiabilities: safeParseFloat(
-                data.qliabilities?.qtotalLiabilities
-              ),
-              totalLiabilitiesDate2: safeParseFloat(
-                data.qliabilities?.qtotalLiabilitiesDate2
-              ),
+              stotalliabilitiesNote: data.qliabilities?.qstotalliabilitiesNote || "",
+              totalLiabilities: safeParseFloat(data.qliabilities?.qtotalLiabilities),
+              totalLiabilitiesDate2: safeParseFloat(data.qliabilities?.qtotalLiabilitiesDate2),
             },
-
-            sShareholdersEquityandliabilitiess:
-              data?.qShareholdersEquityandliabilitiess || "",
+            sShareholdersEquityandliabilitiess:data?.qShareholdersEquityandliabilitiess || "",
+            stotalEquityAndLiabilitiesNote:data?.qstotalEquityAndLiabilitiesNote || "",
             stotalEquityAndLiabilities: data?.qstotalEquityAndLiabilities || "",
-            ItotalEquityAndLiabilities: safeParseFloat(
-              data?.qItotalEquityAndLiabilities
-            ),
-            ItotalEquityAndLiabilitiesDate2: safeParseFloat(
-              data?.qItotalEquityAndLiabilitiesDate2
-            ),
+            ItotalEquityAndLiabilities: safeParseFloat(data?.qItotalEquityAndLiabilities),
+            ItotalEquityAndLiabilitiesDate2: safeParseFloat(data?.qItotalEquityAndLiabilitiesDate2),
           };
 
           // Update the BalanceSheet data in the document
@@ -954,6 +830,7 @@ const CashFlowData = {
     sectionOneItemsEn: ensureArray(data.qsectionOne?.qsectionOneItemsEn),
     sectionOneItemsDate2En: ensureArray(data.qsectionOne?.qsectionOneItemsDate2En),
     sectionOneTotalLabel: data.qsectionOne?.qsectionOneTotalLabel || "",
+    sectionOneTotalNote: data.qsectionOne?.qsectionOneTotalNote || "",
     TotalsectionOneItemsEn: safeParseFloat(data.qsectionOne?.qTotalsectionOneItemsEn),
     TotalsectionOneItemsDate2En: safeParseFloat(data.qsectionOne?.qTotalsectionOneItemsDate2En),
   },
@@ -963,6 +840,7 @@ const CashFlowData = {
     sectionTwoItemsEn: ensureArray(data.qsectionTwo?.qsectionTwoItemsEn),
     sectionTwoItemsDate2En: ensureArray(data.qsectionTwo?.qsectionTwoItemsDate2En),
     sectionTwoTotalLabel: data.qsectionTwo?.qsectionTwoTotalLabel || "",
+    sectionTwoTotalNote: data.qsectionTwo?.qsectionTwoTotalNote || "",
     TotalsectionTwoItemsEn: safeParseFloat(data.qsectionTwo?.qTotalsectionTwoItemsEn),
     TotalsectionTwoItemsDate2En: safeParseFloat(data.qsectionTwo?.qTotalsectionTwoItemsDate2En),
   },
@@ -972,6 +850,7 @@ const CashFlowData = {
     sectionThreeItemsEn: ensureArray(data.qsectionThree?.qsectionThreeItemsEn),
     sectionThreeItemsDate2En: ensureArray(data.qsectionThree?.qsectionThreeItemsDate2En),
     sectionThreeTotalLabel: data.qsectionThree?.qsectionThreeTotalLabel || "",
+    sectionThreeTotalNote: data.qsectionThree?.qsectionThreeTotalNote || "",
     TotalsectionThreeItemsEn: safeParseFloat(data.qsectionThree?.qTotalsectionThreeItemsEn),
     TotalsectionThreeItemsDate2En: safeParseFloat(data.qsectionThree?.qTotalsectionThreeItemsDate2En),
   },
@@ -981,6 +860,7 @@ const CashFlowData = {
     sectionFourItemsEn: ensureArray(data.qsectionFour?.qsectionFourItemsEn),
     sectionFourItemsDate2En: ensureArray(data.qsectionFour?.qsectionFourItemsDate2En),
     sectionFourTotalLabel: data.qsectionFour?.qsectionFourTotalLabel || "",
+    sectionFourTotalNote: data.qsectionFour?.qsectionFourTotalNote || "",
     TotalsectionFourItemsEn: safeParseFloat(data.qsectionFour?.qTotalsectionFourItemsEn),
     TotalsectionFourItemsDate2En: safeParseFloat(data.qsectionFour?.qTotalsectionFourItemsDate2En),
   },
@@ -993,6 +873,7 @@ sectionFourSub: {
     sectionFourSubItemsEn: ensureArray(data.qsectionFourSub?.qsectionFourSubItemsEn),
     sectionFourSubItemsDate2En: ensureArray(data.qsectionFourSub?.qsectionFourSubItemsDate2En),
     sectionFourSubTotalLabel: data.qsectionFourSub?.qsectionFourSubTotalLabel || "",
+    sectionFourSubTotalNote: data.qsectionFourSub?.qsectionFourSubTotalNote || "",
     TotalsectionFourSubItemsEn: safeParseFloat(data.qsectionFourSub?.qTotalsectionFourSubItemsEn),
     TotalsectionFourSubItemsDate2En: safeParseFloat(data.qsectionFourSub?.qTotalsectionFourSubItemsDate2En),
   },  
@@ -1031,6 +912,7 @@ sectionOtherComprehensiveIncome: {
 
     sectionOneTable2: {
       sectionLastLabel: data.qTable2?.qsectionOneTable2?.qsectionLastLabel || "",
+      sectionLastNote: data.qTable2?.qsectionOneTable2?.qsectionLastNote || "",
       TotalsectionFourSubItemsEn: safeParseFloat(data.qTable2?.qsectionOneTable2?.qTotalsectionFourSubItemsEn),
       TotalsectionFourSubItemsDate2En: safeParseFloat(data.qTable2?.qsectionOneTable2?.qTotalsectionFourSubItemsDate2En),
       sectionSevenLastLabel: data.qTable2?.qsectionOneTable2?.qsectionSevenLastLabel || "",
@@ -1040,6 +922,7 @@ sectionOtherComprehensiveIncome: {
       sectionLastItemsEn: ensureArray(data.qTable2?.qsectionOneTable2?.qsectionLastItemsEn),
       sectionLastItemsDate2En: ensureArray(data.qTable2?.qsectionOneTable2?.qsectionLastItemsDate2En),
       sectionLastTotalLabelEn: data.qTable2?.qsectionOneTable2?.qsectionLastTotalLabelEn || "",
+      sectionLastTotalNote: data.qTable2?.qsectionOneTable2?.qsectionLastTotalNote || "",
       TotalSectionLastLabelItemsEn: safeParseFloat(data.qTable2?.qsectionOneTable2?.qTotalSectionLastLabelItemsEn),
       TotalSectionLastItemsDate2En: safeParseFloat(data.qTable2?.qsectionOneTable2?.qTotalSectionLastItemsDate2En),
     },
@@ -1051,11 +934,13 @@ sectionOtherComprehensiveIncome: {
       sectionLastItemsEn2: ensureArray(data.qTable2?.qsectionTwoTable2?.qsectionLastItemsEn2),
       sectionLastItemsDate2En2: ensureArray(data.qTable2?.qsectionTwoTable2?.qsectionLastItemsDate2En2),
       sectionLastTotalLabelEn2: data.qTable2?.qsectionTwoTable2?.qsectionLastTotalLabelEn2 || "",
+      sectionLastTotalNoteEn2: data.qTable2?.qsectionTwoTable2?.qsectionLastTotalNoteEn2 || "",
       TotalSectionLastLabelItemsEn2: safeParseFloat(data.qTable2?.qsectionTwoTable2?.qTotalSectionLastLabelItemsEn2),
       TotalSectionLastItemsDate2En2: safeParseFloat(data.qTable2?.qsectionTwoTable2?.qTotalSectionLastItemsDate2En2),
 
       totalOtherComp: {
         SectionSevenSecondLastLabel2: data.qTable2?.qsectionTwoTable2?.qtotalOtherComp?.qSectionSevenSecondLastLabel2 || "",
+        SectionSevenLastNote: data.qTable2?.qsectionTwoTable2?.qtotalOtherComp?.qSectionSevenLastNote || "",
         TotalsectionSevenSecondLastItemEn: safeParseFloat(data.qTable2?.qsectionTwoTable2?.qtotalOtherComp?.qTotalsectionSevenSecondLastItemEn),
         TotalsectionSevenSecondLastItemsDate2En: safeParseFloat(data.qTable2?.qsectionTwoTable2?.qtotalOtherComp?.qTotalsectionSevenSecondLastItemsDate2En),
       },
