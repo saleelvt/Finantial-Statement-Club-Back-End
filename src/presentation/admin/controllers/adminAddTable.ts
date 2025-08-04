@@ -392,15 +392,7 @@ export const adminAddTableController = (dependencies: IAdminDependencies) => {
     sectionFourOtherComprehensiveIncomeSubheadingItemsDate2EnTable2: ensureArray(data.Table2?.sectionOtherComprehensiveIncomeTable2?.sectionFourOtherComprehensiveIncomeSubheadingItemsDate2EnTable2),
   },
 },
-
-
 };
-
-
-
-
-
-
           // Assign the data
           matchedDocument.formData[section].table.ProfitLoss = ProfitLossData;
 
@@ -539,13 +531,8 @@ const CashFlowData = {
     }
   }
 };
-
-
-
           // Assign the data
           matchedDocument.formData[section].table.CashFlow = CashFlowData
-
-
           try {
             await matchedDocument.save();
             return res.status(200).json({
@@ -561,62 +548,12 @@ const CashFlowData = {
               error: saveError.message,
             });
           }
-
-
-
-
-
- 
-
 } else {
           return res.status(400).json({
             success: false,
             message: "Invalid table category or missing data.",
           });
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       } else if (language === "Arabic") {
         const existingDocuments = await ArabicDocument.find({ tadawalCode });
 
@@ -693,7 +630,6 @@ const CashFlowData = {
                 secondTotalDate2: safeParseFloat(  data.qassets?.qnonCurrent?.qsecondTotalDate2   ),
                 sfirtsTotalnonCurrentAssets: data.qassets?.qnonCurrent?.qsfirtsTotalnonCurrentAssets || "",
                 stotalNonCurrentAssets: data.qassets?.qnonCurrent?.qstotalNonCurrentAssets || "",
-                
                 sfirtsTotalnonCurrentNote: data.qassets?.qnonCurrent?.qsfirtsTotalnonCurrentNote || "",
                 stotalNonCurrentAssetsNote: data.qassets?.qnonCurrent?.qstotalNonCurrentAssetsNote || "",
               },
@@ -940,13 +876,14 @@ sectionOtherComprehensiveIncome: {
 
       totalOtherComp: {
         SectionSevenSecondLastLabel2: data.qTable2?.qsectionTwoTable2?.qtotalOtherComp?.qSectionSevenSecondLastLabel2 || "",
-        SectionSevenLastNote: data.qTable2?.qsectionTwoTable2?.qtotalOtherComp?.qSectionSevenLastNote || "",
+        SectionSevenSecondLastNote: data.qTable2?.qsectionTwoTable2?.qtotalOtherComp?.qSectionSevenSecondLastNote || "",
         TotalsectionSevenSecondLastItemEn: safeParseFloat(data.qTable2?.qsectionTwoTable2?.qtotalOtherComp?.qTotalsectionSevenSecondLastItemEn),
         TotalsectionSevenSecondLastItemsDate2En: safeParseFloat(data.qTable2?.qsectionTwoTable2?.qtotalOtherComp?.qTotalsectionSevenSecondLastItemsDate2En),
       },
 
       totalComprehensiveLoss: {
         SectionSevenLastLabel2: data.qTable2?.qsectionTwoTable2?.qtotalComprehensiveLoss?.qSectionSevenLastLabel2 || "",
+        SectionSevenLastNote: data.qTable2?.qsectionTwoTable2?.qtotalComprehensiveLoss?.qSectionSevenLastNote || "",
         TotalsectionSevenLastItemEn: safeParseFloat(data.qTable2?.qsectionTwoTable2?.qtotalComprehensiveLoss?.qTotalsectionSevenLastItemEn),
         TotalsectionSevenLastItemsDate2En: safeParseFloat(data.qTable2?.qsectionTwoTable2?.qtotalComprehensiveLoss?.qTotalsectionSevenLastItemsDate2En),
       },

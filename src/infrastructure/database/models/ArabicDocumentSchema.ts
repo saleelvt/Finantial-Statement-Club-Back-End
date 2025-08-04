@@ -19,25 +19,7 @@ const FileSchema = new Schema({
       // Assets section
       assets: {
         // Current assets subsection
-        current: {
-          scurrentAssets: { type: String },
-          currentLabels: { type: [String] },
-          items: { type: [String] },
-          itemsDate2: { type: [String] },
-          currentSubLabels: { type: [String] },
-          subItems: { type: [String] },
-          subItemsDate2: { type: [String] },
-          firstTotal: { type: Number },
-          firstTotalDate2: { type: Number },
-            stotalCurrentAssetsNote:{ type: String },
-          secondTotal: { type: Number },
-          secondTotalDate2: { type: Number },
-          sfirtsTotalCurrentAssets: { type: String },
-            sfirtsTotalCurrentAssetsNote:{ type: String },
-          stotalCurrentAssets: { type: String },
-          CurrentAssetsNotes: { type: [String] },
-        },
-
+      
         // Non-current assets subsection
         nonCurrent: {
           snonCurrentAssets: { type: String },
@@ -57,6 +39,25 @@ const FileSchema = new Schema({
           stotalNonCurrentAssets: { type: String },
           nonCurrentNotes: { type: [String] },
         },
+          current: {
+          scurrentAssets: { type: String },
+          currentLabels: { type: [String] },
+          items: { type: [String] },
+          itemsDate2: { type: [String] },
+          currentSubLabels: { type: [String] },
+          subItems: { type: [String] },
+          subItemsDate2: { type: [String] },
+          firstTotal: { type: Number },
+          firstTotalDate2: { type: Number },
+            stotalCurrentAssetsNote:{ type: String },
+          secondTotal: { type: Number },
+          secondTotalDate2: { type: Number },
+          sfirtsTotalCurrentAssets: { type: String },
+            sfirtsTotalCurrentAssetsNote:{ type: String },
+          stotalCurrentAssets: { type: String },
+          CurrentAssetsNotes: { type: [String] },
+        },
+
         // Asset totals and labels
         sassets: { type: String },
          stotalAssetsNote:{ type: String },
@@ -264,7 +265,7 @@ const FileSchema = new Schema({
                 TotalSectionLastItemsDate2En2: { type: Number },
                 totalOtherComp: {
                   SectionSevenSecondLastLabel2: { type: String },
-                    SectionSevenSecondLastNote: { type: String },
+                    SectionSevenSecondLastNote: { type: String }, 
                   TotalsectionSevenSecondLastItemEn: { type: Number },
                   TotalsectionSevenSecondLastItemsDate2En: { type: Number },
                 }, 
